@@ -1,0 +1,51 @@
+@font-face{
+    font-family: 'OptimusPrinceps';
+    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\OptimusPrinceps.ttf');
+    font-weight: normal;
+    font-style: normal;
+    
+}
+
+@font-face{
+    font-family: 'BelindaScript';
+    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\BelindaScript.ttf');
+    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\BelindaScript.otf');
+    font-weight: normal;
+    font-style: normal;
+    
+}
+
+@font-face{
+    font-family: 'PenelopeAnne';
+    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\PenelopeAnne.ttf');
+    font-weight: normal;
+    font-style: normal;
+    
+}
+
+.container-frm{
+    background-color: rgba(90, 51, 0, 0.904);
+    box-shadow: 0px 0px 20px black;
+    margin: 10px;
+    border-style: groove;
+    border-radius: 25px;
+    padding: 35px;
+    position: absolute;
+    top: 10%;
+    left:32%;
+}
+.btn-bg{
+    color: brown;
+    background-color: pink;
+    box-shadow: 0px 0px 20px pink;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    font-family: 'OptimusPrinceps';
+}
+
+.cf{
+    margin: 0 auto;
+}
+
+
+

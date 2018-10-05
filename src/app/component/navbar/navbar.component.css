@@ -1,0 +1,19 @@
+.fondo{
+    background-color: rgb(80, 51, 9);
+    box-shadow: 0px 0px 20px black;
+}
+
+.navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+
+.navbar-nav.navbar-right {
+    position: absolute;
+    left: 87%;
+    
+}
+
+
+
