@@ -5,6 +5,8 @@ import { HomeComponent } from './view/home/home.component';
 import { LoginComponent } from './view/login/login.component';
 import { SignupComponent } from './view/signup/signup.component';
 import { UserComponent } from './view/user/user.component';
+import { DatavComponent } from './view/datav/datav.component';
+import { AdminComponent } from './view/admin/admin.component';
 
 
 
@@ -32,14 +34,31 @@ const routes: Routes = [
       
     ],
     component: SignupComponent
-  }
+  },
 {
   path:'user',
     children: [
       
     ],
     component: UserComponent
-  }
+  },
+
+  {
+    path:'admin',
+      children: [
+        
+      ],
+      component: AdminComponent
+    },
+
+  {
+    path:'datav',
+      children: [
+        
+      ],
+      component: DatavComponent
+    }
+  
 
 ];
 

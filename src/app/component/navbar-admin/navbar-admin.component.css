@@ -1,0 +1,95 @@
+@font-face{
+    font-family: 'OptimusPrinceps';
+    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\OptimusPrinceps.ttf');
+    font-weight: normal;
+    font-style: normal;
+    
+}
+
+@font-face{
+    font-family: 'BelindaScript';
+    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\BelindaScript.ttf');
+    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\BelindaScript.otf');
+    font-weight: normal;
+    font-style: normal;
+    
+}
+
+@font-face{
+    font-family: 'PenelopeAnne';
+    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\PenelopeAnne.ttf');
+    font-weight: normal;
+    font-style: normal;
+    
+}
+
+.fondo{
+    background-color: rgb(80, 51, 9);
+    box-shadow: 0px 0px 20px black;
+    color:white; 
+    font-family:PenelopeAnne;
+}
+
+.navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    color:white; 
+    font-family:PenelopeAnne; 
+    font-size:x-large;
+    margin-right: 10px;
+
+}
+
+.navbar-nav.navbar-right {
+    position: absolute;
+    left: 82%;
+    color:white; 
+    font-family:PenelopeAnne; 
+    font-size:x-large;
+    
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+ 
+
+.dropdown-content {
+
+    display: none;
+    position: absolute;
+    background-color: rgb(80, 51, 9);
+    opacity: 0.9;
+    float: left;
+    list-style: none;
+    width: 250px;
+    height: cover;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    font-size: 20px;
+}
+
+ 
+
+.dropdown:hover .dropdown-content{
+    display: block;
+}
+
+ 
+
+.dropdown-content li a:hover{
+    background-color: brown;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    color: black;
+}
+
+ 
+
+.dropdown-content a:hover{
+    background-color: brown;
+    color: black;
+}

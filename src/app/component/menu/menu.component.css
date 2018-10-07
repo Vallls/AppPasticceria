@@ -1,0 +1,81 @@
+@font-face{
+    font-family: 'OptimusPrinceps';
+    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\OptimusPrinceps.ttf');
+    font-weight: normal;
+    font-style: normal;
+    
+}
+
+@font-face{
+    font-family: 'BelindaScript';
+    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\BelindaScript.ttf');
+    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\BelindaScript.otf');
+    font-weight: normal;
+    font-style: normal;
+    
+}
+
+@font-face{
+    font-family: 'PenelopeAnne';
+    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\PenelopeAnne.ttf');
+    font-weight: normal;
+    font-style: normal;
+    
+}
+
+.container-frm{
+    background-color: rgba(90, 51, 0, 0.904);
+    box-shadow: 0px 0px 20px black;
+    margin: 10px;
+    border-style: groove;
+    border-radius: 25px;
+    padding: 35px;
+    position: absolute;
+    top: 20%;
+    left:7%;
+}
+
+.col-4{
+    background-color: rgba(236, 135, 152, 0.993);
+    width: 400px;
+    height: 400px;
+    border: groove;
+    box-shadow: 0px 0px 20px black;
+}
+
+.caja{
+    background-color: black;
+    width: 200px;
+    height: 200px;
+    box-shadow: 0px 0px 20px black;
+}
+
+.centrarCaja {
+    top: 5%;
+    left:23%;
+    position: absolute;
+    align-items: center;
+}
+
+h1,h3,h4{
+    font-family: 'PenelopeAnne';
+    color: white;
+}
+
+.caja:hover{
+    background-color: black;
+    opacity:0.4;
+    cursor: pointer;
+}
+
+h1{
+    font-weight: bold;
+    text-align: center;
+    margin-left: 45%;
+}
+
+h3{
+    font-weight: bold;
+    text-align: center;
+    margin-left: 5%;
+}
