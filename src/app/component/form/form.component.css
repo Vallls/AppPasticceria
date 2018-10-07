@@ -31,7 +31,7 @@
     border-radius: 25px;
     padding: 35px;
     position: absolute;
-    top: 10%;
+    top: 2%;
     left:32%;
 }
 .btn-bg{
@@ -47,5 +47,8 @@
     margin: 0 auto;
 }
 
+.col-11{
+    left:4%;
+}
 
 

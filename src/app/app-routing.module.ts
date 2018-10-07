@@ -4,6 +4,7 @@ import { NavigationComponent } from './navigation/navigation/navigation.componen
 import { HomeComponent } from './view/home/home.component';
 import { LoginComponent } from './view/login/login.component';
 import { SignupComponent } from './view/signup/signup.component';
+import { UserComponent } from './view/user/user.component';
 
 
 
@@ -31,6 +32,13 @@ const routes: Routes = [
       
     ],
     component: SignupComponent
+  }
+{
+  path:'user',
+    children: [
+      
+    ],
+    component: UserComponent
   }
 
 ];

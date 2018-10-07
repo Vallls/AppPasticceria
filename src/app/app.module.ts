@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { NavigationComponent } from './navigation/navigation/navigation.component';
@@ -11,6 +11,10 @@ import { NavigationLoginComponent } from './navigation/navigation-login/navigati
 import { FormComponent } from './component/form/form.component';
 import { FormSignupComponent } from './component/form-signup/form-signup.component';
 import { SignupComponent } from './view/signup/signup.component';
+import { UserComponent } from './view/user/user.component';
+import { AdminComponent } from './view/admin/admin.component';
+import { NavbarUserComponent } from './component/navbar-user/navbar-user.component';
+import { NavbarAdminComponent } from './component/navbar-admin/navbar-admin.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +26,16 @@ import { SignupComponent } from './view/signup/signup.component';
     NavigationLoginComponent,
     FormComponent,
     FormSignupComponent,
-    SignupComponent
+    SignupComponent,
+    UserComponent,
+    AdminComponent,
+    NavbarUserComponent,
+    NavbarAdminComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    TooltipModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
