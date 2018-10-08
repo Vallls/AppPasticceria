@@ -62,12 +62,6 @@ h1,h3,h4{
     color: white;
 }
 
-.caja:hover{
-    background-color: black;
-    opacity:0.4;
-    cursor: pointer;
-}
-
 h1{
     font-weight: bold;
     text-align: center;
