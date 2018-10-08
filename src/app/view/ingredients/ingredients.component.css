@@ -23,62 +23,66 @@
     
 }
 
+.body{
+    width: 100%;
+    height: 900px;
+    background-image: url(C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\assets\fondo20.jpg);
+    background-repeat: repeat;
+   
+}
+
+.footer{
+    width: 100%;
+    height: 110px; 
+    background-color: rgb(80, 51, 9);
+    box-shadow: 0px 0px 20px black;
+}
+
 .container-bg{
     background-color: rgb(158, 104, 22);
-    top: 150px;
-    padding: 50px;
+    top: 200px;
+    left: 90px;
+    padding: 30px;
     box-shadow: 0px 0px 20px black;
     border: groove;
     border-radius: 10px;
-    font-family: 'PenelopeAnne';
-    color: white;
-    left: 15%;
+}
+
+.centrar{
+    left: 34%;
+    bottom: 20px;
 }
 
 .btn-bg{
-    margin-left: 40%;
     color: brown;
     background-color: pink;
     box-shadow: 0px 0px 20px pink;
-    border-radius: 30px;
+    border-radius: 50px;
     font-family: 'OptimusPrinceps';
-    margin-top: 20px;
+    margin-left: 170px;
+    margin-top: 10px;
+}
+
+.caja{
+    background-color: pink;
+    margin-top: 60px;
+    margin-left: 50px;
+    width: 300px; 
+    height: 250px;
+    box-shadow: 0px 0px 20px black;
+    
 }
 
 .row-bg{
-    
-    margin-top: 10px;
+    background-color: rgba(236, 135, 152, 0.993);
+    padding: 35px;
+    box-shadow: 0px 0px 20px black;
+    border-radius: 25px;
 }
 
-.cf{
-    margin: 0 auto;
+h1,h2,h3,h5,label,input{
+    font-family: 'OptimusPrinceps';
+    color: white;
 }
 
-label{
-    font-size: x-large;
-    margin-left: 150px;
-    margin-top: 10px;
-}
-
-h4{
-    margin-top: 20px;
-    margin-left: 330px;
-}
-
-h1{
-    margin-left: 270px;
-    margin-bottom: 30px;
-    font-weight: bold;
-}
-
-.letra label{
-    font-size: x-large;
-    margin-left: 100px;
-    margin-top: 10px;
-}
-
-.letra h1{
-    margin-left: 70px;
-    margin-bottom: 30px;
-    font-weight: bold;
-}
+ 

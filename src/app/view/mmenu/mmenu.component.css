@@ -1,0 +1,137 @@
+.body{
+    width: 100%;
+    height: 6200px;
+    background-image: url(C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\assets\fondo20.jpg);
+    background-repeat: repeat;
+   
+}
+
+.footer{
+    width: 100%;
+    height: 110px; 
+    background-color: rgb(80, 51, 9);
+    box-shadow: 0px 0px 20px black;
+}
+
+@font-face{
+    font-family: 'OptimusPrinceps';
+    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\OptimusPrinceps.ttf');
+    font-weight: normal;
+    font-style: normal;
+    
+}
+
+@font-face{
+    font-family: 'BelindaScript';
+    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\BelindaScript.ttf');
+    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\BelindaScript.otf');
+    font-weight: normal;
+    font-style: normal;
+    
+}
+
+@font-face{
+    font-family: 'PenelopeAnne';
+    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\PenelopeAnne.ttf');
+    font-weight: normal;
+    font-style: normal;
+    
+}
+
+.container-frm{
+    background-color: rgba(90, 51, 0, 0.904);
+    box-shadow: 0px 0px 20px black;
+    margin: 10px;
+    border-style: groove;
+    border-radius: 25px;
+    padding: 35px;
+    position: absolute;
+    top: 20%;
+    left:7%;
+}
+
+.col-4{
+    background-color: rgba(236, 135, 152, 0.993);
+    width: 400px;
+    height: 400px;
+    border: groove;
+    box-shadow: 0px 0px 20px black;
+}
+
+.caja{
+    background-color: black;
+    width: 200px;
+    height: 200px;
+    box-shadow: 0px 0px 20px black;
+}
+
+.centrarCaja {
+    top: 5%;
+    left:23%;
+    position: absolute;
+    align-items: center;
+}
+
+h1,h3,h4{
+    font-family: 'PenelopeAnne';
+    color: white;
+}
+
+h1{
+    font-weight: bold;
+    text-align: center;
+    margin-left: 45%;
+}
+
+h3{
+    font-weight: bold;
+    text-align: center;
+    margin-left: 5%;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    cursor: pointer;
+    transition: .5s ease;
+    background-color: pink;
+  }
+
+ 
+
+  .container .row .col-4 .centrarCaja .Num1:hover  .overlay {
+    opacity: 0.8;
+  }
+
+ 
+
+  .text {
+    color: black;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+}

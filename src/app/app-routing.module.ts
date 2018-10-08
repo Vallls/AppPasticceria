@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { ModalModule } from 'ngx-bootstrap';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { RouterModule, Routes } from '@angular/router';
 import { NavigationComponent } from './navigation/navigation/navigation.component';
 import { HomeComponent } from './view/home/home.component';
@@ -8,6 +10,8 @@ import { UserComponent } from './view/user/user.component';
 import { DatavComponent } from './view/datav/datav.component';
 import { AdminComponent } from './view/admin/admin.component';
 import { CartComponent } from './view/cart/cart.component';
+import { MmenuComponent } from './view/mmenu/mmenu.component';
+import { IngredientsComponent } from './view/ingredients/ingredients.component';
 
 
 
@@ -58,6 +62,20 @@ const routes: Routes = [
         ],
         component: CartComponent
       },
+    {
+      path:'mmenu',
+         children: [
+            
+        ],
+          component: MmenuComponent
+    },
+    {
+      path:'ingredients',
+        children: [
+          
+        ],
+        component: IngredientsComponent
+      },       
 
   {
     path:'datav',
@@ -71,7 +89,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),TooltipModule.forRoot(),ModalModule.forRoot()],
   exports: [RouterModule]
 })
 

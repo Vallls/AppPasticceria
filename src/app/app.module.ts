@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ModalModule } from 'ngx-bootstrap';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
@@ -19,6 +20,8 @@ import { MenuComponent } from './component/menu/menu.component';
 import { DataComponent } from './component/data/data.component';
 import { DatavComponent } from './view/datav/datav.component';
 import { CartComponent } from './view/cart/cart.component';
+import { MmenuComponent } from './view/mmenu/mmenu.component';
+import { IngredientsComponent } from './view/ingredients/ingredients.component';
 
 @NgModule({
   declarations: [
@@ -39,11 +42,14 @@ import { CartComponent } from './view/cart/cart.component';
     DataComponent,
     DatavComponent,
     CartComponent,
+    MmenuComponent,
+    IngredientsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     TooltipModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
