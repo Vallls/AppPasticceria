@@ -25,26 +25,22 @@
 
 .body{
     width: 100%;
-    height: 3400px;
+    height: 1000px;
     background-image: url(C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\assets\fondo20.jpg);
     background-repeat: repeat;
    
 }
 
-.images{
+.footer{
     width: 100%;
-    height: 600px;
-
-}
-
-.AboutUs{
-    width: 100%;
-    height: 800px;
+    height: 110px; 
+    background-color: rgb(80, 51, 9);
+    box-shadow: 0px 0px 20px black;
 }
 
 .container-bg{
     background-color: rgb(158, 104, 22);
-    top: 300px;
+    top: 200px;
     left: 90px;
     padding: 30px;
     box-shadow: 0px 0px 20px black;
@@ -61,40 +57,28 @@
     color: brown;
     background-color: pink;
     box-shadow: 0px 0px 20px pink;
-    margin-bottom: 2px;
     border-radius: 30px;
     font-family: 'OptimusPrinceps';
+    margin-left: 720px;
 }
-
-.footer{
-    width: 100%;
-    height: 110px; 
-    background-color: rgb(80, 51, 9);
-    margin-top:300px;
-    box-shadow: 0px 0px 20px black;
-}
-
 
 .caja{
     background-color: pink;
+    
     width: 300px; 
-    height: 500px;
+    height: 250px;
     box-shadow: 0px 0px 20px black;
     
 }
 
-.col-4{
-    padding: 3px;
-    margin-left: 0px;
+.row-bg{
+    background-color: rgba(236, 135, 152, 0.993);
+    padding: 35px;
+    box-shadow: 0px 0px 20px black;
+    border-radius: 25px;
 }
 
-.container-bgg{
-    background-color: rgb(158, 104, 22);
-    top: 150px;
-    left: 90px;
-    padding: 30px;
-    box-shadow: 0px 0px 20px black;
-    border: groove;
-    border-radius: 10px;
-    margin-bottom: 200px;
+h1,h2,h3,h4{
+    font-family: 'OptimusPrinceps';
+    color: white;
 }

@@ -7,6 +7,7 @@ import { SignupComponent } from './view/signup/signup.component';
 import { UserComponent } from './view/user/user.component';
 import { DatavComponent } from './view/datav/datav.component';
 import { AdminComponent } from './view/admin/admin.component';
+import { CartComponent } from './view/cart/cart.component';
 
 
 
@@ -50,6 +51,13 @@ const routes: Routes = [
       ],
       component: AdminComponent
     },
+    {
+      path:'cart',
+        children: [
+          
+        ],
+        component: CartComponent
+      },
 
   {
     path:'datav',

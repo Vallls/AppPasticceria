@@ -18,6 +18,7 @@ import { NavbarAdminComponent } from './component/navbar-admin/navbar-admin.comp
 import { MenuComponent } from './component/menu/menu.component';
 import { DataComponent } from './component/data/data.component';
 import { DatavComponent } from './view/datav/datav.component';
+import { CartComponent } from './view/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { DatavComponent } from './view/datav/datav.component';
     MenuComponent,
     DataComponent,
     DatavComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
