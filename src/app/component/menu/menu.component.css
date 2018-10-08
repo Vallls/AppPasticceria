@@ -1,6 +1,6 @@
 @font-face{
     font-family: 'OptimusPrinceps';
-    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\OptimusPrinceps.ttf');
+    src: url('C:\Users\Alessandro\Documents\Proyecto\AppPasticceria\src\fonts\OptimusPrinceps.ttf');
     font-weight: normal;
     font-style: normal;
     
@@ -8,8 +8,8 @@
 
 @font-face{
     font-family: 'BelindaScript';
-    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\BelindaScript.ttf');
-    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\BelindaScript.otf');
+    src: url('C:\Users\Alessandro\Documents\Proyecto\AppPasticceria\src\fonts\BelindaScript.ttf');
+    src: url('C:\Users\Alessandro\Documents\Proyecto\AppPasticceria\src\fonts\BelindaScript.otf');
     font-weight: normal;
     font-style: normal;
     
@@ -17,7 +17,7 @@
 
 @font-face{
     font-family: 'PenelopeAnne';
-    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\PenelopeAnne.ttf');
+    src: url('C:\Users\Alessandro\Documents\Proyecto\AppPasticceria\src\fonts\PenelopeAnne.ttf');
     font-weight: normal;
     font-style: normal;
     
@@ -62,12 +62,6 @@ h1,h3,h4{
     color: white;
 }
 
-.caja:hover{
-    background-color: black;
-    opacity:0.4;
-    cursor: pointer;
-}
-
 h1{
     font-weight: bold;
     text-align: center;
@@ -79,3 +73,33 @@ h3{
     text-align: center;
     margin-left: 5%;
 }
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    cursor: pointer;
+    transition: .5s ease;
+    background-color: pink;
+  }
+
+  .container .row .col-4 .centrarCaja .Num1:hover  .overlay {
+    opacity: 0.8;
+  }
+
+  .text {
+    color: black;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
