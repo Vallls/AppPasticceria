@@ -22,6 +22,8 @@ import { DatavComponent } from './view/datav/datav.component';
 import { CartComponent } from './view/cart/cart.component';
 import { MmenuComponent } from './view/mmenu/mmenu.component';
 import { IngredientsComponent } from './view/ingredients/ingredients.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CModalComponent } from './c-modal/c-modal.component';
 
 @NgModule({
   declarations: [
@@ -44,12 +46,14 @@ import { IngredientsComponent } from './view/ingredients/ingredients.component';
     CartComponent,
     MmenuComponent,
     IngredientsComponent,
+    CModalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     TooltipModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

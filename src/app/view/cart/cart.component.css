@@ -1,6 +1,6 @@
 @font-face{
     font-family: 'OptimusPrinceps';
-    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\OptimusPrinceps.ttf');
+    src: src="fonts/OptimusPrinceps.ttf";
     font-weight: normal;
     font-style: normal;
     
@@ -8,16 +8,16 @@
 
 @font-face{
     font-family: 'BelindaScript';
-    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\BelindaScript.ttf');
-    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\BelindaScript.otf');
+    src: src="fonts/BelindaScript.ttf";
+    src: src="fonts/BelindaScript.otf";
     font-weight: normal;
     font-style: normal;
-    
 }
+
 
 @font-face{
     font-family: 'PenelopeAnne';
-    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\PenelopeAnne.ttf');
+    src: src="fonts/PenelopeAnne.ttf";
     font-weight: normal;
     font-style: normal;
     
@@ -26,7 +26,7 @@
 .body{
     width: 100%;
     height: 1000px;
-    background-image: url(C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\assets\fondo20.jpg);
+    background-image: src="assets/fondo20.jpg";
     background-repeat: repeat;
    
 }
