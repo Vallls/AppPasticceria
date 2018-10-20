@@ -33,6 +33,8 @@
     position: absolute;
     top: 2%;
     left:32%;
+    width: 100vw;
+    height: 98vh;
 }
 .btn-bg{
     color: brown;
