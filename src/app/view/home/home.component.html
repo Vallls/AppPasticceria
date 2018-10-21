@@ -19,6 +19,7 @@
            </div>
        </div>
     </div>
+    <app-c-modal></app-c-modal>
     <div class="AboutUs" >
         <div class="container" >
             <div class="row"  id="about">
@@ -46,7 +47,7 @@
                              </div>
                 </div>
     </div>
-    <div class="ContactUs" style="width: 100%; height: 900px; margin-top:100px; margin-buttom:100px">
+    <div class="ContactUs" style="width: 100%; height: 900px; margin-top:100px; margin-bottom:100px">
             <div class="container" id="contact">
                   <div class="row">
                       <div class="col-10 container-bg" style="padding:50px; ">
@@ -100,8 +101,22 @@
             </div>
     </div>       
 </div>
-
-<app-c-modal></app-c-modal>
+<ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">Hi there!</h4>
+          <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Hello, {{name}}!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+        </div>
+      </ng-template>
+      
+      <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
 
 <div class="footer">
        <div class="container">
