@@ -1,6 +1,6 @@
 @font-face{
     font-family: 'OptimusPrinceps';
-    src: src="fonts/OptimusPrinceps.ttf";
+    src: url('../../../fonts/OptimusPrinceps.ttf');
     font-weight: normal;
     font-style: normal;
     
@@ -8,8 +8,8 @@
 
 @font-face{
     font-family: 'BelindaScript';
-    src: src="fonts/BelindaScript.ttf";
-    src: src="fonts/BelindaScript.otf";
+    src: url('../../../fonts/BelindaScript.ttf');
+    src: url('../../../fonts/BelindaScript.otf');
     font-weight: normal;
     font-style: normal;
 }
@@ -17,7 +17,7 @@
 
 @font-face{
     font-family: 'PenelopeAnne';
-    src: src="fonts/PenelopeAnne.ttf";
+    src: url('../../../fonts/PenelopeAnne.ttf');
     font-weight: normal;
     font-style: normal;
     
@@ -26,7 +26,7 @@
 .body{
     width: 100%;
     height: 1000px;
-    background-image: src="assets/fondo20.jpg";
+    background-image: url(/src/assets/fondo20.jpg);
     background-repeat: repeat;
    
 }
