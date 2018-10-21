@@ -32,12 +32,10 @@
 
 .navbar-nav.navbar-center {
     position: absolute;
-    left: 50%;
-    transform: translatex(-50%);
     color:white; 
     font-family:PenelopeAnne; 
-    font-size:x-large;
-    margin-right: 10px;
+    font-size:4vh;
+    margin-right: 3vw;
 
 }
 
@@ -46,7 +44,7 @@
     left: 85%;
     color:white; 
     font-family:PenelopeAnne; 
-    font-size:x-large;
+    font-size:4vh;
     
 }
 
