@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-c-modal',
+  templateUrl: './c-modal.component.html',
+  styleUrls: ['./c-modal.component.css']
 })
-export class HomeComponent implements OnInit {
+export class CModalComponent implements OnInit {
 
   closeResult: string;
 
@@ -29,8 +29,8 @@ export class HomeComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
+
   ngOnInit() {
   }
 
 }
-

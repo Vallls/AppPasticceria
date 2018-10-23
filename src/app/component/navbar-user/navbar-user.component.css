@@ -1,6 +1,6 @@
 @font-face{
     font-family: 'OptimusPrinceps';
-    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\OptimusPrinceps.ttf');
+    src: url('../../../fonts/OptimusPrinceps.ttf');
     font-weight: normal;
     font-style: normal;
     
@@ -8,8 +8,8 @@
 
 @font-face{
     font-family: 'BelindaScript';
-    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\BelindaScript.ttf');
-    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\BelindaScript.otf');
+    src: url('../../../fonts/BelindaScript.ttf');
+    src: url('../../../fonts/BelindaScript.otf');
     font-weight: normal;
     font-style: normal;
     
@@ -17,7 +17,7 @@
 
 @font-face{
     font-family: 'PenelopeAnne';
-    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\PenelopeAnne.ttf');
+    src: url('../../../fonts/PenelopeAnne.ttf');
     font-weight: normal;
     font-style: normal;
     
@@ -32,12 +32,10 @@
 
 .navbar-nav.navbar-center {
     position: absolute;
-    left: 50%;
-    transform: translatex(-50%);
     color:white; 
     font-family:PenelopeAnne; 
-    font-size:x-large;
-    margin-right: 10px;
+    font-size:4vh;
+    margin-right: 3vw;
 
 }
 
@@ -46,7 +44,7 @@
     left: 85%;
     color:white; 
     font-family:PenelopeAnne; 
-    font-size:x-large;
+    font-size:4vh;
     
 }
 
@@ -80,7 +78,7 @@
 
  
 
-.dropdown-content li a:hover{
+.dropdown-content .superior:hover{
     background-color: brown;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
@@ -89,7 +87,14 @@
 
  
 
-.dropdown-content a:hover{
+.dropdown-content .medio:hover{
     background-color: brown;
+    color: black;
+}
+
+.dropdown-content .inferior:hover{
+    background-color: brown;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
     color: black;
 }

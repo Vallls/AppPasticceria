@@ -20,7 +20,12 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
+    "@ng-bootstrap/ng-bootstrap": "^2.2.2",
+    "@ng-bootstrap/schematics": "^2.0.0-alpha.1",
+    "angularfire2": "^5.1.0",
+    "bootstrap": "^4.0.0",
     "core-js": "^2.5.4",
+    "firebase": "^5.5.5",
     "ngx-bootstrap": "^3.0.1",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"

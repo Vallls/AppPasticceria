@@ -1,6 +1,6 @@
 @font-face{
     font-family: 'OptimusPrinceps';
-    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\OptimusPrinceps.ttf');
+    src: url('../../../fonts/OptimusPrinceps.ttf');
     font-weight: normal;
     font-style: normal;
     
@@ -8,8 +8,8 @@
 
 @font-face{
     font-family: 'BelindaScript';
-    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\BelindaScript.ttf');
-    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\BelindaScript.otf');
+    src: url('../../../fonts/BelindaScript.ttf');
+    src: url('../../../fonts/BelindaScript.otf');
     font-weight: normal;
     font-style: normal;
     
@@ -17,7 +17,7 @@
 
 @font-face{
     font-family: 'PenelopeAnne';
-    src: url('C:\Users\ValeriaMadio\Desktop\AppPasticceria\src\fonts\PenelopeAnne.ttf');
+    src: url('../../../fonts/PenelopeAnne.ttf');
     font-weight: normal;
     font-style: normal;
     
@@ -106,6 +106,12 @@ h3{
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
+  }
+
+  .modal-title{
+    font-weight: bold;
+    color: black;
+    font-family: 'PenelopeAnne';
   }
 
  

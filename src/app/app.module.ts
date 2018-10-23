@@ -22,6 +22,10 @@ import { DatavComponent } from './view/datav/datav.component';
 import { CartComponent } from './view/cart/cart.component';
 import { MmenuComponent } from './view/mmenu/mmenu.component';
 import { IngredientsComponent } from './view/ingredients/ingredients.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CModalComponent } from './c-modal/c-modal.component';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -44,12 +48,15 @@ import { IngredientsComponent } from './view/ingredients/ingredients.component';
     CartComponent,
     MmenuComponent,
     IngredientsComponent,
+    CModalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     TooltipModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    NgbModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
   bootstrap: [AppComponent]
