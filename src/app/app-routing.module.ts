@@ -12,6 +12,7 @@ import { AdminComponent } from './view/admin/admin.component';
 import { CartComponent } from './view/cart/cart.component';
 import { MmenuComponent } from './view/mmenu/mmenu.component';
 import { IngredientsComponent } from './view/ingredients/ingredients.component';
+import { NavbarUserComponent } from './component/navbar-user/navbar-user.component';
 
 
 
@@ -41,22 +42,24 @@ const routes: Routes = [
     component: SignupComponent
   },
 {
-  path:'user',
+  path:'user/:id',
     children: [
+      
+    {path:'navbar-user', component: NavbarUserComponent}
       
     ],
     component: UserComponent
   },
 
   {
-    path:'admin',
+    path:'admin/:id',
       children: [
         
       ],
       component: AdminComponent
     },
     {
-      path:'cart',
+      path:'cart/:id',
         children: [
           
         ],
@@ -78,12 +81,13 @@ const routes: Routes = [
       },       
 
   {
-    path:'datav',
+    path:'datav/:id',
       children: [
         
       ],
       component: DatavComponent
-    }
+    },
+
   
 
 ];
