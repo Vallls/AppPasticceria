@@ -13,9 +13,11 @@ export class FormSignupComponent implements OnInit {
 
  usuarios = [];
  users = {} as Usuario;
+ listo = false;
 
 
   constructor(private firestoreService: FirestoreService,) { 
+    this.users.admin = false;
     this.firestoreService.getUsers().subscribe(usuarios => {
       this.usuarios = usuarios;
     });
@@ -25,13 +27,23 @@ export class FormSignupComponent implements OnInit {
     
   }
   
-addUser(){
-  if(this.users.name !== '' && this.users.lastname !== '' && this.users.email !== '' && this.users.password !== '' && this.users.password === this.users.passwordc) {
-    this.firestoreService.addUsers(this.users);
+alerts(){
+  if(this.users.name == null || this.users.lastname == null || this.users.email == null || this.users.password == null){
+    alert("Complete todos los campos");
+  }  else if(this.users.name != null && this.users.lastname != null && this.users.email != null && this.users.password != null && this.users.password == this.users.passwordc){
+    alert("Registro completado satisfactoriamente");
+  }else if(this.users.password !== this.users.passwordc){
+    alert("Las contrasenas no coinciden");
   }
 }
-  
-   
+addUser(){
+  if(this.users.name != null && this.users.lastname != null && this.users.email != null && this.users.password != null && this.users.password == this.users.passwordc) {
+    this.firestoreService.addUsers(this.users);
+    this.users = {} as Usuario;
+  }
+  this.alerts();
+}
+
 }
 
 
