@@ -24,8 +24,11 @@ import { MmenuComponent } from './view/mmenu/mmenu.component';
 import { IngredientsComponent } from './view/ingredients/ingredients.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CModalComponent } from './c-modal/c-modal.component';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AngularFirestoreModule} from '@angular/fire/firestore';
+
 
 @NgModule({
   declarations: [
@@ -49,14 +52,18 @@ import { environment } from '../environments/environment';
     MmenuComponent,
     IngredientsComponent,
     CModalComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     NgbModule.forRoot(),
-    AngularFireModule.initializeApp(environment.firebase)
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
