@@ -123,3 +123,14 @@ h3{
     text-align: center;
   }
 
+  .linkfake:hover{
+    color: blue;
+    text-decoration: underline;
+  }
+
+  .modal-title{
+    font-weight: bold;
+    color: black;
+    font-family: 'PenelopeAnne';
+  }
+

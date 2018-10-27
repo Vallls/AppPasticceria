@@ -48,5 +48,20 @@
     
 }
 
+.dropdown-content{
+    position: absolute;
+    background-color: rgb(80, 51, 9);
+    opacity: 0.9;
+    float: left;
+    list-style: none;
+    width: 150px;
+    height: cover;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    font-size: 13px;
+    color: white;
+    text-align: center;
+}
+
 
 

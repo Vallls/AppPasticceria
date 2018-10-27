@@ -1,9 +1,23 @@
 <div class="container-fluid vn">
   <nav class="navbar navbar-expand-sm fondo navbar-dark fixed-top">
     <a href="" class="navbar-brand" style="font-size:x-large;"><img src="assets/logo1.ico" width="50px" height="50px" style="margin-right: 10px;"><b>Pasticceria Della Nonna</b></a> 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <div ngbDropdown class="d-inline-block" style="right:100px">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" id="dropdownBasic1" ngbDropdownToggle>
         <span class="navbar-toggler-icon"></span>
     </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <div class="dropdown-content">
+        <button class="dropdown-item" ><a href="home/#about" class="nav-link"><b>SOBRE NOSOTROS</b></a></button>
+        <button class="dropdown-item"><a href="home/#locate" class="nav-link"><b>UBICANOS</b></a></button>
+        <button class="dropdown-item"><a href="home/#contact" class="nav-link"><b>CONTACTANOS</b></a></button>
+        <div class="texto" style="font-weight: bold">
+          Opciones de Usuario</div>
+        <button class="dropdown-item"><a href="datav" class="nav-link"><b> - Actualizar Datos</b></a></button>
+        <button class="dropdown-item"><a href="cart" class="nav-link"><b> - Ver Carrito</b></a></button>
+        <button class="dropdown-item"><a href="#" class="nav-link"><b> - Cerrar Sesion</b></a></button>
+      </div>
+      </div>
+    </div>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="nav navbar-nav navbar-center">
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="user" style="margin-left:5vw"><b>MENU</b></a>
