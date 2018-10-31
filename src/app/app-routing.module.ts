@@ -43,7 +43,7 @@ const routes: Routes = [
     component: SignupComponent
   },
 {
-  path:'user/:id',
+  path:'user',
     children: [
       
     {path:'navbar-user', component: NavbarUserComponent}
