@@ -46,10 +46,10 @@ export class FormComponent implements OnInit {
 }
 
   gotoDetail(id){
-    this.router.navigate([`/user/${id}`]);
+    this.router.navigate([`/user/`]);
   }
   gotoDetail2(id){
-    this.router.navigate([`/admin/${id}`]);
+    this.router.navigate([`/admin/`]);
   }
 
   ngOnInit() {
