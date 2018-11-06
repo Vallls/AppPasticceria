@@ -20,7 +20,6 @@ export class FormComponent implements OnInit {
     this.confirmar = false;
     this.firestoreService.getUsers().subscribe(usuarios => {
       this.usuarios = usuarios;
-      console.log(this.usuarios);
     });
    }
 
@@ -32,21 +31,19 @@ export class FormComponent implements OnInit {
     for(var i=0; i<this.usuarios.length; i++){
       if(this.usuarios[i].email == this.users.email && this.usuarios[i].password == this.users.password){
         
-        this.users = {} as Usuario;
-        this.confirmar = true;
         if(this.usuarios[i].admin==true){
           this.gotoDetail2(this.usuarios[i].id);
+          this.confirmar=true;
         }else{
           this.gotoDetail(this.usuarios[i].id);
-        }
-        
-        this.usering = this.usuarios[i];
+          this.confirmar=true;
       }
     }
     if(this.confirmar==false){
       this.alerts();
     }
   }
+}
 
   gotoDetail(id){
     this.router.navigate([`/user/${id}`]);
@@ -58,3 +55,4 @@ export class FormComponent implements OnInit {
   ngOnInit() {
   }
 }
+

@@ -7,3 +7,13 @@ export interface Usuario {
     passwordc?: string;
     admin: boolean;
 }
+
+export interface Menu{
+    id?:string;
+    name?:string;
+    price?:number;
+    description?:string;
+    img?:string;
+    avaible?: boolean;
+}
+

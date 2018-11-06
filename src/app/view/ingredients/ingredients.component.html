@@ -8,22 +8,30 @@
         </div>
         <div class="row">
           <div class="col-6">
-            <div class="caja">
+            <div class="caja" id="preview">
 
             </div>
           </div>
-          <div class="col-6">
-            <input type="file" size="60" name="foto" style="margin-bottom: 10px">
+          <form class="col-6" (ngSubmit)="addMenu()">
+            <input type="file" size="60" name="foto" style="margin-bottom: 10px" id="file" name="img" [(ngModel)]="Menu.img">
             <label for="product" style="font-size:large">Nombre del Producto</label>
-            <input type="text" class="form-control" id="product" style="font-size:large; margin-bottom: 10px">
+            <input type="text" class="form-control" name="name" style="font-size:large; margin-bottom: 10px; color:black" [(ngModel)]="Menu.name">
             <h5>Descripcion del Producto</h5>
-            <textarea type="text" class="form-control" id="descr" rows="5" style="margin-bottom: 10px"></textarea>
+            <textarea type="text" class="form-control" name="description" rows="5" style="margin-bottom: 10px; color:black" [(ngModel)]="Menu.description"></textarea>
             <label for="product" style="font-size:large">Precio</label>
-            <input type="text" class="form-control" id="price">
+            <input type="text" class="form-control" name="price" [(ngModel)]="Menu.price">
+            
+                <label for="product" style="font-size:large; margin-top: 10px; margin-right: 10px">Tipo</label>
+                <select [(ngModel)]="opcionSeleccionado" (change)="capturar()" style="font-size: medium; margin-bottom: 10px; color:black">
+                  <option value="0">Selecciona una opción</option>
+                  <option *ngFor="let dato of datos">{{dato}}</option>
+                </select>
+           
+            
             <div class="row">
                 <button type="submit" class="btn btn-bg btn-lg">Agregar</button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
