@@ -7,33 +7,33 @@
       </button>
       <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <div class="dropdown-content">
-            <button class="dropdown-item" ><a href="admin" class="nav-link"><b>MENU</b></a></button>
+            <button class="dropdown-item" ><a routerLink="/mmenu" class="nav-link"><b>MENU</b></a></button>
             <button class="dropdown-item" ><a href="home/#about" class="nav-link"><b>SOBRE NOSOTROS</b></a></button>
             <button class="dropdown-item"><a href="home/#locate" class="nav-link"><b>UBICANOS</b></a></button>
             <button class="dropdown-item"><a href="home/#contact" class="nav-link"><b>CONTACTANOS</b></a></button>
             <div class="texto" style="font-weight: bold">Opciones de Administrador
             </div>
-            <button class="dropdown-item"><a href="mmenu" class="nav-link"><b> - Modificar Menu</b></a></button>
-            <button class="dropdown-item"><a href="ingredients" class="nav-link"><b> - Agregar Menu</b></a></button>
+            <button class="dropdown-item"><a routerLink="/mmenu" class="nav-link"><b> - Modificar Menu</b></a></button>
+            <button class="dropdown-item"><a routerLink="/ingredients" class="nav-link"><b> - Agregar Menu</b></a></button>
             <button class="dropdown-item"><a href="#" class="nav-link"><b> - Cerrar Sesion</b></a></button>
         </div>
     </div>
     </div>
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
           <ul class="nav navbar-nav navbar-center">
-              <li class="nav-item" style="margin-right: 50px;"><a href="admin" class="nav-link"><b>MENU</b></a></li>
+              <li class="nav-item" style="margin-right: 50px;"><a routerLink="/mmenu" class="nav-link"><b>MENU</b></a></li>
               <li class="nav-item" style="margin-right: 50px;"><a href="home/#about" class="nav-link"><b>SOBRE NOSOTROS</b></a></li>
               <li class="nav-item" style="margin-right: 50px;"><a href="home/#locate" class="nav-link"><b>UBICANOS</b></a></li>
               <li class="nav-item" style="margin-right: 50px;"><a href="home/#contact" class="nav-link"><b>CONTACTANOS</b></a></li>
             </ul>
           <ul class="nav navbar-nav navbar-right">
-              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="admin" >Administrador</a>
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" routerLink="/admin" >Administrador</a>
                 <div class="dropdown-content">
                 <div class="superior">
-                   <li><a href="mmenu" class="nav-link">Modificar Menu</a></li>
+                   <li><a routerLink="/mmenu" class="nav-link">Modificar Menu</a></li>
                 </div>
                 <div class="medio">
-                    <a href="ingredients" class="nav-link">Agregar Menu</a>
+                    <a routerLink="/ingredients" class="nav-link">Agregar Menu</a>
                 </div>
                 <div class="inferior">
                     <li><a href="#" class="nav-link">Cerrar Sesion</a></li>
