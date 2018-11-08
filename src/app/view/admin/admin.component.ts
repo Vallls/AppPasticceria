@@ -9,14 +9,8 @@ import { Usuario } from 'src/app/models/usuarios';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-<<<<<<< HEAD
-
-
-  constructor() { }
-=======
   usuario;
   constructor(private firestoreService: FirestoreService, private route:ActivatedRoute,) { }
->>>>>>> 317c51685659d92ffb9b2fdaa34c37db0efca825
 
   ngOnInit() {
     this.usuario=this.firestoreService.getbyid(this.route.snapshot.paramMap.get('id'))
