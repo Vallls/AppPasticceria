@@ -25,6 +25,7 @@ import { IngredientsComponent } from './view/ingredients/ingredients.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CModalComponent } from './c-modal/c-modal.component';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularFirestoreModule} from '@angular/fire/firestore';
@@ -63,7 +64,8 @@ import { AngularFirestoreModule} from '@angular/fire/firestore';
     NgbModule.forRoot(),
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

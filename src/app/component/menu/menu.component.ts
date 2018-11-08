@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { Menu } from 'src/app/models/usuarios';
+import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 
 @Component({
   selector: 'app-menu',
@@ -9,8 +11,34 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class MenuComponent implements OnInit {
 
   closeResult: string;
+  pans = [];
+  croissants = [];
+  pastelitos = [];
+  dulces = [];
+  tortas = [];
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private firestoreService: FirestoreService,) {
+    this.firestoreService.getPan().subscribe(pan => {
+      this.pans = pan;
+    });
+
+    this.firestoreService.getCroissant().subscribe(croissant => {
+      this.croissants = croissant;
+    });
+
+    this.firestoreService.getPastelito().subscribe(pastelito => {
+      this.pastelitos = pastelito;
+    });
+
+    this.firestoreService.getTorta().subscribe(torta => {
+      this.tortas = torta;
+    });
+
+    this.firestoreService.getDulce().subscribe(dulce => {
+      this.dulces = dulce;
+    });
+  
+  }
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {

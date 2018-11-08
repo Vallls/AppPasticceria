@@ -53,14 +53,14 @@ const routes: Routes = [
   },
 
   {
-    path:'admin/:id',
+    path:'admin',
       children: [
         
       ],
       component: AdminComponent
     },
     {
-      path:'cart/:id',
+      path:'cart',
         children: [
           
         ],
@@ -82,7 +82,7 @@ const routes: Routes = [
       },       
 
   {
-    path:'datav/:id',
+    path:'datav',
       children: [
         
       ],

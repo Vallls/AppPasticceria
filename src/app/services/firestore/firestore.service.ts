@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { Usuario } from 'src/app/models/usuarios';
+import { Usuario, Menu } from 'src/app/models/usuarios';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -14,11 +14,71 @@ export class FirestoreService {
   usuarios: Observable<Usuario[]>;
   usuariosDoc;
 
+  panCollection: AngularFirestoreCollection;
+  pan: Observable<Menu[]>;
+
+  croissantCollection: AngularFirestoreCollection;
+  croissant: Observable<Menu[]>;
+
+  pastelitoCollection: AngularFirestoreCollection;
+  pastelito: Observable<Menu[]>;
+
+  tortaCollection: AngularFirestoreCollection;
+  torta: Observable<Menu[]>;
+
+  dulceCollection: AngularFirestoreCollection;
+  dulce: Observable<Menu[]>;
+
   constructor(public db: AngularFirestore, ) {
     this.usuariosCollection = this.db.collection('usuarios');
     this.usuarios = this.usuariosCollection.snapshotChanges().pipe(map(actions => {
       return actions.map(a => { 
       const data = a.payload.doc.data() as Usuario; 
+      data.id = a.payload.doc.id;
+      return data;
+   });
+ }));
+
+ this.panCollection = this.db.collection('pan');
+    this.pan = this.panCollection.snapshotChanges().pipe(map(actions => {
+      return actions.map(a => { 
+      const data = a.payload.doc.data() as Menu; 
+      data.id = a.payload.doc.id;
+      return data;
+   });
+ }));
+
+ this.croissantCollection = this.db.collection('croissant');
+    this.croissant = this.croissantCollection.snapshotChanges().pipe(map(actions => {
+      return actions.map(a => { 
+      const data = a.payload.doc.data() as Menu; 
+      data.id = a.payload.doc.id;
+      return data;
+   });
+ }));
+
+ this.pastelitoCollection = this.db.collection('pastelito');
+    this.pastelito = this.pastelitoCollection.snapshotChanges().pipe(map(actions => {
+      return actions.map(a => { 
+      const data = a.payload.doc.data() as Menu; 
+      data.id = a.payload.doc.id;
+      return data;
+   });
+ }));
+
+ this.tortaCollection = this.db.collection('torta');
+    this.torta = this.tortaCollection.snapshotChanges().pipe(map(actions => {
+      return actions.map(a => { 
+      const data = a.payload.doc.data() as Menu; 
+      data.id = a.payload.doc.id;
+      return data;
+   });
+ }));
+
+ this.dulceCollection = this.db.collection('dulce');
+    this.dulce = this.dulceCollection.snapshotChanges().pipe(map(actions => {
+      return actions.map(a => { 
+      const data = a.payload.doc.data() as Menu; 
       data.id = a.payload.doc.id;
       return data;
    });
@@ -33,10 +93,50 @@ export class FirestoreService {
     this.usuariosCollection.add(usuario);
   }
 
+  getPan(){
+    return this.pan;
+  }
+
+  addPan(pan: Menu){
+    this.panCollection.add(pan);
+  }
+
+  getCroissant(){
+    return this.croissant;
+  }
+
+  addCroissant(croissant: Menu){
+    this.croissantCollection.add(croissant);
+  }
+
+  getPastelito(){
+    return this.pastelito;
+  }
+
+  addPastelito(pastelito: Menu){
+    this.pastelitoCollection.add(pastelito);
+  }
+
+  getTorta(){
+    return this.torta;
+  }
+
+  addTorta(torta: Menu){
+    this.tortaCollection.add(torta);
+  }
+
+  getDulce(){
+    return this.dulce;
+  }
+
+  addDulce(dulce: Menu){
+    this.dulceCollection.add(dulce);
+  }
+
   getbyid(id){
     let aux: any;
     for(let i=0; i<this.usuariosCollection.get.length;i++){
-      if(this.usuariosCollection[i].id===id.toString()){
+      if(this.usuariosCollection[i].name===id.toString()){
         aux=this.usuariosCollection[i]
       }
     }

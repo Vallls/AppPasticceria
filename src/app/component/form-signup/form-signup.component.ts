@@ -13,7 +13,6 @@ export class FormSignupComponent implements OnInit {
 
  usuarios = [];
  users = {} as Usuario;
- listo = false;
 
 
   constructor(private firestoreService: FirestoreService,) { 

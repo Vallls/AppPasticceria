@@ -12,15 +12,15 @@
         <button class="dropdown-item"><a href="home/#contact" class="nav-link"><b>CONTACTANOS</b></a></button>
         <div class="texto" style="font-weight: bold">
           Opciones de Usuario</div>
-        <button class="dropdown-item"><a href="datav" class="nav-link"><b> - Actualizar Datos</b></a></button>
-        <button class="dropdown-item"><a href="cart" class="nav-link"><b> - Ver Carrito</b></a></button>
+        <button class="dropdown-item"><a routerLink="/datav" class="nav-link"><b> - Actualizar Datos</b></a></button>
+        <button class="dropdown-item"><a routerLink="/cart" class="nav-link"><b> - Ver Carrito</b></a></button>
         <button class="dropdown-item"><a href="#" class="nav-link"><b> - Cerrar Sesion</b></a></button>
       </div>
       </div>
     </div>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="nav navbar-nav navbar-center">
-            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="user" style="margin-left:5vw"><b>MENU</b></a>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" routerLink="/user" style="margin-left:5vw"><b>MENU</b></a>
               <div class="dropdown-content">
                 <div class="superior">
                  <li><a href="user/#panes" class="nav-link">Panes</a></li>
@@ -47,10 +47,10 @@
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="user" id="usuario"><b>Usuario</b></a>
               <div class="dropdown-content">
                 <div class="superior">
-                 <li><a href="datav" class="nav-link">Actualizar Datos</a></li>
+                 <li><a routerLink="/datav" class="nav-link">Actualizar Datos</a></li>
                 </div>
                 <div class="medio">
-                  <li><a href="cart" class="nav-link">Ver Carrito</a></li>
+                  <li><a routerLink="/cart" class="nav-link">Ver Carrito</a></li>
                 </div>
                 <div class="inferior">
                   <li><a href="#" class="nav-link">Cerrar Sesion</a></li>

@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+
 export interface Usuario {
     id?: string;
     name?: string;
@@ -7,3 +9,13 @@ export interface Usuario {
     passwordc?: string;
     admin: boolean;
 }
+
+export interface Menu{
+    id?:string;
+    name?:string;
+    price?:number;
+    description?:string;
+    img?: Observable<string>;
+    avaible?: boolean;
+}
+
