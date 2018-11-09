@@ -16,18 +16,23 @@ export class FirestoreService {
 
   panCollection: AngularFirestoreCollection;
   pan: Observable<Menu[]>;
+  panDoc: AngularFirestoreDocument;
 
   croissantCollection: AngularFirestoreCollection;
   croissant: Observable<Menu[]>;
+  croissantDoc: AngularFirestoreDocument;
 
   pastelitoCollection: AngularFirestoreCollection;
   pastelito: Observable<Menu[]>;
+  pastelitoDoc: AngularFirestoreDocument;
 
   tortaCollection: AngularFirestoreCollection;
   torta: Observable<Menu[]>;
+  tortaDoc: AngularFirestoreDocument;
 
   dulceCollection: AngularFirestoreCollection;
   dulce: Observable<Menu[]>;
+  dulceDoc: AngularFirestoreDocument;
 
   constructor(public db: AngularFirestore, ) {
     this.usuariosCollection = this.db.collection('usuarios');
@@ -143,4 +148,28 @@ export class FirestoreService {
     return aux;
   }
 
+  updateProductPan(pan: Menu){
+    this.panDoc = this.db.doc(`pan/${pan.id}`);
+    this.panDoc.update(pan);
+  }
+
+  updateProductCroissant(croissant: Menu){
+    this.croissantDoc = this.db.doc(`croissant/${croissant.id}`);
+    this.croissantDoc.update(croissant);
+  }
+
+  updateProductPastelito(pastelito: Menu){
+    this.pastelitoDoc = this.db.doc(`pastelito/${pastelito.id}`);
+    this.pastelitoDoc.update(pastelito);
+  }
+
+  updateProductTorta(torta: Menu){
+    this.tortaDoc = this.db.doc(`torta/${torta.id}`);
+    this.tortaDoc.update(torta);
+  }
+
+  updateProductDulce(dulce: Menu){
+    this.dulceDoc = this.db.doc(`dulce/${dulce.id}`);
+    this.dulceDoc.update(dulce);
+  }
 }
