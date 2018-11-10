@@ -29,6 +29,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularFirestoreModule} from '@angular/fire/firestore';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 
 @NgModule({
@@ -53,7 +54,7 @@ import { AngularFirestoreModule} from '@angular/fire/firestore';
     MmenuComponent,
     IngredientsComponent,
     CModalComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -65,7 +66,9 @@ import { AngularFirestoreModule} from '@angular/fire/firestore';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    NgxPayPalModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

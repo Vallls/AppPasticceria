@@ -38,6 +38,7 @@
     </div>
     <div class="row">
       <div class="col-4" *ngFor="let croissant of croissants">
+      <div *ngIf="croissant.avaible == true">
         <div class="caja centrarCaja">
           <img src="{{croissant.img}}" width="200px" height="200px">
           <div class="Num1">
@@ -52,6 +53,7 @@
         <h4>{{croissant.description}}</h4>
       </div>
     </div>
+  </div>
     <div class="row" style="margin-top:100px" id="pastelitos">
       <h1>Pastelitos</h1>
     </div>

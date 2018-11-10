@@ -39,6 +39,7 @@ addUser(){
   this.alerts();
   if(this.users.name != null && this.users.lastname != null && this.users.email != null && this.users.password != null && this.users.password == this.users.passwordc) {
     this.users.admin = false;
+    this.users.carrito = [];
     this.firestoreService.addUsers(this.users);
     this.users = {} as Usuario;
   }
