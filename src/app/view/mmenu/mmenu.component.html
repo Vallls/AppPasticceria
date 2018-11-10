@@ -29,7 +29,16 @@
                   <input type="number" name="precio" class="form-control" placeholder="precio" [(ngModel)]=ItemtoEdit.price>
               </div>
             </div>
-            <button type="submit" class="btn btn-outline-dark">Guardar</button>
+            <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="model">
+                <label ngbButtonLabel class="btn-primary" class="green">
+                    <input ngbButton type="radio" (click)="Disponibilidad(true)"> Disponible
+                  </label>
+                  <label ngbButtonLabel class="btn-primary" class="red">
+                    <input ngbButton type="radio" (click)="Disponibilidad(false)"> No Disponible     
+                  </label>
+            </div>
+            <button type="button" class="btn btn-outline-dark" Style="background-color: black;color: white;margin-left: 36px" (click)="DeleteProductPan($event,ItemtoEdit)" (click)="c('Save click')">Eliminar</button>
+            <button type="submit" class="btn btn-outline-dark" Style="margin-left: 37px">Guardar</button>
       </form>
     </div>
     </div>  
@@ -69,7 +78,16 @@
                   <input type="number" name="precio" class="form-control" placeholder="precio" [(ngModel)]=ItemtoEdit.price>
               </div>
             </div>
-            <button type="submit" class="btn btn-outline-dark">Guardar</button>
+            <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="model">
+                <label ngbButtonLabel class="btn-primary" class="green">
+                    <input ngbButton type="radio" (click)="Disponibilidad(true)"> Disponible
+                  </label>
+                  <label ngbButtonLabel class="btn-primary" class="red">
+                    <input ngbButton type="radio" (click)="Disponibilidad(false)"> No Disponible     
+                  </label>
+            </div>
+            <button type="button" class="btn btn-outline-dark" Style="background-color: black;color: white;margin-left: 36px" (click)="DeleteProductCroissant($event,ItemtoEdit)" (click)="c('Save click')">Eliminar</button>
+            <button type="submit" class="btn btn-outline-dark" Style="margin-left: 37px">Guardar</button>
       </form>
     </div>
     </div>  
@@ -109,7 +127,16 @@
                   <input type="number" name="precio" class="form-control" placeholder="precio" [(ngModel)]=ItemtoEdit.price>
               </div>
             </div>
-            <button type="submit" class="btn btn-outline-dark">Guardar</button>
+            <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="model">
+                <label ngbButtonLabel class="btn-primary" class="green">
+                    <input ngbButton type="radio" (click)="Disponibilidad(true)"> Disponible
+                  </label>
+                  <label ngbButtonLabel class="btn-primary" class="red">
+                    <input ngbButton type="radio" (click)="Disponibilidad(false)"> No Disponible     
+                  </label>
+            </div>
+            <button type="button" class="btn btn-outline-dark" Style="background-color: black;color: white;margin-left: 36px" (click)="DeleteProductPastelito($event,ItemtoEdit)" (click)="c('Save click')">Eliminar</button>
+            <button type="submit" class="btn btn-outline-dark" Style="margin-left: 37px">Guardar</button>
       </form>
     </div>
     </div>  
@@ -149,7 +176,16 @@
                   <input type="number" name="precio" class="form-control" placeholder="precio" [(ngModel)]=ItemtoEdit.price>
               </div>
             </div>
-            <button type="submit" class="btn btn-outline-dark">Guardar</button>
+            <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="model">
+                <label ngbButtonLabel class="btn-primary" class="green">
+                    <input ngbButton type="radio" (click)="Disponibilidad(true)"> Disponible
+                  </label>
+                  <label ngbButtonLabel class="btn-primary" class="red">
+                    <input ngbButton type="radio" (click)="Disponibilidad(false)"> No Disponible     
+                  </label>
+            </div>
+            <button type="button" class="btn btn-outline-dark" Style="background-color: black;color: white;margin-left: 36px" (click)="DeleteProductTorta($event,ItemtoEdit)" (click)="c('Save click')">Eliminar</button>
+            <button type="submit" class="btn btn-outline-dark" Style="margin-left: 37px">Guardar</button>
       </form>
     </div>
     </div>  
@@ -189,7 +225,16 @@
                   <input type="number" name="precio" class="form-control" placeholder="precio" [(ngModel)]=ItemtoEdit.price>
               </div>
             </div>
-            <button type="submit" class="btn btn-outline-dark">Guardar</button>
+            <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="model">
+                <label ngbButtonLabel class="btn-primary" class="green">
+                    <input ngbButton type="radio" (click)="Disponibilidad(true)"> Disponible
+                  </label>
+                  <label ngbButtonLabel class="btn-primary" class="red">
+                    <input ngbButton type="radio" (click)="Disponibilidad(false)"> No Disponible     
+                  </label>
+            </div>
+            <button type="button" class="btn btn-outline-dark" Style="background-color: black;color: white;margin-left: 36px" (click)="DeleteProductDulce($event,ItemtoEdit)" (click)="c('Save click')">Eliminar</button>
+            <button type="submit" class="btn btn-outline-dark" Style="margin-left: 37px">Guardar</button>
       </form>
     </div>
     </div>  

@@ -53,13 +53,16 @@ export class MmenuComponent implements OnInit {
 
   }
 
-  EditarProducto(evet,item){
+  EditarProducto(event,item){
     this.ItemtoEdit = item;
   }
 
   guardar(item){
     this.variable = item;
+  }
 
+  Disponibilidad(variable){
+    this.ItemtoEdit.avaible = variable;
   }
 
   UpdateProductPan(){
@@ -82,6 +85,26 @@ export class MmenuComponent implements OnInit {
     this.firestoreService.updateProductDulce(this.ItemtoEdit)
   }
 
+  DeleteProductPan(event,pan){
+    this.firestoreService.deleteProductPan(pan)
+  }
+
+  DeleteProductCroissant(event,croissant){
+    this.firestoreService.deleteProductCroissant(croissant)
+  }
+
+  DeleteProductPastelito(event,pastelito){
+    this.firestoreService.deleteProductPastelito(pastelito)
+  }
+
+  DeleteProductTorta(event,torta){
+    this.firestoreService.deleteProductTorta(torta)
+  }
+
+  DeleteProductDulce(event,dulce){
+    this.firestoreService.deleteProductDulce(dulce)
+  }
+
   upload(event) {
     const id = Math.random().toString(36).substring(2);
     this.ref = this.afStorage.ref(id);
@@ -96,7 +119,7 @@ export class MmenuComponent implements OnInit {
     this.task.snapshotChanges().pipe(
       finalize(() => {
         this.ref.getDownloadURL().subscribe(url => {
-          this.Menu.img = url;
+          this.ItemtoEdit.img = url;
           
         });
       })

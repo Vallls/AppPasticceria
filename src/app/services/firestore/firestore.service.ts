@@ -172,4 +172,29 @@ export class FirestoreService {
     this.dulceDoc = this.db.doc(`dulce/${dulce.id}`);
     this.dulceDoc.update(dulce);
   }
+
+  deleteProductPan(pan: Menu){
+    this.panDoc = this.db.doc(`pan/${pan.id}`);
+    this.panDoc.delete();
+  }
+
+  deleteProductCroissant(croissant: Menu){
+    this.croissantDoc = this.db.doc(`croissant/${croissant.id}`);
+    this.croissantDoc.delete();
+  }
+
+  deleteProductPastelito(pastelito: Menu){
+    this.pastelitoDoc = this.db.doc(`pastelito/${pastelito.id}`);
+    this.pastelitoDoc.delete();
+  }
+
+  deleteProductTorta(torta: Menu){
+    this.tortaDoc = this.db.doc(`torta/${torta.id}`);
+    this.tortaDoc.delete();
+  }
+
+  deleteProductDulce(dulce: Menu){
+    this.dulceDoc = this.db.doc(`dulce/${dulce.id}`);
+    this.dulceDoc.delete();
+  }
 }
