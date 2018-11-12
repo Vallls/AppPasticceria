@@ -5,7 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { NavigationComponent } from './navigation/navigation/navigation.component';
 import { HomeComponent } from './view/home/home.component';
 import { LoginComponent } from './view/login/login.component';
-import { SignupComponent } from './view/signup/signup.component';
 import { UserComponent } from './view/user/user.component';
 import { DatavComponent } from './view/datav/datav.component';
 import { AdminComponent } from './view/admin/admin.component';
@@ -13,6 +12,8 @@ import { CartComponent } from './view/cart/cart.component';
 import { MmenuComponent } from './view/mmenu/mmenu.component';
 import { IngredientsComponent } from './view/ingredients/ingredients.component';
 import { NavbarUserComponent } from './component/navbar-user/navbar-user.component';
+import { FormComponent } from './component/form/form.component';
+import { SignupComponent } from './view/signup/signup.component';
 
 
 
@@ -29,7 +30,7 @@ const routes: Routes = [
   {
     path: 'login',
     children: [
-      {path: '', component: LoginComponent}
+      {path: '', component: FormComponent},
       
     ],
     component: LoginComponent
@@ -38,7 +39,7 @@ const routes: Routes = [
   {
     path:'signup',
     children: [
-      
+      {path: '', component: SignupComponent},
     ],
     component: SignupComponent
   },

@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { Observable } from 'rxjs';
 import { Usuario, Menu } from 'src/app/models/usuarios';
 import { map } from 'rxjs/operators';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class FirestoreService {
   dulceCollection: AngularFirestoreCollection;
   dulce: Observable<Menu[]>;
 
-  constructor(public db: AngularFirestore, ) {
+  constructor(public db: AngularFirestore, public afAuth: AngularFireAuth) {
     this.usuariosCollection = this.db.collection('usuarios');
     this.usuarios = this.usuariosCollection.snapshotChanges().pipe(map(actions => {
       return actions.map(a => { 

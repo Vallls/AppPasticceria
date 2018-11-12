@@ -6,7 +6,10 @@
       </button>
     </div>
     <div class="modal-body">
-        <p>¿Desea modificar el producto?</p>
+        <form>
+          <label for="email" style="color:white; font-family:PenelopeAnne; font-size:x-large">Correo Electronico</label>
+          <input style="border-radius: 25px" type="email" class="form-control" name="email" [(ngModel)]="users.email">
+        </form>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Si</button>

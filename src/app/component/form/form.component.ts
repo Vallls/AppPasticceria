@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuarios';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-form',
@@ -10,11 +11,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
-
+ 
   usuarios = [];
   users = {} as Usuario;
   usering = {} as Usuario;
   confirmar;
+  ActUser: Observable<string>;
 
   constructor(private firestoreService: FirestoreService, private router:Router) {
     this.confirmar = false;
@@ -32,11 +34,17 @@ export class FormComponent implements OnInit {
       if(this.usuarios[i].email == this.users.email && this.usuarios[i].password == this.users.password){
         
         if(this.usuarios[i].admin==true){
+          this.ActUser = this.usuarios[i].id;
           this.gotoDetail2(this.usuarios[i].id);
           this.confirmar=true;
+          
+          
         }else{
+          this.ActUser = this.usuarios[i].id;
+          
           this.gotoDetail(this.usuarios[i].id);
           this.confirmar=true;
+          
       }
     }
     if(this.confirmar==false){
@@ -45,8 +53,15 @@ export class FormComponent implements OnInit {
   }
 }
 
+ActiUser(){
+return this.ActUser;
+
+}
+
   gotoDetail(id){
     this.router.navigate([`/user/`]);
+    console.log(this.ActUser);
+    
   }
   gotoDetail2(id){
     this.router.navigate([`/admin/`]);
