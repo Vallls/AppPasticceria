@@ -1,22 +1,249 @@
-<ng-template #content let-modal>
+<ng-template #content1 let-c="close" let-d="dismiss">
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Modificación de Producto</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.close('Cross click')">
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-        <form>
-          <label for="email" style="color:white; font-family:PenelopeAnne; font-size:x-large">Correo Electronico</label>
-          <input style="border-radius: 25px" type="email" class="form-control" name="email" [(ngModel)]="users.email">
-        </form>
+      <div *ngIf="ItemtoEdit.id == variable">
+      <form (ngSubmit)="UpdateProductPan()">
+          <div class="form-group">
+              <label for="nombre">Nombre del producto</label>
+              <div class="input-group">
+                <input type="text" name="name" class="form-control" placeholder="name" [(ngModel)]=ItemtoEdit.name>
+              </div>
+              <label for="nombre">Descripcion del producto</label>
+              <div class="input-group">
+                  <input type="text" name="descripcion" class="form-control" placeholder="descripcion" [(ngModel)]=ItemtoEdit.description>
+              </div>
+              <label for="nombre">Imagen del producto</label>
+              <div class="input-group">
+                  <input type="file" size="60" style="margin-bottom: 10px" id="file"  (change)="upload($event)" accept=".png,.jpg">
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <label for="nombre">Precio del producto</label>
+              <div class="input-group">
+                  <input type="number" name="precio" class="form-control" placeholder="precio" [(ngModel)]=ItemtoEdit.price>
+              </div>
+            </div>
+            <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="model">
+                <label ngbButtonLabel class="btn-primary" class="green">
+                    <input ngbButton type="radio" (click)="Disponibilidad(true)"> Disponible
+                  </label>
+                  <label ngbButtonLabel class="btn-primary" class="red">
+                    <input ngbButton type="radio" (click)="Disponibilidad(false)"> No Disponible     
+                  </label>
+            </div>
+            <button type="button" class="btn btn-outline-dark" Style="background-color: black;color: white;margin-left: 36px" (click)="DeleteProductPan($event,ItemtoEdit)" (click)="c('Save click')">Eliminar</button>
+            <button type="submit" class="btn btn-outline-dark" Style="margin-left: 37px">Guardar</button>
+      </form>
     </div>
+    </div>  
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Si</button>
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Volver</button>
+      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Volver</button>
     </div>
   </ng-template>
-<div class="body">
+
+  <ng-template #content2 let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Modificación de Producto</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div *ngIf="ItemtoEdit.id == variable">
+      <form (ngSubmit)="UpdateProductCroissant()">
+          <div class="form-group">
+              <label for="nombre">Nombre del producto</label>
+              <div class="input-group">
+                <input type="text" name="name" class="form-control" placeholder="name" [(ngModel)]=ItemtoEdit.name>
+              </div>
+              <label for="nombre">Descripcion del producto</label>
+              <div class="input-group">
+                  <input type="text" name="descripcion" class="form-control" placeholder="descripcion" [(ngModel)]=ItemtoEdit.description>
+              </div>
+              <label for="nombre">Imagen del producto</label>
+              <div class="input-group">
+                  <input type="file" size="60" style="margin-bottom: 10px" id="file"  (change)="upload($event)" accept=".png,.jpg">
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <label for="nombre">Precio del producto</label>
+              <div class="input-group">
+                  <input type="number" name="precio" class="form-control" placeholder="precio" [(ngModel)]=ItemtoEdit.price>
+              </div>
+            </div>
+            <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="model">
+                <label ngbButtonLabel class="btn-primary" class="green">
+                    <input ngbButton type="radio" (click)="Disponibilidad(true)"> Disponible
+                  </label>
+                  <label ngbButtonLabel class="btn-primary" class="red">
+                    <input ngbButton type="radio" (click)="Disponibilidad(false)"> No Disponible     
+                  </label>
+            </div>
+            <button type="button" class="btn btn-outline-dark" Style="background-color: black;color: white;margin-left: 36px" (click)="DeleteProductCroissant($event,ItemtoEdit)" (click)="c('Save click')">Eliminar</button>
+            <button type="submit" class="btn btn-outline-dark" Style="margin-left: 37px">Guardar</button>
+      </form>
+    </div>
+    </div>  
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Volver</button>
+    </div>
+  </ng-template>
+
+  <ng-template #content3 let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Modificación de Producto</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div *ngIf="ItemtoEdit.id == variable">
+      <form (ngSubmit)="UpdateProductPastelito()">
+          <div class="form-group">
+              <label for="nombre">Nombre del producto</label>
+              <div class="input-group">
+                <input type="text" name="name" class="form-control" placeholder="name" [(ngModel)]=ItemtoEdit.name>
+              </div>
+              <label for="nombre">Descripcion del producto</label>
+              <div class="input-group">
+                  <input type="text" name="descripcion" class="form-control" placeholder="descripcion" [(ngModel)]=ItemtoEdit.description>
+              </div>
+              <label for="nombre">Imagen del producto</label>
+              <div class="input-group">
+                  <input type="file" size="60" style="margin-bottom: 10px" id="file"  (change)="upload($event)" accept=".png,.jpg">
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <label for="nombre">Precio del producto</label>
+              <div class="input-group">
+                  <input type="number" name="precio" class="form-control" placeholder="precio" [(ngModel)]=ItemtoEdit.price>
+              </div>
+            </div>
+            <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="model">
+                <label ngbButtonLabel class="btn-primary" class="green">
+                    <input ngbButton type="radio" (click)="Disponibilidad(true)"> Disponible
+                  </label>
+                  <label ngbButtonLabel class="btn-primary" class="red">
+                    <input ngbButton type="radio" (click)="Disponibilidad(false)"> No Disponible     
+                  </label>
+            </div>
+            <button type="button" class="btn btn-outline-dark" Style="background-color: black;color: white;margin-left: 36px" (click)="DeleteProductPastelito($event,ItemtoEdit)" (click)="c('Save click')">Eliminar</button>
+            <button type="submit" class="btn btn-outline-dark" Style="margin-left: 37px">Guardar</button>
+      </form>
+    </div>
+    </div>  
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Volver</button>
+    </div>
+  </ng-template>
+
+  <ng-template #content4 let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Modificación de Producto</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div *ngIf="ItemtoEdit.id == variable">
+      <form (ngSubmit)="UpdateProductTorta()">
+          <div class="form-group">
+              <label for="nombre">Nombre del producto</label>
+              <div class="input-group">
+                <input type="text" name="name" class="form-control" placeholder="name" [(ngModel)]=ItemtoEdit.name>
+              </div>
+              <label for="nombre">Descripcion del producto</label>
+              <div class="input-group">
+                  <input type="text" name="descripcion" class="form-control" placeholder="descripcion" [(ngModel)]=ItemtoEdit.description>
+              </div>
+              <label for="nombre">Imagen del producto</label>
+              <div class="input-group">
+                  <input type="file" size="60" style="margin-bottom: 10px" id="file"  (change)="upload($event)" accept=".png,.jpg">
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <label for="nombre">Precio del producto</label>
+              <div class="input-group">
+                  <input type="number" name="precio" class="form-control" placeholder="precio" [(ngModel)]=ItemtoEdit.price>
+              </div>
+            </div>
+            <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="model">
+                <label ngbButtonLabel class="btn-primary" class="green">
+                    <input ngbButton type="radio" (click)="Disponibilidad(true)"> Disponible
+                  </label>
+                  <label ngbButtonLabel class="btn-primary" class="red">
+                    <input ngbButton type="radio" (click)="Disponibilidad(false)"> No Disponible     
+                  </label>
+            </div>
+            <button type="button" class="btn btn-outline-dark" Style="background-color: black;color: white;margin-left: 36px" (click)="DeleteProductTorta($event,ItemtoEdit)" (click)="c('Save click')">Eliminar</button>
+            <button type="submit" class="btn btn-outline-dark" Style="margin-left: 37px">Guardar</button>
+      </form>
+    </div>
+    </div>  
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Volver</button>
+    </div>
+  </ng-template>
+
+  <ng-template #content5 let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Modificación de Producto</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div *ngIf="ItemtoEdit.id == variable">
+      <form (ngSubmit)="UpdateProductDulce()">
+          <div class="form-group">
+              <label for="nombre">Nombre del producto</label>
+              <div class="input-group">
+                <input type="text" name="name" class="form-control" placeholder="name" [(ngModel)]=ItemtoEdit.name>
+              </div>
+              <label for="nombre">Descripcion del producto</label>
+              <div class="input-group">
+                  <input type="text" name="descripcion" class="form-control" placeholder="descripcion" [(ngModel)]=ItemtoEdit.description>
+              </div>
+              <label for="nombre">Imagen del producto</label>
+              <div class="input-group">
+                  <input type="file" size="60" style="margin-bottom: 10px" id="file"  (change)="upload($event)" accept=".png,.jpg">
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <label for="nombre">Precio del producto</label>
+              <div class="input-group">
+                  <input type="number" name="precio" class="form-control" placeholder="precio" [(ngModel)]=ItemtoEdit.price>
+              </div>
+            </div>
+            <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="model">
+                <label ngbButtonLabel class="btn-primary" class="green">
+                    <input ngbButton type="radio" (click)="Disponibilidad(true)"> Disponible
+                  </label>
+                  <label ngbButtonLabel class="btn-primary" class="red">
+                    <input ngbButton type="radio" (click)="Disponibilidad(false)"> No Disponible     
+                  </label>
+            </div>
+            <button type="button" class="btn btn-outline-dark" Style="background-color: black;color: white;margin-left: 36px" (click)="DeleteProductDulce($event,ItemtoEdit)" (click)="c('Save click')">Eliminar</button>
+            <button type="submit" class="btn btn-outline-dark" Style="margin-left: 37px">Guardar</button>
+      </form>
+    </div>
+    </div>  
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Volver</button>
+    </div>
+  </ng-template>
+
+  <div class="body">
   <app-navbar-admin></app-navbar-admin>
   <div class="container container-frm">
     <div class="row" id="panes">
@@ -29,7 +256,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{pan.price}} $
-                <img src="/src/assets/editar.png" width="55px" height="55px" class="linkfake" (click)="open(content)">
+                <div class="linkfake" (click)="open(content1)" (click)="EditarProducto($event,pan)" (click)="guardar(pan.id)">Modificar producto</div>
               </div>
             </div>
           </div>
@@ -48,7 +275,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{croissant.price}} $
-                <img src="/src/assets/editar.png" width="55px" height="55px" class="linkfake" (click)="open(content)">
+                <div class="linkfake" (click)="open(content2)" (click)="EditarProducto($event,croissant)" (click)="guardar(croissant.id)">Modificar producto</div>
               </div>
             </div>
           </div>
@@ -67,7 +294,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{pastelito.price}} $
-                <img src="/src/assets/editar.png" width="55px" height="55px" class="linkfake" (click)="open(content)">
+                <div class="linkfake" (click)="open(content3)" (click)="EditarProducto($event,pastelito)" (click)="guardar(pastelito.id)">Modificar producto</div>
               </div>
             </div>
           </div>
@@ -86,7 +313,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text"> Precio: {{torta.price}} $
-                <img src="/src/assets/editar.png" width="55px" height="55px" class="linkfake" (click)="open(content)">
+                <div class="linkfake" (click)="open(content4)" (click)="EditarProducto($event,torta)" (click)="guardar(torta.id)">Modificar producto</div>
               </div>
             </div>
           </div>
@@ -105,7 +332,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{dulce.price}} $
-                <img src="/src/assets/editar.png" width="55px" height="55px" class="linkfake" (click)="open(content)">
+                <div class="linkfake" (click)="open(content5)" (click)="EditarProducto($event,dulce)" (click)="guardar(dulce.id)">Modificar producto</div>
               </div>
             </div>
           </div>
@@ -115,7 +342,7 @@
       </div>
     </div>
   </div>
-</div>
+  </div>
 
 <div class="footer">
   <div class="container">

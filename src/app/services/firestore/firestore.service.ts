@@ -3,7 +3,6 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { Observable } from 'rxjs';
 import { Usuario, Menu } from 'src/app/models/usuarios';
 import { map } from 'rxjs/operators';
-import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -17,20 +16,25 @@ export class FirestoreService {
 
   panCollection: AngularFirestoreCollection;
   pan: Observable<Menu[]>;
+  panDoc: AngularFirestoreDocument;
 
   croissantCollection: AngularFirestoreCollection;
   croissant: Observable<Menu[]>;
+  croissantDoc: AngularFirestoreDocument;
 
   pastelitoCollection: AngularFirestoreCollection;
   pastelito: Observable<Menu[]>;
+  pastelitoDoc: AngularFirestoreDocument;
 
   tortaCollection: AngularFirestoreCollection;
   torta: Observable<Menu[]>;
+  tortaDoc: AngularFirestoreDocument;
 
   dulceCollection: AngularFirestoreCollection;
   dulce: Observable<Menu[]>;
+  dulceDoc: AngularFirestoreDocument;
 
-  constructor(public db: AngularFirestore, public afAuth: AngularFireAuth) {
+  constructor(public db: AngularFirestore,) {
     this.usuariosCollection = this.db.collection('usuarios');
     this.usuarios = this.usuariosCollection.snapshotChanges().pipe(map(actions => {
       return actions.map(a => { 
@@ -144,4 +148,53 @@ export class FirestoreService {
     return aux;
   }
 
+  updateProductPan(pan: Menu){
+    this.panDoc = this.db.doc(`pan/${pan.id}`);
+    this.panDoc.update(pan);
+  }
+
+  updateProductCroissant(croissant: Menu){
+    this.croissantDoc = this.db.doc(`croissant/${croissant.id}`);
+    this.croissantDoc.update(croissant);
+  }
+
+  updateProductPastelito(pastelito: Menu){
+    this.pastelitoDoc = this.db.doc(`pastelito/${pastelito.id}`);
+    this.pastelitoDoc.update(pastelito);
+  }
+
+  updateProductTorta(torta: Menu){
+    this.tortaDoc = this.db.doc(`torta/${torta.id}`);
+    this.tortaDoc.update(torta);
+  }
+
+  updateProductDulce(dulce: Menu){
+    this.dulceDoc = this.db.doc(`dulce/${dulce.id}`);
+    this.dulceDoc.update(dulce);
+  }
+
+  deleteProductPan(pan: Menu){
+    this.panDoc = this.db.doc(`pan/${pan.id}`);
+    this.panDoc.delete();
+  }
+
+  deleteProductCroissant(croissant: Menu){
+    this.croissantDoc = this.db.doc(`croissant/${croissant.id}`);
+    this.croissantDoc.delete();
+  }
+
+  deleteProductPastelito(pastelito: Menu){
+    this.pastelitoDoc = this.db.doc(`pastelito/${pastelito.id}`);
+    this.pastelitoDoc.delete();
+  }
+
+  deleteProductTorta(torta: Menu){
+    this.tortaDoc = this.db.doc(`torta/${torta.id}`);
+    this.tortaDoc.delete();
+  }
+
+  deleteProductDulce(dulce: Menu){
+    this.dulceDoc = this.db.doc(`dulce/${dulce.id}`);
+    this.dulceDoc.delete();
+  }
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { DataService } from 'src/app/services/data/data.service';
 import { Usuario } from 'src/app/models/usuarios';
 import {FormComponent } from 'src/app/component/form/form.component';
 import { Observable } from 'rxjs';
@@ -14,12 +13,12 @@ import { Observable } from 'rxjs';
 export class NavbarUserComponent implements OnInit {
   
   
-
+  
   
 
   constructor(private FC: FormComponent) {
    
-    console.log(this.USER);
+    
   }
   ngOnInit() {
     

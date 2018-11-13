@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuarios';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth/auth.service'
 
 @Component({
   selector: 'app-form',
@@ -15,10 +16,9 @@ export class FormComponent implements OnInit {
   usuarios = [];
   users = {} as Usuario;
   usering = {} as Usuario;
-  confirmar;
-  ActUser: Observable<string>;
+  confirmar: boolean;
 
-  constructor(private firestoreService: FirestoreService, private router:Router) {
+  constructor(private firestoreService: FirestoreService, private router:Router, private fireAuth: AuthService ) {
     this.confirmar = false;
     this.firestoreService.getUsers().subscribe(usuarios => {
       this.usuarios = usuarios;
@@ -26,7 +26,7 @@ export class FormComponent implements OnInit {
    }
 
    alerts(){
-     alert("email y contrasena no coinciden");
+     alert("Combinacion de email y contraseña no coinciden");
    }
 
   autentificar(){
@@ -34,15 +34,14 @@ export class FormComponent implements OnInit {
       if(this.usuarios[i].email == this.users.email && this.usuarios[i].password == this.users.password){
         
         if(this.usuarios[i].admin==true){
-          this.ActUser = this.usuarios[i].id;
-          this.gotoDetail2(this.usuarios[i].id);
+          this.fireAuth.login(this.users.email,this.users.password);
+          this.router.navigate([`/admin/`]);
           this.confirmar=true;
           
           
         }else{
-          this.ActUser = this.usuarios[i].id;
-          
-          this.gotoDetail(this.usuarios[i].id);
+          this.fireAuth.login(this.users.email,this.users.password);
+          this.router.navigate([`/user/`]);
           this.confirmar=true;
           
       }
@@ -52,20 +51,6 @@ export class FormComponent implements OnInit {
     }
   }
 }
-
-ActiUser(){
-return this.ActUser;
-
-}
-
-  gotoDetail(id){
-    this.router.navigate([`/user/`]);
-    console.log(this.ActUser);
-    
-  }
-  gotoDetail2(id){
-    this.router.navigate([`/admin/`]);
-  }
 
   ngOnInit() {
   }

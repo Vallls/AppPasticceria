@@ -8,6 +8,7 @@ export interface Usuario {
     password?: string;
     passwordc?: string;
     admin: boolean;
+    carrito?: Array<Menu>;
 }
 
 export interface Menu{
