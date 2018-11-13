@@ -16,6 +16,7 @@ export class MenuComponent implements OnInit {
   pastelitos = [];
   dulces = [];
   tortas = [];
+  product: Menu;
 
   constructor(private modalService: NgbModal, private firestoreService: FirestoreService,) {
     this.firestoreService.getPan().subscribe(pan => {
@@ -39,6 +40,13 @@ export class MenuComponent implements OnInit {
     });
   
   }
+
+  guardar(item){
+    this.product = item;
+    console.log(this.product);
+  }
+
+
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
