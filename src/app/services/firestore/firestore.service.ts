@@ -12,7 +12,7 @@ export class FirestoreService {
   
   usuariosCollection: AngularFirestoreCollection;
   usuarios: Observable<Usuario[]>;
-  usuariosDoc;
+  usuariosDoc: AngularFirestoreDocument;
 
   panCollection: AngularFirestoreCollection;
   pan: Observable<Menu[]>;
@@ -99,6 +99,11 @@ export class FirestoreService {
       {...usuario},
       {merge:true}
     );
+  }
+
+  updateUsers(usuario: Usuario){
+    this.usuariosDoc = this.db.doc(`usuarios/${usuario.id}`);
+    this.usuariosDoc.update(usuario);
   }
 
   getPan(){
@@ -199,5 +204,10 @@ export class FirestoreService {
   deleteProductDulce(dulce: Menu){
     this.dulceDoc = this.db.doc(`dulce/${dulce.id}`);
     this.dulceDoc.delete();
+  }
+
+  addcarrito(usuario,producto){
+    this.usuariosDoc = this.db.doc(`usuarios/${usuario.id}`)
+
   }
 }

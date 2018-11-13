@@ -22,7 +22,7 @@
                         <input style="border-radius: 25px" type="password" class="form-control" name="password" [(ngModel)]="users.password">
                       </div>
                       <div class="row" style="display:flex; justify-content:center; margin-bottom: 2vh">
-                          <a style="color:white; font-family:PenelopeAnne; font-size:large;"><a href="#">¿Olvidaste tu contraseña?</a></a>
+                          <a style="color:white; font-family:PenelopeAnne; font-size:large;"><a (click)="fireauth.RecuperarContrasena(users.email)" style="cursor: pointer">¿Olvidaste tu contraseña?</a></a>
                       </div>
                       <button type="submit" class="btn btn-block btn-bg">Entrar</button>
                       

@@ -8,7 +8,7 @@ import * as firebase from 'firebase';
   providedIn: 'root'
 })
 export class AuthService {
-
+  navbar = '';
   users: Observable<firebase.User>;
 
   constructor(public fireAuth: AngularFireAuth, public router: Router) {
@@ -19,9 +19,11 @@ export class AuthService {
   Login(email:string, password: string, admin: boolean){
     if(admin == true){
     this.router.navigate(['/admin']);
+    this.navbar = "admin";
     return this.fireAuth.auth.signInWithEmailAndPassword(email, password);
     }else if(admin == false){
       this.router.navigate(['/user']);
+      this.navbar = "user";
       return this.fireAuth.auth.signInWithEmailAndPassword(email, password);
     }
 
@@ -49,6 +51,11 @@ if (user != null) {
   return uid = user.uid; 
 }
    }
+
+   RecuperarContrasena(email: any){
+     this.fireAuth.auth.sendPasswordResetEmail(email);
+   }
+
 
   
 }

@@ -13,24 +13,43 @@
       </div>
     </ng-template>
 
+    <ng-template #templateName>
+        <div class="caja centrarCaja">
+            <img src="{{product.img}}" width="200px" height="200px">
+            <div class="Num1">
+              <div class="overlay">
+                <div class="text">PRODUCTO NO DISPONIBLE
+                  <img src="/src/assets/equis.png" width="55px" height="55px">
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3 style="margin-top:75%; left:20px; color:red">NO DISPONIBLE</h3>
+          <h3 style="left:20px">{{product.name}}</h3>
+          <h4>{{product.description}}</h4>
+  </ng-template>
+
 <div class="container container-frm">
     <div class="row" id="panes">
      <h1>Panes</h1>
     </div>
     <div class="row">
       <div class="col-4" *ngFor="let pan of pans">
-        <div class="caja centrarCaja">
+          <div *ngIf="pan.avaible == true;else guardar(pan)"></div>
+          <div *ngIf="pan.avaible == true;else templateName">
+        <div class="caja centrarCaja" Style="height: auto; width: auto">
           <img src="{{pan.img}}" width="200px" height="200px">
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{pan.price}} $
-                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)">
+                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="agregarproducto(pan.id)">
               </div>
             </div>
           </div>
         </div>
           <h3 style="margin-top:75%">{{pan.name}}</h3>
           <h4>{{pan.description}}</h4>
+          </div>
       </div>
     </div>
     <div class="row" style="margin-top:100px" id="croissants">
@@ -38,7 +57,8 @@
     </div>
     <div class="row">
       <div class="col-4" *ngFor="let croissant of croissants">
-      <div *ngIf="croissant.avaible == true">
+      <div *ngIf="croissant.avaible == true;else guardar(croissant)"></div>
+      <div *ngIf="croissant.avaible == true;else templateName">
         <div class="caja centrarCaja">
           <img src="{{croissant.img}}" width="200px" height="200px">
           <div class="Num1">
@@ -59,6 +79,8 @@
     </div>
     <div class="row">
       <div class="col-4" *ngFor="let pastelito of pastelitos">
+          <div *ngIf="pastelito.avaible == true;else guardar(pastelito)"></div>
+          <div *ngIf="pastelito.avaible == true;else templateName">
         <div class="caja centrarCaja">
           <img src="{{pastelito.img}}" width="200px" height="200px">
           <div class="Num1">
@@ -71,6 +93,7 @@
         </div>
         <h3 style="margin-top:75%; left:20px">{{pastelito.name}}</h3>
         <h4>{{pastelito.description}}</h4>
+        </div>
       </div>
     </div>
     <div class="row" style="margin-top:100px" id="tortas">
@@ -78,6 +101,8 @@
     </div>
     <div class="row">
       <div class="col-4" *ngFor="let torta of tortas">
+          <div *ngIf="torta.avaible == true;else guardar(torta)"></div>
+          <div *ngIf="torta.avaible == true;else templateName">
         <div class="caja centrarCaja">
           <img src="{{torta.img}}" width="200px" height="200px">
           <div class="Num1">
@@ -90,6 +115,7 @@
         </div>
         <h3 style="margin-top:75%; left:20px">{{torta.name}}</h3>
         <h4>{{torta.description}}</h4>
+        </div>
       </div>
     </div>
     <div class="row" style="margin-top:100px" id="dulces">
@@ -97,6 +123,8 @@
     </div>
     <div class="row">
       <div class="col-4" *ngFor="let dulce of dulces">
+          <div *ngIf="dulce.avaible == true;else guardar(dulce)"></div>
+          <div *ngIf="dulce.avaible == true;else templateName">
        <div class="caja centrarCaja">
           <img src="{{dulce.img}}" width="200px" height="200px">
           <div class="Num1">
@@ -109,6 +137,7 @@
         </div>
         <h3 style="margin-top:75%; left:20px">{{dulce.name}}</h3>
         <h4>{{dulce.description}}</h4>
+        </div>
       </div>
     </div>
   </div>

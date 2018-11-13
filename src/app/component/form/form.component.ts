@@ -17,9 +17,11 @@ export class FormComponent implements OnInit {
   users = {} as Usuario;
   usering = {} as Usuario;
   confirmar: boolean;
+  
 
   constructor(private firestoreService: FirestoreService, private router:Router, public fireauth: AuthService ) {
     this.confirmar = false;
+    
     this.firestoreService.getUsers().subscribe(usuarios => {
       this.usuarios = usuarios;
     });
