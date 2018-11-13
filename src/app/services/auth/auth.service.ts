@@ -9,30 +9,45 @@ import * as firebase from 'firebase';
 })
 export class AuthService {
 
-  user: Observable<firebase.User>;
+  users: Observable<firebase.User>;
 
-  constructor(private fireAuth: AngularFireAuth, private router: Router) {
-    this.user = fireAuth.authState;
+  constructor(public fireAuth: AngularFireAuth, public router: Router) {
+    this.users = fireAuth.authState;
     
    }
 
-  login(email:string, password: string){
-       return this.fireAuth.auth.signInWithEmailAndPassword(email, password);
-     
+  Login(email:string, password: string, admin: boolean){
+    if(admin == true){
+    this.router.navigate(['/admin']);
+    return this.fireAuth.auth.signInWithEmailAndPassword(email, password);
+    }else if(admin == false){
+      this.router.navigate(['/user']);
+      return this.fireAuth.auth.signInWithEmailAndPassword(email, password);
+    }
+
+  
    }
 
-  register(email: string, password: string){
+  SignUp(email: string, password: string){
        return this.fireAuth.auth.createUserWithEmailAndPassword(email, password);
      
    }
 
-   logout(){
-     this.router.navigate(['/home']);
-     return this.fireAuth.auth.signOut;
+   LogOut(){
+     
+    this.fireAuth.auth.signOut();
+    this.router.navigate(['/home']);
+    
    }
 
-   getuser(){
-     return this.user;
+   getUser(){
+    var user = this.fireAuth.auth.currentUser;
+    var uid;
+
+if (user != null) {
+  
+  return uid = user.uid; 
+}
    }
 
   

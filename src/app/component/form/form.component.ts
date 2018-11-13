@@ -18,7 +18,7 @@ export class FormComponent implements OnInit {
   usering = {} as Usuario;
   confirmar: boolean;
 
-  constructor(private firestoreService: FirestoreService, private router:Router, private fireAuth: AuthService ) {
+  constructor(private firestoreService: FirestoreService, private router:Router, public fireauth: AuthService ) {
     this.confirmar = false;
     this.firestoreService.getUsers().subscribe(usuarios => {
       this.usuarios = usuarios;
@@ -32,20 +32,9 @@ export class FormComponent implements OnInit {
   autentificar(){
     for(var i=0; i<this.usuarios.length; i++){
       if(this.usuarios[i].email == this.users.email && this.usuarios[i].password == this.users.password){
-        
-        if(this.usuarios[i].admin==true){
-          this.fireAuth.login(this.users.email,this.users.password);
-          this.router.navigate([`/admin/`]);
+          this.fireauth.Login(this.users.email,this.users.password,this.usuarios[i].admin);
           this.confirmar=true;
-          
-          
-        }else{
-          this.fireAuth.login(this.users.email,this.users.password);
-          this.router.navigate([`/user/`]);
-          this.confirmar=true;
-          
-      }
-    }
+        }
     if(this.confirmar==false){
       this.alerts();
     }

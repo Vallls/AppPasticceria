@@ -94,8 +94,11 @@ export class FirestoreService {
     return this.usuarios;
   }
 
-  addUsers(usuario: Usuario){
-    this.usuariosCollection.add(usuario);
+  addUsers(usuario: any, id: any){
+    return this.db.collection('/usuarios').doc(id).set(
+      {...usuario},
+      {merge:true}
+    );
   }
 
   getPan(){
