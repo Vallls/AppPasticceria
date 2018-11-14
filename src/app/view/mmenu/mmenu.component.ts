@@ -20,36 +20,17 @@ export class MmenuComponent implements OnInit {
   downloadURL: Observable<string>;
 
   closeResult: string;
-  pans = [];
-  croissants = [];
-  pastelitos = [];
-  dulces = [];
-  tortas = [];
+  menu = [];
+  
   ItemtoEdit: Menu;
   variable;
 
   Menu = {} as Menu;
 
   constructor(private modalService: NgbModal, private firestoreService: FirestoreService,private afStorage: AngularFireStorage,) {
-    this.firestoreService.getPan().subscribe(pan => {
-      this.pans = pan;
-    });
+    this.menu = firestoreService.Amenu;
 
-    this.firestoreService.getCroissant().subscribe(croissant => {
-      this.croissants = croissant;
-    });
-
-    this.firestoreService.getPastelito().subscribe(pastelito => {
-      this.pastelitos = pastelito;
-    });
-
-    this.firestoreService.getTorta().subscribe(torta => {
-      this.tortas = torta;
-    });
-
-    this.firestoreService.getDulce().subscribe(dulce => {
-      this.dulces = dulce;
-    });
+    
 
   }
 
@@ -62,48 +43,19 @@ export class MmenuComponent implements OnInit {
   }
 
   Disponibilidad(variable){
-    this.ItemtoEdit.avaible = variable;
+    this.ItemtoEdit.available = variable;
   }
 
-  UpdateProductPan(){
-    this.firestoreService.updateProductPan(this.ItemtoEdit)
+  UpdateProductMenu(){
+    this.firestoreService.updateProductMenu(this.ItemtoEdit)
   }
 
-  UpdateProductCroissant(){
-    this.firestoreService.updateProductCroissant(this.ItemtoEdit)
+ 
+  DeleteProductMenu(event,menu){
+    this.firestoreService.deleteProductMenu(menu)
   }
 
-  UpdateProductPastelito(){
-    this.firestoreService.updateProductPastelito(this.ItemtoEdit)
-  }
-
-  UpdateProductTorta(){
-    this.firestoreService.updateProductTorta(this.ItemtoEdit)
-  }
-
-  UpdateProductDulce(){
-    this.firestoreService.updateProductDulce(this.ItemtoEdit)
-  }
-
-  DeleteProductPan(event,pan){
-    this.firestoreService.deleteProductPan(pan)
-  }
-
-  DeleteProductCroissant(event,croissant){
-    this.firestoreService.deleteProductCroissant(croissant)
-  }
-
-  DeleteProductPastelito(event,pastelito){
-    this.firestoreService.deleteProductPastelito(pastelito)
-  }
-
-  DeleteProductTorta(event,torta){
-    this.firestoreService.deleteProductTorta(torta)
-  }
-
-  DeleteProductDulce(event,dulce){
-    this.firestoreService.deleteProductDulce(dulce)
-  }
+  
 
   upload(event) {
     const id = Math.random().toString(36).substring(2);

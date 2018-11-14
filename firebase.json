@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/PasticceriaDellaNonna",
+    "public": "dist/AppPasticceria",
     "ignore": [
       "firebase.json",
       "**/.*",

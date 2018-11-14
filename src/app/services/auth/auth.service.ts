@@ -19,11 +19,9 @@ export class AuthService {
   Login(email:string, password: string, admin: boolean){
     if(admin == true){
     this.router.navigate(['/admin']);
-    this.navbar = "admin";
     return this.fireAuth.auth.signInWithEmailAndPassword(email, password);
     }else if(admin == false){
       this.router.navigate(['/user']);
-      this.navbar = "user";
       return this.fireAuth.auth.signInWithEmailAndPassword(email, password);
     }
 
@@ -43,14 +41,8 @@ export class AuthService {
    }
 
    getUser(){
-    var user = this.fireAuth.auth.currentUser;
-    var uid;
-
-if (user != null) {
-  
-  return uid = user.uid; 
-}
-   }
+    return this.fireAuth.auth.currentUser.uid;
+  }
 
    RecuperarContrasena(email: any){
      this.fireAuth.auth.sendPasswordResetEmail(email);

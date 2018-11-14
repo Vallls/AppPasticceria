@@ -7,7 +7,7 @@
     </div>
     <div class="modal-body">
       <div *ngIf="ItemtoEdit.id == variable">
-      <form (ngSubmit)="UpdateProductPan()">
+      <form (ngSubmit)="UpdateProductMenu()">
           <div class="form-group">
               <label for="nombre">Nombre del producto</label>
               <div class="input-group">
@@ -37,203 +37,7 @@
                     <input ngbButton type="radio" (click)="Disponibilidad(false)"> No Disponible     
                   </label>
             </div>
-            <button type="button" class="btn btn-outline-dark" Style="background-color: black;color: white;margin-left: 36px" (click)="DeleteProductPan($event,ItemtoEdit)" (click)="c('Save click')">Eliminar</button>
-            <button type="submit" class="btn btn-outline-dark" Style="margin-left: 37px">Guardar</button>
-      </form>
-    </div>
-    </div>  
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Volver</button>
-    </div>
-  </ng-template>
-
-  <ng-template #content2 let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Modificación de Producto</h4>
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div *ngIf="ItemtoEdit.id == variable">
-      <form (ngSubmit)="UpdateProductCroissant()">
-          <div class="form-group">
-              <label for="nombre">Nombre del producto</label>
-              <div class="input-group">
-                <input type="text" name="name" class="form-control" placeholder="name" [(ngModel)]=ItemtoEdit.name>
-              </div>
-              <label for="nombre">Descripcion del producto</label>
-              <div class="input-group">
-                  <input type="text" name="descripcion" class="form-control" placeholder="descripcion" [(ngModel)]=ItemtoEdit.description>
-              </div>
-              <label for="nombre">Imagen del producto</label>
-              <div class="input-group">
-                  <input type="file" size="60" style="margin-bottom: 10px" id="file"  (change)="upload($event)" accept=".png,.jpg">
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-              <label for="nombre">Precio del producto</label>
-              <div class="input-group">
-                  <input type="number" name="precio" class="form-control" placeholder="precio" [(ngModel)]=ItemtoEdit.price>
-              </div>
-            </div>
-            <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="model">
-                <label ngbButtonLabel class="btn-primary" class="green">
-                    <input ngbButton type="radio" (click)="Disponibilidad(true)"> Disponible
-                  </label>
-                  <label ngbButtonLabel class="btn-primary" class="red">
-                    <input ngbButton type="radio" (click)="Disponibilidad(false)"> No Disponible     
-                  </label>
-            </div>
-            <button type="button" class="btn btn-outline-dark" Style="background-color: black;color: white;margin-left: 36px" (click)="DeleteProductCroissant($event,ItemtoEdit)" (click)="c('Save click')">Eliminar</button>
-            <button type="submit" class="btn btn-outline-dark" Style="margin-left: 37px">Guardar</button>
-      </form>
-    </div>
-    </div>  
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Volver</button>
-    </div>
-  </ng-template>
-
-  <ng-template #content3 let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Modificación de Producto</h4>
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div *ngIf="ItemtoEdit.id == variable">
-      <form (ngSubmit)="UpdateProductPastelito()">
-          <div class="form-group">
-              <label for="nombre">Nombre del producto</label>
-              <div class="input-group">
-                <input type="text" name="name" class="form-control" placeholder="name" [(ngModel)]=ItemtoEdit.name>
-              </div>
-              <label for="nombre">Descripcion del producto</label>
-              <div class="input-group">
-                  <input type="text" name="descripcion" class="form-control" placeholder="descripcion" [(ngModel)]=ItemtoEdit.description>
-              </div>
-              <label for="nombre">Imagen del producto</label>
-              <div class="input-group">
-                  <input type="file" size="60" style="margin-bottom: 10px" id="file"  (change)="upload($event)" accept=".png,.jpg">
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-              <label for="nombre">Precio del producto</label>
-              <div class="input-group">
-                  <input type="number" name="precio" class="form-control" placeholder="precio" [(ngModel)]=ItemtoEdit.price>
-              </div>
-            </div>
-            <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="model">
-                <label ngbButtonLabel class="btn-primary" class="green">
-                    <input ngbButton type="radio" (click)="Disponibilidad(true)"> Disponible
-                  </label>
-                  <label ngbButtonLabel class="btn-primary" class="red">
-                    <input ngbButton type="radio" (click)="Disponibilidad(false)"> No Disponible     
-                  </label>
-            </div>
-            <button type="button" class="btn btn-outline-dark" Style="background-color: black;color: white;margin-left: 36px" (click)="DeleteProductPastelito($event,ItemtoEdit)" (click)="c('Save click')">Eliminar</button>
-            <button type="submit" class="btn btn-outline-dark" Style="margin-left: 37px">Guardar</button>
-      </form>
-    </div>
-    </div>  
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Volver</button>
-    </div>
-  </ng-template>
-
-  <ng-template #content4 let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Modificación de Producto</h4>
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div *ngIf="ItemtoEdit.id == variable">
-      <form (ngSubmit)="UpdateProductTorta()">
-          <div class="form-group">
-              <label for="nombre">Nombre del producto</label>
-              <div class="input-group">
-                <input type="text" name="name" class="form-control" placeholder="name" [(ngModel)]=ItemtoEdit.name>
-              </div>
-              <label for="nombre">Descripcion del producto</label>
-              <div class="input-group">
-                  <input type="text" name="descripcion" class="form-control" placeholder="descripcion" [(ngModel)]=ItemtoEdit.description>
-              </div>
-              <label for="nombre">Imagen del producto</label>
-              <div class="input-group">
-                  <input type="file" size="60" style="margin-bottom: 10px" id="file"  (change)="upload($event)" accept=".png,.jpg">
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-              <label for="nombre">Precio del producto</label>
-              <div class="input-group">
-                  <input type="number" name="precio" class="form-control" placeholder="precio" [(ngModel)]=ItemtoEdit.price>
-              </div>
-            </div>
-            <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="model">
-                <label ngbButtonLabel class="btn-primary" class="green">
-                    <input ngbButton type="radio" (click)="Disponibilidad(true)"> Disponible
-                  </label>
-                  <label ngbButtonLabel class="btn-primary" class="red">
-                    <input ngbButton type="radio" (click)="Disponibilidad(false)"> No Disponible     
-                  </label>
-            </div>
-            <button type="button" class="btn btn-outline-dark" Style="background-color: black;color: white;margin-left: 36px" (click)="DeleteProductTorta($event,ItemtoEdit)" (click)="c('Save click')">Eliminar</button>
-            <button type="submit" class="btn btn-outline-dark" Style="margin-left: 37px">Guardar</button>
-      </form>
-    </div>
-    </div>  
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Volver</button>
-    </div>
-  </ng-template>
-
-  <ng-template #content5 let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Modificación de Producto</h4>
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div *ngIf="ItemtoEdit.id == variable">
-      <form (ngSubmit)="UpdateProductDulce()">
-          <div class="form-group">
-              <label for="nombre">Nombre del producto</label>
-              <div class="input-group">
-                <input type="text" name="name" class="form-control" placeholder="name" [(ngModel)]=ItemtoEdit.name>
-              </div>
-              <label for="nombre">Descripcion del producto</label>
-              <div class="input-group">
-                  <input type="text" name="descripcion" class="form-control" placeholder="descripcion" [(ngModel)]=ItemtoEdit.description>
-              </div>
-              <label for="nombre">Imagen del producto</label>
-              <div class="input-group">
-                  <input type="file" size="60" style="margin-bottom: 10px" id="file"  (change)="upload($event)" accept=".png,.jpg">
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-              <label for="nombre">Precio del producto</label>
-              <div class="input-group">
-                  <input type="number" name="precio" class="form-control" placeholder="precio" [(ngModel)]=ItemtoEdit.price>
-              </div>
-            </div>
-            <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="model">
-                <label ngbButtonLabel class="btn-primary" class="green">
-                    <input ngbButton type="radio" (click)="Disponibilidad(true)"> Disponible
-                  </label>
-                  <label ngbButtonLabel class="btn-primary" class="red">
-                    <input ngbButton type="radio" (click)="Disponibilidad(false)"> No Disponible     
-                  </label>
-            </div>
-            <button type="button" class="btn btn-outline-dark" Style="background-color: black;color: white;margin-left: 36px" (click)="DeleteProductDulce($event,ItemtoEdit)" (click)="c('Save click')">Eliminar</button>
+            <button type="button" class="btn btn-outline-dark" Style="background-color: black;color: white;margin-left: 36px" (click)="DeleteProductMenu($event,ItemtoEdit)" (click)="c('Save click')">Eliminar</button>
             <button type="submit" class="btn btn-outline-dark" Style="margin-left: 37px">Guardar</button>
       </form>
     </div>
@@ -250,95 +54,105 @@
      <h1>Panes</h1>
     </div>
     <div class="row">
-      <div class="col-4" *ngFor="let pan of pans">
+      <div class="col-4" *ngFor="let men of menu">
+       <div *ngIf="men.type == 'Panes'">
         <div class="caja centrarCaja">
-          <img src="{{pan.img}}" width="200px" height="200px">
+          <img src="{{men.img}}" width="200px" height="200px">
           <div class="Num1">
             <div class="overlay">
-              <div class="text">Precio: {{pan.price}} $
-                <img src="/src/assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,pan)" (click)="guardar(pan.id)">
+              <div class="text">Precio: {{men.price}} $
+                <img src="/src/assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="guardar(men.id)">
               </div>
             </div>
           </div>
         </div>
-          <h3 style="margin-top:75%">{{pan.name}}</h3>
-          <h4>{{pan.description}}</h4>
+          <h3 style="margin-top:75%">{{men.name}}</h3>
+          <h4>{{men.description}}</h4>
+        </div>
       </div>
     </div>
     <div class="row" style="margin-top:100px" id="croissants">
       <h1>Croissants</h1>
     </div>
     <div class="row">
-      <div class="col-4" *ngFor="let croissant of croissants">
+      <div class="col-4" *ngFor="let men of menu">
+        <div *ngIf="men.type == 'Croissants'">
         <div class="caja centrarCaja">
-          <img src="{{croissant.img}}" width="200px" height="200px">
+          <img src="{{men.img}}" width="200px" height="200px">
           <div class="Num1">
             <div class="overlay">
-              <div class="text">Precio: {{croissant.price}} $
-                <img src="/src/assets/pencil.png" width="55px" height="55px" (click)="open(content2)" (click)="EditarProducto($event,croissant)" (click)="guardar(croissant.id)">
+              <div class="text">Precio: {{men.price}} $
+                <img src="/src/assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="guardar(men.id)">
               </div>
             </div>
           </div>
         </div>
-        <h3 style="margin-top:75%; left:20px">{{croissant.name}}</h3>
-        <h4>{{croissant.description}}</h4>
+        <h3 style="margin-top:75%; left:20px">{{men.name}}</h3>
+        <h4>{{men.description}}</h4>
       </div>
     </div>
+   </div>
     <div class="row" style="margin-top:100px" id="pastelitos">
       <h1>Pastelitos</h1>
     </div>
     <div class="row">
-      <div class="col-4" *ngFor="let pastelito of pastelitos">
+      <div class="col-4" *ngFor="let men of menu">
+      <div *ngIf="men.type == 'Pastelitos'">
         <div class="caja centrarCaja">
-          <img src="{{pastelito.img}}" width="200px" height="200px">
+          <img src="{{men.img}}" width="200px" height="200px">
           <div class="Num1">
             <div class="overlay">
-              <div class="text">Precio: {{pastelito.price}} $
-                <img src="/src/assets/pencil.png" width="55px" height="55px" (click)="open(content3)" (click)="EditarProducto($event,pastelito)" (click)="guardar(pastelito.id)">
+              <div class="text">Precio: {{men.price}} $
+                <img src="/src/assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="guardar(men.id)">
               </div>
             </div>
           </div>
         </div>
-        <h3 style="margin-top:75%; left:20px">{{pastelito.name}}</h3>
-        <h4>{{pastelito.description}}</h4>
+        <h3 style="margin-top:75%; left:20px">{{men.name}}</h3>
+        <h4>{{men.description}}</h4>
       </div>
+    </div>
     </div>
     <div class="row" style="margin-top:100px" id="tortas">
       <h1>Tortas</h1>
     </div>
     <div class="row">
-      <div class="col-4" *ngFor="let torta of tortas">
+      <div class="col-4" *ngFor="let men of menu">
+       <div *ngIf="men.type == 'Tortas'">
         <div class="caja centrarCaja">
-          <img src="{{torta.img}}" width="200px" height="200px">
+          <img src="{{men.img}}" width="200px" height="200px">
           <div class="Num1">
             <div class="overlay">
-              <div class="text"> Precio: {{torta.price}} $
-                <img src="/src/assets/pencil.png" width="55px" height="55px" (click)="open(content4)" (click)="EditarProducto($event,torta)" (click)="guardar(torta.id)">
+              <div class="text"> Precio: {{men.price}} $
+                <img src="/src/assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="guardar(men.id)">
               </div>
             </div>
           </div>
         </div>
-        <h3 style="margin-top:75%; left:20px">{{torta.name}}</h3>
-        <h4>{{torta.description}}</h4>
+        <h3 style="margin-top:75%; left:20px">{{men.name}}</h3>
+        <h4>{{men.description}}</h4>
+      </div>
       </div>
     </div>
     <div class="row" style="margin-top:100px" id="dulces">
       <h1>Dulces</h1>
     </div>
     <div class="row">
-      <div class="col-4" *ngFor="let dulce of dulces">
+      <div class="col-4" *ngFor="let men of menu">
+      <div *ngIf="men.type == 'Dulces'">
        <div class="caja centrarCaja">
-          <img src="{{dulce.img}}" width="200px" height="200px">
+          <img src="{{men.img}}" width="200px" height="200px">
           <div class="Num1">
             <div class="overlay">
-              <div class="text">Precio: {{dulce.price}} $
-                <img src="/src/assets/pencil.png" width="55px" height="55px" (click)="open(content5)" (click)="EditarProducto($event,dulce)" (click)="guardar(dulce.id)">
+              <div class="text">Precio: {{men.price}} $
+                <img src="/src/assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="guardar(men.id)">
               </div>
             </div>
           </div>
         </div>
-        <h3 style="margin-top:75%; left:20px">{{dulce.name}}</h3>
-        <h4>{{dulce.description}}</h4>
+        <h3 style="margin-top:75%; left:20px">{{men.name}}</h3>
+        <h4>{{men.description}}</h4>
+      </div>
       </div>
     </div>
   </div>

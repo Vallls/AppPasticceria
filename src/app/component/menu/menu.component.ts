@@ -11,39 +11,18 @@ import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 export class MenuComponent implements OnInit {
 
   closeResult: string;
-  pans = [];
-  croissants = [];
-  pastelitos = [];
-  dulces = [];
-  tortas = [];
+  menu = [];
   product: Menu;
 
   constructor(private modalService: NgbModal, private firestoreService: FirestoreService,) {
-    this.firestoreService.getPan().subscribe(pan => {
-      this.pans = pan;
-    });
-
-    this.firestoreService.getCroissant().subscribe(croissant => {
-      this.croissants = croissant;
-    });
-
-    this.firestoreService.getPastelito().subscribe(pastelito => {
-      this.pastelitos = pastelito;
-    });
-
-    this.firestoreService.getTorta().subscribe(torta => {
-      this.tortas = torta;
-    });
-
-    this.firestoreService.getDulce().subscribe(dulce => {
-      this.dulces = dulce;
-    });
+    this.menu=firestoreService.Amenu;
+    console.log(this.menu);
   
   }
 
   guardar(item){
     this.product = item;
-    console.log(this.product);
+    // console.log(this.product);
   }
 
 

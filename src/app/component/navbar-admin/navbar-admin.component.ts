@@ -11,18 +11,17 @@ export class NavbarAdminComponent implements OnInit {
   UID;
   usuarios = [];
   name: string;
+  lastname: string;
   
   constructor(public fireAuth: AuthService, public firestoreService: FirestoreService) { 
     this.UID = this.fireAuth.getUser();
     console.log(this.UID);
-    this.firestoreService.getUsers().subscribe(usuarios => {
-      this.usuarios = usuarios;
-    });
-    this.name = this.getUser();
-    console.log(this.name);
+    this.usuarios = firestoreService.Ausuario;
+    this.name = this.getName();
+    this.lastname = this.getLastname();
   }
 
-  getUser(){
+  getName(){
     for(var i=0; i<this.usuarios.length; i++){
       if(this.usuarios[i].id == this.UID)
       {
@@ -30,6 +29,16 @@ export class NavbarAdminComponent implements OnInit {
       }
     }
   }
+
+  getLastname(){
+    for(var i=0; i<this.usuarios.length; i++){
+      if(this.usuarios[i].id == this.UID)
+      {
+        return this.usuarios[i].lastname;
+      }
+    }
+  }
+  
   ngOnInit() {
   }
 

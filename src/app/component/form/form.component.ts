@@ -22,10 +22,9 @@ export class FormComponent implements OnInit {
   constructor(private firestoreService: FirestoreService, private router:Router, public fireauth: AuthService ) {
     this.confirmar = false;
     
-    this.firestoreService.getUsers().subscribe(usuarios => {
-      this.usuarios = usuarios;
-    });
-   }
+    this.usuarios = this.firestoreService.Ausuario;
+    console.log(this.usuarios);
+  }
 
    alerts(){
      alert("Combinacion de email y contraseña no coinciden");
@@ -34,12 +33,14 @@ export class FormComponent implements OnInit {
   autentificar(){
     for(var i=0; i<this.usuarios.length; i++){
       if(this.usuarios[i].email == this.users.email && this.usuarios[i].password == this.users.password){
-          this.fireauth.Login(this.users.email,this.users.password,this.usuarios[i].admin);
-          this.confirmar=true;
+        this.confirmar=true;
+        this.fireauth.Login(this.users.email,this.users.password,this.usuarios[i].admin);
+          
         }
+    
+    }
     if(this.confirmar==false){
       this.alerts();
-    }
   }
 }
 

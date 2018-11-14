@@ -15,9 +15,7 @@ export class AdminComponent implements OnInit {
   usuario;
   constructor(private firestoreService: FirestoreService, private route:ActivatedRoute,private modalService: NgbModal) {
 
-    this.firestoreService.getUsers().subscribe(usuario => {
-      this.usuarios = usuario;
-    });
+    this.usuarios = firestoreService.Ausuario;
    }
 
   closeResult: string;

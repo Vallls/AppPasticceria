@@ -20,11 +20,8 @@ export class IngredientsComponent implements OnInit {
   downloadURL: Observable<string>;
 
 
-  pan = [];
-  croissant = [];
-  pastelito = [];
-  dulce = [];
-  torta = [];
+  menu = [];
+  
 
   Menu = {} as Menu;
 
@@ -37,26 +34,8 @@ export class IngredientsComponent implements OnInit {
   constructor(private firestoreService: FirestoreService, private afStorage: AngularFireStorage) { 
 
     this.datos = ["Panes", "Croissants", "Pastelitos", "Tortas", "Dulces"];
-
-    this.firestoreService.getPan().subscribe(pan => {
-      this.pan = pan;
-    });
-
-    this.firestoreService.getCroissant().subscribe(croissant => {
-      this.croissant = this.croissant;
-    });
-
-    this.firestoreService.getPastelito().subscribe(pastelito => {
-      this.pastelito = pastelito;
-    });
-
-    this.firestoreService.getTorta().subscribe(torta => {
-      this.torta = torta;
-    });
-
-    this.firestoreService.getDulce().subscribe(dulce => {
-      this.dulce = dulce;
-    });
+    this.menu = firestoreService.Amenu;
+    
   }
 
   upload(event) {
@@ -97,23 +76,9 @@ export class IngredientsComponent implements OnInit {
   addMenu(){
     this.alerts();
     if(this.Menu.name != null && this.Menu.price != null && this.Menu.description != null && this.verSeleccion != "Selecciona una opción") {
-      this.Menu.avaible=true;
-    if(this.verSeleccion == "Panes"){
-      this.firestoreService.addPan(this.Menu);
-      this.Menu = {} as Menu;
-    }else if(this.verSeleccion == "Croissants"){
-      this.firestoreService.addCroissant(this.Menu);
-      this.Menu = {} as Menu;
-    }else if(this.verSeleccion == "Pastelitos"){
-      this.firestoreService.addPastelito(this.Menu);
-      this.Menu = {} as Menu;
-    }else if(this.verSeleccion == "Tortas"){
-      this.firestoreService.addTorta(this.Menu);
-      this.Menu = {} as Menu;
-    }else if(this.verSeleccion == "Dulces"){
-      this.firestoreService.addDulce(this.Menu);
-      this.Menu = {} as Menu;
-    }
+      this.Menu.available=true;
+      this.Menu.type=this.verSeleccion;
+      this.firestoreService.addMenu(this.Menu);
     }
     
   }

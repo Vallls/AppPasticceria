@@ -17,6 +17,7 @@ export interface Menu{
     price?:number;
     description?:string;
     img?: Observable<string>;
-    avaible?: boolean;
+    available?: boolean;
+    type?: string;
 }
 
