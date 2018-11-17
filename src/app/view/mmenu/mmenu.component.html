@@ -54,14 +54,24 @@
      <h1>Panes</h1>
     </div>
     <div class="row">
+<<<<<<< HEAD
       <div *ngFor="let men of menu" [ngClass]="{'col-4':men.type == 'Panes'}">
         <div *ngIf="men.type == 'Panes'">
+=======
+      <div class="col-4" *ngFor="let men of menu">
+       
+        
+>>>>>>> d24eaf0ee10a2eb79f869a64433e9539c8795394
         <div class="caja centrarCaja">
           <img src="{{men.img}}" width="200px" height="200px">
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
+<<<<<<< HEAD
                 <img src="/src/assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="guardar(men.id)" (click)="EditarProducto($event,men)">
+=======
+                <img src="assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="guardar(id)">
+>>>>>>> d24eaf0ee10a2eb79f869a64433e9539c8795394
               </div>
             </div>
           </div>
@@ -82,7 +92,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
-                <img src="/src/assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="guardar(men.id)">
+                <img src="assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="guardar(id)">
               </div>
             </div>
           </div>
@@ -103,7 +113,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
-                <img src="/src/assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="guardar(men.id)">
+                <img src="assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="guardar(id)">
               </div>
             </div>
           </div>
@@ -124,7 +134,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text"> Precio: {{men.price}} $
-                <img src="/src/assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="guardar(men.id)">
+                <img src="assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="guardar(id)">
               </div>
             </div>
           </div>
@@ -145,7 +155,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
-                <img src="/src/assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="guardar(men.id)">
+                <img src="assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="guardar(id)">
               </div>
             </div>
           </div>
@@ -156,7 +166,7 @@
       </div>
     </div>
   </div>
-  </div>
+  
 
 <div class="footer">
   <div class="container">

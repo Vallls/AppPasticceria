@@ -33,6 +33,8 @@ export class FirestoreService {
      this.Amenu.push(element.payload.doc.data())
      });; 
   });
+
+  
 }
 
   getUsers(){
@@ -51,7 +53,7 @@ export class FirestoreService {
     this.usuariosDoc.update(usuario);
   }
 
-  addMenu(menu: any){
+  addMenu(menu: Menu){
     return this.db.collection('/menu').add(menu);
   }
 
