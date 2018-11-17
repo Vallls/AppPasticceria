@@ -36,10 +36,12 @@ export class MmenuComponent implements OnInit {
 
   EditarProducto(event,item){
     this.ItemtoEdit = item;
+    console.log(this.ItemtoEdit);
   }
 
   guardar(item){
     this.variable = item;
+    console.log(this.variable)
   }
 
   Disponibilidad(variable){
