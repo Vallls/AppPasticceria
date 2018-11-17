@@ -22,7 +22,7 @@ export class IngredientsComponent implements OnInit {
 
   menu = [];
   
-
+  idMenu;
   Menu = {} as Menu;
 
   datos;
@@ -35,7 +35,7 @@ export class IngredientsComponent implements OnInit {
 
     this.datos = ["Panes", "Croissants", "Pastelitos", "Tortas", "Dulces"];
     this.menu = firestoreService.Amenu;
-    
+    this.idMenu = firestoreService.MenuID;
   }
 
   upload(event) {
@@ -65,21 +65,22 @@ export class IngredientsComponent implements OnInit {
     this.verSeleccion = this.opcionSeleccionado;
   }
 
-  alerts(){
-    if(this.Menu.name == null || this.Menu.price == null || this.Menu.description == null || this.verSeleccion == "Selecciona una opción"){
-      alert("Complete todos los campos");
-    }  else if(this.Menu.name != null && this.Menu.price != null && this.Menu.description != null && this.verSeleccion != "Selecciona una opción"){
-      alert("Menu agregado satisfactoriamente");
-    }
-  }
 
   addMenu(){
-    this.alerts();
+    
     if(this.Menu.name != null && this.Menu.price != null && this.Menu.description != null && this.verSeleccion != "Selecciona una opción") {
       this.Menu.available=true;
       this.Menu.type=this.verSeleccion;
-      this.firestoreService.addMenu(this.Menu);
-    }
+      this.firestoreService.addMenu(this.Menu).then(() => {
+        this.Menu = {} as Menu;
+        alert("Menu agregado satisfactoriamente");
+      }).catch(() => {
+        alert("no se agrego");
+      });
+      
+      
+    }else{alert("Complete todos los campos");}
+    
     
   }
 

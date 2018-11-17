@@ -5,6 +5,7 @@ import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
+import { element } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-mmenu',
@@ -21,7 +22,6 @@ export class MmenuComponent implements OnInit {
 
   closeResult: string;
   menu = [];
-  
   ItemtoEdit: Menu;
   variable;
 
@@ -29,7 +29,6 @@ export class MmenuComponent implements OnInit {
 
   constructor(private modalService: NgbModal, private firestoreService: FirestoreService,private afStorage: AngularFireStorage,) {
     this.menu = firestoreService.Amenu;
-
     
 
   }

@@ -18,11 +18,14 @@ export class AuthService {
 
   Login(email:string, password: string, admin: boolean){
     if(admin == true){
-    this.router.navigate(['/admin']);
-    return this.fireAuth.auth.signInWithEmailAndPassword(email, password);
+    return this.fireAuth.auth.signInWithEmailAndPassword(email, password).then(() => {
+      this.router.navigate(['/admin']);
+    });
     }else if(admin == false){
-      this.router.navigate(['/user']);
-      return this.fireAuth.auth.signInWithEmailAndPassword(email, password);
+      
+      return this.fireAuth.auth.signInWithEmailAndPassword(email, password).then(() =>{
+        this.router.navigate(['/user']);
+      });
     }
 
   
@@ -35,9 +38,9 @@ export class AuthService {
 
    LogOut(){
      
-    this.fireAuth.auth.signOut();
-    this.router.navigate(['/home']);
-    
+    this.fireAuth.auth.signOut().then( () => {
+      this.router.navigate(['/home']);
+    })
    }
 
    getUser(){
