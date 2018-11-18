@@ -21,20 +21,27 @@ export class IngredientsComponent implements OnInit {
 
 
   menu = [];
-  
-  idMenu;
   Menu = {} as Menu;
-
+  extras = [];
+  extrass;
+  
   datos;
 
   opcionSeleccionado: string  = "Selecciona una opción";
+  opcionSeleccionado2: string  = "Selecciona una opción";
+  opcionSeleccionado3: string  = "Selecciona una opción";
   verSeleccion: string        = '';
+  verSeleccion2: string        = '';
+  verSeleccion3: string        = '';
  
  
   constructor(private firestoreService: FirestoreService, private afStorage: AngularFireStorage) { 
 
     this.datos = ["Panes", "Croissants", "Pastelitos", "Tortas", "Dulces"];
+    this.extrass = ["Chocolate", "Azucar", "Jamon", "Queso", "Carne", "Pollo"];
     this.menu = firestoreService.Amenu;
+    this.extras = firestoreService.Aextra;
+    console.log(this.firestoreService.getQueso());
   }
 
   upload(event) {
@@ -58,18 +65,65 @@ export class IngredientsComponent implements OnInit {
     ).subscribe();
   }
   
+  
 
   capturar() {
 
     this.verSeleccion = this.opcionSeleccionado;
   }
 
+  capturar2() {
+
+    this.verSeleccion2 = this.opcionSeleccionado2;
+  }
+
+  capturar3() {
+
+    this.verSeleccion3 = this.opcionSeleccionado3;
+  }
+
+  AnadirExtra(){
+    
+    if(this.verSeleccion2 == "Chocolate"){
+        this.Menu.extra1 = this.firestoreService.getChocolate();
+    }else if(this.verSeleccion2 == "Azucar"){
+        this.Menu.extra1 = this.firestoreService.getAzucar();
+    }else if(this.verSeleccion2 == "Queso" ){
+        this.Menu.extra1 = this.firestoreService.getQueso();
+    }else if(this.verSeleccion2 == "Jamon"){
+        this.Menu.extra1 = this.firestoreService.getJamon();
+    }else if(this.verSeleccion2 == "Carne"){
+        this.Menu.extra1 = this.firestoreService.getCarne();
+    }else if(this.verSeleccion2 == "Pollo"){
+        this.Menu.extra1 = this.firestoreService.getPollo();
+    }else if(this.verSeleccion2 == "Selecciona una opción"){
+      this.Menu.extra1 = null;
+    }
+    
+    if(this.verSeleccion3 == "Chocolate"){
+        this.Menu.extra2 = this.firestoreService.getChocolate();
+    }else if(this.verSeleccion3 == "Azucar"){
+        this.Menu.extra2 = this.firestoreService.getAzucar();
+    }else if(this.verSeleccion3 == "Queso"){
+        this.Menu.extra2 = this.firestoreService.getQueso();
+    }else if(this.verSeleccion3 == "Jamon"){
+        this.Menu.extra2 = this.firestoreService.getJamon();
+    }else if(this.verSeleccion3 == "Carne"){
+        this.Menu.extra2 = this.firestoreService.getCarne();
+    }else if(this.verSeleccion3 == "Pollo"){
+        this.Menu.extra2 = this.firestoreService.getPollo();
+    }else if(this.verSeleccion3 == "Selecciona una opción"){
+      this.Menu.extra2 = null;
+    }
+  }
 
   addMenu(){
     
     if(this.Menu.name != null && this.Menu.price != null && this.Menu.description != null && this.verSeleccion != "Selecciona una opción") {
       this.Menu.available=true;
       this.Menu.type=this.verSeleccion;
+      this.AnadirExtra();
+
       this.firestoreService.addMenu(this.Menu).then(() => {
         this.Menu = {} as Menu;
         alert("Menu agregado satisfactoriamente");
@@ -77,10 +131,7 @@ export class IngredientsComponent implements OnInit {
         alert("no se agrego");
       });
       
-      
-    }else{alert("Complete todos los campos");}
-    
-    
+    }else{alert("Complete todos los campos");} 
   }
 
   ngOnInit() {

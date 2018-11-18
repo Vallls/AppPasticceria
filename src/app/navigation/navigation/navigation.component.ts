@@ -9,11 +9,12 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class NavigationComponent implements OnInit {
 
   constructor(public fireAuth: AuthService) {
-    
+    console.log(this.OpNavbar());
   }
 
 OpNavbar(){
-  return this.fireAuth.navbar;
+  return this.fireAuth.getNavbar();
+  
 }
   ngOnInit() {
   }
