@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { Usuario, Menu } from 'src/app/models/usuarios';
+import { Usuario, Menu, Carrito } from 'src/app/models/usuarios';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -30,6 +30,9 @@ export class FirestoreService {
   Caextras = [];
   Pextras = [];
 
+  carritoCollection: AngularFirestoreCollection;
+  Acarrito = [];
+
 
   constructor(public db: AngularFirestore,) {
   this.getUsers().subscribe(data => {
@@ -50,7 +53,11 @@ export class FirestoreService {
      });; 
   });
 
-  
+  this.getCarrito().subscribe(data => {
+    data.forEach(element => {
+     this.Acarrito.push(element.payload.doc.data())
+     });; 
+  });
   
 }
 
@@ -76,6 +83,14 @@ export class FirestoreService {
 
   getAllMenu(){
     return this.db.collection('menu').snapshotChanges();
+  }
+
+  getCarrito(){
+    return this.db.collection('carrito').snapshotChanges();
+  }
+
+  addCarrito(carrito: Array<Carrito>){
+    return this.db.collection('/menu').add(carrito);
   }
 
   getExtra(){

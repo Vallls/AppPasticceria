@@ -29,3 +29,21 @@ export interface Extra{
     type?: string;
 }
 
+export interface Carrito{
+    
+    id?:string;
+    name?:string;
+    price?:number;
+    description?:string;
+    img?: Observable<string>;
+    available?: boolean;
+    type?: string;
+    extra1?: Extra;
+    extra2?: Extra;
+    
+}
+
+export interface Pedido{
+    Pedido?: Array<Carrito>;
+}
+
