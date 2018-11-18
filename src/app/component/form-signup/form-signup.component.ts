@@ -58,7 +58,6 @@ addUser(){
         email: this.users.email,
         password: this.users.password,
         admin: false,
-        carrito: [],
         id: userID,
       } as Usuario
 

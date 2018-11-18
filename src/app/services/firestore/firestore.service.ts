@@ -21,6 +21,16 @@ export class FirestoreService {
   MenuDoc: AngularFirestoreDocument;
   Amenu = [];
 
+  extraCollection: AngularFirestoreCollection;
+  Aextra = [];
+  Cextras = [];
+  Aextras = [];
+  Qextras = [];
+  Jextras = [];
+  Caextras = [];
+  Pextras = [];
+
+
   constructor(public db: AngularFirestore,) {
   this.getUsers().subscribe(data => {
     data.forEach(element => {
@@ -34,6 +44,13 @@ export class FirestoreService {
      });; 
   });
 
+  this.getExtra().subscribe(data => {
+    data.forEach(element => {
+     this.Aextra.push(element.payload.doc.data())
+     });; 
+  });
+
+  
   
 }
 
@@ -61,6 +78,10 @@ export class FirestoreService {
     return this.db.collection('menu').snapshotChanges();
   }
 
+  getExtra(){
+    return this.db.collection('extra').snapshotChanges();
+  }
+
   
   getbyid(id){
     let aux: any;
@@ -85,5 +106,71 @@ export class FirestoreService {
   addcarrito(usuario,producto){
     this.usuariosDoc = this.db.doc(`usuarios/${usuario.id}`)
 
+  }
+
+  getQueso(){
+    var c=0;
+    for(var i=0; i<this.Aextra.length; i++){
+      if(this.Aextra[i].type == "queso"){
+        this.Qextras[c] = this.Aextra[i];
+        c++;
+      }
+    }
+    return this.Qextras;
+  }
+
+  getJamon(){
+    var d=0;
+    for(var i=0; i<this.Aextra.length; i++){
+      if(this.Aextra[i].type == "jamon"){
+        this.Jextras[d] = this.Aextra[i];
+        d++;
+      }
+    }
+    return this.Jextras;
+  }
+
+  getChocolate(){
+    var a=0;
+    for(var i=0; i<this.Aextra.length; i++){
+      if(this.Aextra[i].type == "chocolate"){
+        this.Cextras[a] = this.Aextra[i];
+        a++;
+      }
+    }
+    return this.Cextras;
+  }
+
+  getAzucar(){
+    var b=0;
+    for(var i=0; i<this.Aextra.length; i++){
+      if(this.Aextra[i].type == "azucar"){
+        this.Aextras[b] = this.Aextra[i];
+        b++;
+      }
+    }
+    return this.Aextras;
+  }
+
+  getCarne(){
+    var e=0;
+    for(var i=0; i<this.Aextra.length; i++){
+      if(this.Aextra[i].type == "carne"){
+        this.Caextras[e] = this.Aextra[i];
+        e++;
+      }
+    }
+    return this.Caextras;
+  }
+
+  getPollo(){
+    var f=0;
+    for(var i=0; i<this.Aextra.length; i++){
+      if(this.Aextra[i].type == "carneblanca"){
+        this.Pextras[f] = this.Aextra[i];
+        f++;
+      }
+    }
+    return this.Pextras;
   }
 }

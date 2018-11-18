@@ -29,6 +29,18 @@
                   <option value="Selecciona una opción">Selecciona una opción</option>
                   <option *ngFor="let dato of datos" value="{{dato}}">{{dato}}</option>
                 </select>
+
+                <label for="product" style="font-size:large; margin-top: 10px; margin-right: 10px">Extra Tipo 1</label>
+                <select name="opcionSeleccionado" [(ngModel)]="opcionSeleccionado2" (change)="capturar2()" style="font-size: medium; margin-bottom: 10px; color:black">
+                  <option value="Selecciona una opción">Selecciona una opción</option>
+                  <option *ngFor="let extra of extrass" value="{{extra}}">{{extra}}</option>
+                </select>
+
+                <label for="product" style="font-size:large; margin-top: 10px; margin-right: 10px">Extra Tipo 2</label>
+                <select name="opcionSeleccionado" [(ngModel)]="opcionSeleccionado3" (change)="capturar3()" style="font-size: medium; margin-bottom: 10px; color:black">
+                  <option value="Selecciona una opción">Selecciona una opción</option>
+                  <option *ngFor="let extra of extrass" value="{{extra}}">{{extra}}</option>
+                </select>
            
             
             <div class="row">

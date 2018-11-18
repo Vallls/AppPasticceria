@@ -8,23 +8,28 @@ import * as firebase from 'firebase';
   providedIn: 'root'
 })
 export class AuthService {
-  navbar = '';
+  navbar;
   users: Observable<firebase.User>;
 
   constructor(public fireAuth: AngularFireAuth, public router: Router) {
     this.users = fireAuth.authState;
+    this.navbar = "inicio";
     
    }
 
   Login(email:string, password: string, admin: boolean){
     if(admin == true){
     return this.fireAuth.auth.signInWithEmailAndPassword(email, password).then(() => {
+      this.navbar = "admin";
       this.router.navigate(['/admin']);
+      
     });
     }else if(admin == false){
       
       return this.fireAuth.auth.signInWithEmailAndPassword(email, password).then(() =>{
+        this.navbar = "user";
         this.router.navigate(['/user']);
+        
       });
     }
 
@@ -39,7 +44,9 @@ export class AuthService {
    LogOut(){
      
     this.fireAuth.auth.signOut().then( () => {
+      this.navbar = "inicio";
       this.router.navigate(['/home']);
+      
     })
    }
 
@@ -52,5 +59,8 @@ export class AuthService {
    }
 
 
+   getNavbar(){
+     return this.navbar;
+   }
   
 }

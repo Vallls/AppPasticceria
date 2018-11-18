@@ -11,11 +11,11 @@
           <div class="form-group">
               <label for="nombre">Nombre del producto</label>
               <div class="input-group">
-                <input type="text" name="name" class="form-control" placeholder="name" [(ngModel)]=ItemtoEdit.name>
+                <input type="text" name="name" placeholder="name" [(ngModel)]=ItemtoEdit.name>
               </div>
               <label for="nombre">Descripcion del producto</label>
               <div class="input-group">
-                  <input type="text" name="descripcion" class="form-control" placeholder="descripcion" [(ngModel)]=ItemtoEdit.description>
+                  <input type="text" name="descripcion" placeholder="descripcion" [(ngModel)]=ItemtoEdit.description>
               </div>
               <label for="nombre">Imagen del producto</label>
               <div class="input-group">
@@ -26,7 +26,7 @@
               </div>
               <label for="nombre">Precio del producto</label>
               <div class="input-group">
-                  <input type="number" name="precio" class="form-control" placeholder="precio" [(ngModel)]=ItemtoEdit.price>
+                  <input type="number" name="precio" placeholder="precio" [(ngModel)]=ItemtoEdit.price>
               </div>
             </div>
             <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="model">
@@ -54,15 +54,14 @@
      <h1>Panes</h1>
     </div>
     <div class="row">
-      <div class="col-4" *ngFor="let men of menu">
-       
-        
+      <div *ngFor="let men of menu" [ngClass]="{'col-4':men.type == 'Panes'}">
+        <div *ngIf="men.type == 'Panes'">
         <div class="caja centrarCaja">
           <img src="{{men.img}}" width="200px" height="200px">
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
-                <img src="assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="guardar(id)">
+                <img src="/src/assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="guardar(men.id)" (click)="EditarProducto($event,men)">
               </div>
             </div>
           </div>
@@ -76,7 +75,7 @@
       <h1>Croissants</h1>
     </div>
     <div class="row">
-      <div class="col-4" *ngFor="let men of menu">
+      <div *ngFor="let men of menu" [ngClass]="{'col-4':men.type == 'Croissants'}">
         <div *ngIf="men.type == 'Croissants'">
         <div class="caja centrarCaja">
           <img src="{{men.img}}" width="200px" height="200px">
@@ -97,7 +96,7 @@
       <h1>Pastelitos</h1>
     </div>
     <div class="row">
-      <div class="col-4" *ngFor="let men of menu">
+      <div *ngFor="let men of menu" [ngClass]="{'col-4':men.type == 'Pastelitos'}">
       <div *ngIf="men.type == 'Pastelitos'">
         <div class="caja centrarCaja">
           <img src="{{men.img}}" width="200px" height="200px">
@@ -118,7 +117,7 @@
       <h1>Tortas</h1>
     </div>
     <div class="row">
-      <div class="col-4" *ngFor="let men of menu">
+      <div *ngFor="let men of menu" [ngClass]="{'col-4':men.type == 'Tortas'}">
        <div *ngIf="men.type == 'Tortas'">
         <div class="caja centrarCaja">
           <img src="{{men.img}}" width="200px" height="200px">
@@ -139,7 +138,7 @@
       <h1>Dulces</h1>
     </div>
     <div class="row">
-      <div class="col-4" *ngFor="let men of menu">
+      <div *ngFor="let men of menu" [ngClass]="{'col-4':men.type == 'Dulces'}">
       <div *ngIf="men.type == 'Dulces'">
        <div class="caja centrarCaja">
           <img src="{{men.img}}" width="200px" height="200px">
