@@ -35,7 +35,6 @@ export class IngredientsComponent implements OnInit {
 
     this.datos = ["Panes", "Croissants", "Pastelitos", "Tortas", "Dulces"];
     this.menu = firestoreService.Amenu;
-    this.idMenu = firestoreService.MenuID;
   }
 
   upload(event) {

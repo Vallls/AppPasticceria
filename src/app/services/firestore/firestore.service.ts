@@ -20,6 +20,7 @@ export class FirestoreService {
   Menu: Observable<Menu[]>;
   MenuDoc: AngularFirestoreDocument;
   Amenu = [];
+  idMenu = [];
 
   constructor(public db: AngularFirestore,) {
   this.getUsers().subscribe(data => {
@@ -31,6 +32,12 @@ export class FirestoreService {
     this.getAllMenu().subscribe(data => {
     data.forEach(element => {
      this.Amenu.push(element.payload.doc.data())
+     });; 
+  });
+
+  this.getAllMenuID().subscribe(data => {
+    data.forEach(element => {
+     this.idMenu.push(element.payload.doc.ref)
      });; 
   });
 
@@ -61,6 +68,10 @@ export class FirestoreService {
     return this.db.collection('menu').snapshotChanges();
   }
 
+  getAllMenuID(){
+    return this.db.collection('menu').snapshotChanges();
+  }
+
   
   getbyid(id){
     let aux: any;
@@ -72,13 +83,13 @@ export class FirestoreService {
     return aux;
   }
 
-  updateProductMenu(menu: Menu){
-    this.MenuDoc = this.db.doc(`menu/${menu.id}`);
+  updateProductMenu(menu: Menu,item){
+    this.MenuDoc = this.db.doc(`menu/${item.id}`);
     this.MenuDoc.update(menu);
   }
 
-  deleteProductMenu(menu: Menu){
-    this.MenuDoc = this.db.doc(`menu/${menu.id}`);
+  deleteProductMenu(item){
+    this.MenuDoc = this.db.doc(`menu/${item.id}`);
     this.MenuDoc.delete();
   }
   

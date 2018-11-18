@@ -6,7 +6,6 @@
       </button>
     </div>
     <div class="modal-body">
-      <div *ngIf="ItemtoEdit.id == variable">
       <form (ngSubmit)="UpdateProductMenu()">
           <div class="form-group">
               <label for="nombre">Nombre del producto</label>
@@ -37,10 +36,9 @@
                     <input ngbButton type="radio" (click)="Disponibilidad(false)"> No Disponible     
                   </label>
             </div>
-            <button type="button" class="btn btn-outline-dark" Style="background-color: black;color: white;margin-left: 36px" (click)="DeleteProductMenu($event,ItemtoEdit)" (click)="c('Save click')">Eliminar</button>
+            <button type="button" class="btn btn-outline-dark" Style="background-color: black;color: white;margin-left: 36px" (click)="DeleteProductMenu()" (click)="c('Save click')">Eliminar</button>
             <button type="submit" class="btn btn-outline-dark" Style="margin-left: 37px">Guardar</button>
       </form>
-    </div>
     </div>  
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Volver</button>
@@ -54,24 +52,14 @@
      <h1>Panes</h1>
     </div>
     <div class="row">
-<<<<<<< HEAD
       <div *ngFor="let men of menu" [ngClass]="{'col-4':men.type == 'Panes'}">
         <div *ngIf="men.type == 'Panes'">
-=======
-      <div class="col-4" *ngFor="let men of menu">
-       
-        
->>>>>>> d24eaf0ee10a2eb79f869a64433e9539c8795394
         <div class="caja centrarCaja">
           <img src="{{men.img}}" width="200px" height="200px">
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
-<<<<<<< HEAD
-                <img src="/src/assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="guardar(men.id)" (click)="EditarProducto($event,men)">
-=======
-                <img src="assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="guardar(id)">
->>>>>>> d24eaf0ee10a2eb79f869a64433e9539c8795394
+                <img src="/src/assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="encontrar(men)" (click)="guardar()">
               </div>
             </div>
           </div>
@@ -79,7 +67,7 @@
           <h3 style="margin-top:75%">{{men.name}}</h3>
           <h4>{{men.description}}</h4>
         </div>
-      </div>
+    </div>
     </div>
     <div class="row" style="margin-top:100px" id="croissants">
       <h1>Croissants</h1>
@@ -92,7 +80,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
-                <img src="assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="guardar(id)">
+                <img src="assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="encontrar(men)" (click)="guardar()">
               </div>
             </div>
           </div>
@@ -113,7 +101,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
-                <img src="assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="guardar(id)">
+                <img src="assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="encontrar(men)" (click)="guardar()">
               </div>
             </div>
           </div>
@@ -134,7 +122,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text"> Precio: {{men.price}} $
-                <img src="assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="guardar(id)">
+                <img src="assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="encontrar(men)" (click)="guardar()">
               </div>
             </div>
           </div>
@@ -155,7 +143,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
-                <img src="assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="guardar(id)">
+                <img src="assets/pencil.png" width="55px" height="55px" (click)="open(content1)" (click)="EditarProducto($event,men)" (click)="encontrar(men)" (click)="guardar()">
               </div>
             </div>
           </div>
@@ -166,6 +154,7 @@
       </div>
     </div>
   </div>
+</div>
   
 
 <div class="footer">

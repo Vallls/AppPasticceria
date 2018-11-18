@@ -34,7 +34,7 @@
      <h1>Panes</h1>
     </div>
     <div class="row">
-      <div class="col-4" *ngFor="let men of menu">
+      <div *ngFor="let men of menu" [ngClass]="{'col-4':men.type == 'Panes'}">
           <div *ngIf="men.type === 'Panes'">
           <div *ngIf="men.available == true;else guardar(men)"></div>
           <div *ngIf="men.available == true;else templateName"> 
@@ -58,7 +58,7 @@
       <h1>Croissants</h1>
     </div>
     <div class="row">
-      <div class="col-4" *ngFor="let men of menu">
+      <div *ngFor="let men of menu" [ngClass]="{'col-4':men.type == 'Croissants'}">
       <div *ngIf="men.type === 'Croissants'">
       <div *ngIf="men.available == true;else guardar(men)"></div>
       <div *ngIf="men.available == true;else templateName">
@@ -82,7 +82,7 @@
       <h1>Pastelitos</h1>
     </div>
     <div class="row">
-      <div class="col-4" *ngFor="let men of menu">
+      <div *ngFor="let men of menu" [ngClass]="{'col-4':men.type == 'Pastelitos'}">
           <div *ngIf="men.type === 'Pastelitos'">
           <div *ngIf="men.available == true;else guardar(men)"></div>
           <div *ngIf="pastelito.available == true;else templateName">
@@ -106,7 +106,7 @@
       <h1>Tortas</h1>
     </div>
     <div class="row">
-      <div class="col-4" *ngFor="let men of menu">
+      <div *ngFor="let men of menu" [ngClass]="{'col-4':men.type == 'Tortas'}">
           <div *ngIf="men.type === 'Tortas'">
           <div *ngIf="men.available == true;else guardar(men)"></div>
           <div *ngIf="men.available == true;else templateName">
@@ -130,7 +130,7 @@
       <h1>Dulces</h1>
     </div>
     <div class="row">
-      <div class="col-4" *ngFor="let men of menu">
+      <div *ngFor="let men of menu" [ngClass]="{'col-4':men.type == 'Dulces'}">
           <div *ngIf="men.type === 'Dulces'">
           <div *ngIf="men.available == true;else guardar(men)"></div>
           <div *ngIf="dulce.available == true;else templateName">
