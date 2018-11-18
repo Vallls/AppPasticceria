@@ -32,21 +32,15 @@ export class MmenuComponent implements OnInit {
   constructor(private modalService: NgbModal, private firestoreService: FirestoreService,private afStorage: AngularFireStorage,) {
     this.menu = firestoreService.Amenu;
     this.idMenu = firestoreService.idMenu;
-    console.log(this.menu)
-    console.log(this.idMenu)
   }
 
   encontrar(item){
     this.var = this.menu.indexOf(item);
+    this.variable = this.idMenu[this.var];
   }
 
   EditarProducto(event,item){
     this.ItemtoEdit = item;
-  }
-
-  guardar(){
-    this.variable = this.idMenu[this.var];
-    console.log(this.variable);
   }
 
   Disponibilidad(variable){

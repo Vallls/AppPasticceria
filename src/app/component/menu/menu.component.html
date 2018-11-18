@@ -35,15 +35,15 @@
     </div>
     <div class="row">
       <div *ngFor="let men of menu" [ngClass]="{'col-4':men.type == 'Panes'}">
-          <div *ngIf="men.type === 'Panes'">
-          <div *ngIf="men.available == true;else guardar(men)"></div>
+          <div *ngIf="men.type == 'Panes'">
+              <div *ngIf="men.available == true;else guardar(men)"></div>
           <div *ngIf="men.available == true;else templateName"> 
         <div class="caja centrarCaja" Style="height: auto; width: auto">
           <img src="{{men.img}}" width="200px" height="200px">
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
-                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="agregarproducto(men.id)">
+                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)">
               </div>
             </div>
           </div>
@@ -59,15 +59,15 @@
     </div>
     <div class="row">
       <div *ngFor="let men of menu" [ngClass]="{'col-4':men.type == 'Croissants'}">
-      <div *ngIf="men.type === 'Croissants'">
-      <div *ngIf="men.available == true;else guardar(men)"></div>
+      <div *ngIf="men.type == 'Croissants'">
+          <div *ngIf="men.available == true;else guardar(men)"></div>
       <div *ngIf="men.available == true;else templateName">
         <div class="caja centrarCaja">
           <img src="{{men.img}}" width="200px" height="200px">
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
-                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)">
+                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)">
               </div>
             </div>
           </div>
@@ -83,15 +83,15 @@
     </div>
     <div class="row">
       <div *ngFor="let men of menu" [ngClass]="{'col-4':men.type == 'Pastelitos'}">
-          <div *ngIf="men.type === 'Pastelitos'">
-          <div *ngIf="men.available == true;else guardar(men)"></div>
-          <div *ngIf="pastelito.available == true;else templateName">
+          <div *ngIf="men.type == 'Pastelitos'">
+              <div *ngIf="men.available == true;else guardar(men)"></div>
+          <div *ngIf="men.available == true;else templateName">
         <div class="caja centrarCaja">
           <img src="{{men.img}}" width="200px" height="200px">
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
-                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)">
+                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)">
               </div>
             </div>
           </div>
@@ -107,15 +107,15 @@
     </div>
     <div class="row">
       <div *ngFor="let men of menu" [ngClass]="{'col-4':men.type == 'Tortas'}">
-          <div *ngIf="men.type === 'Tortas'">
-          <div *ngIf="men.available == true;else guardar(men)"></div>
-          <div *ngIf="men.available == true;else templateName">
+          <div *ngIf="men.type == 'Tortas'">
+              <div *ngIf="men.available == true;else guardar(men)"></div>
+            <div *ngIf="men.available == true;else templateName">
         <div class="caja centrarCaja">
           <img src="{{men.img}}" width="200px" height="200px">
           <div class="Num1">
             <div class="overlay">
               <div class="text"> Precio: {{men.price}} $
-                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)">
+                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)">
               </div>
             </div>
           </div>
@@ -131,15 +131,15 @@
     </div>
     <div class="row">
       <div *ngFor="let men of menu" [ngClass]="{'col-4':men.type == 'Dulces'}">
-          <div *ngIf="men.type === 'Dulces'">
-          <div *ngIf="men.available == true;else guardar(men)"></div>
-          <div *ngIf="dulce.available == true;else templateName">
+          <div *ngIf="men.type == 'Dulces'">
+              <div *ngIf="men.available == true;else guardar(men)"></div>
+          <div *ngIf="men.available == true;else templateName">
        <div class="caja centrarCaja">
           <img src="{{men.img}}" width="200px" height="200px">
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
-                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)">
+                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)">
               </div>
             </div>
           </div>

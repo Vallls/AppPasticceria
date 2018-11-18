@@ -12,17 +12,24 @@ export class MenuComponent implements OnInit {
 
   closeResult: string;
   menu = [];
+  idmenu = [];
   product: Menu;
+  var;
+  variable;
 
   constructor(private modalService: NgbModal, private firestoreService: FirestoreService,) {
-    this.menu=firestoreService.Amenu;
-    console.log(this.menu);
-  
+    this.menu = firestoreService.Amenu;
+    this.idmenu = firestoreService.idMenu;
+  }
+
+  encontrar(item){
+    this.var = this.menu.indexOf(item);
+    this.variable = this.idmenu[this.var];
+    console.log(this.variable);
   }
 
   guardar(item){
     this.product = item;
-    // console.log(this.product);
   }
 
 
