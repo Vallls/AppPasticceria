@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { Menu } from 'src/app/models/usuarios';
+import { Menu, Carrito } from 'src/app/models/usuarios';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 
 @Component({
@@ -12,19 +12,41 @@ export class MenuComponent implements OnInit {
 
   closeResult: string;
   menu = [];
+  idmenu = [];
   product: Menu;
+  var;
+  variable;
+  cart: Carrito;
+
+  opcionSeleccionado2: string  = "Selecciona una opción";
+  opcionSeleccionado3: string  = "Selecciona una opción";
+  verSeleccion2: string        = '';
+  verSeleccion3: string        = '';
+
 
   constructor(private modalService: NgbModal, private firestoreService: FirestoreService,) {
-    this.menu=firestoreService.Amenu;
-    console.log(this.menu);
-  
+    this.menu = firestoreService.Amenu;
+    this.idmenu = firestoreService.idMenu;
+   
   }
+
+  encontrar(item){
+    this.var = this.menu.indexOf(item);
+    this.variable = this.idmenu[this.var];
+    console.log(this.variable);
+    console.log(this.getSmenu());
+    console.log(this.getSmenu().extra2);
+  }
+
+  
 
   guardar(item){
     this.product = item;
-    // console.log(this.product);
   }
 
+  getSmenu(){
+    return this.menu[this.var];
+  }
 
 
   open(content) {
@@ -43,6 +65,16 @@ export class MenuComponent implements OnInit {
     } else {
       return  `with: ${reason}`;
     }
+  }
+
+  capturar2() {
+
+    this.verSeleccion2 = this.opcionSeleccionado2;
+  }
+
+  capturar3() {
+
+    this.verSeleccion3 = this.opcionSeleccionado3;
   }
 
   ngOnInit() {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { Usuario, Menu, Carrito } from 'src/app/models/usuarios';
+import { Usuario, Menu, Carrito, Extra } from 'src/app/models/usuarios';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -20,6 +20,7 @@ export class FirestoreService {
   Menu: Observable<Menu[]>;
   MenuDoc: AngularFirestoreDocument;
   Amenu = [];
+  idMenu = [];
 
   extraCollection: AngularFirestoreCollection;
   Aextra = [];
@@ -44,6 +45,12 @@ export class FirestoreService {
     this.getAllMenu().subscribe(data => {
     data.forEach(element => {
      this.Amenu.push(element.payload.doc.data())
+     });; 
+  });
+
+  this.getAllMenuID().subscribe(data => {
+    data.forEach(element => {
+     this.idMenu.push(element.payload.doc.ref)
      });; 
   });
 
@@ -81,6 +88,10 @@ export class FirestoreService {
     return this.db.collection('/menu').add(menu);
   }
 
+  addExtra(extra: Extra){
+    return this.db.collection('/extra').add(extra);
+  }
+
   getAllMenu(){
     return this.db.collection('menu').snapshotChanges();
   }
@@ -90,9 +101,13 @@ export class FirestoreService {
   }
 
   addCarrito(carrito: Array<Carrito>){
-    return this.db.collection('/menu').add(carrito);
+    return this.db.collection('/carrito').add(carrito);
   }
 
+  getAllMenuID(){
+    return this.db.collection('menu').snapshotChanges();
+  }
+    
   getExtra(){
     return this.db.collection('extra').snapshotChanges();
   }
@@ -108,13 +123,13 @@ export class FirestoreService {
     return aux;
   }
 
-  updateProductMenu(menu: Menu){
-    this.MenuDoc = this.db.doc(`menu/${menu.id}`);
+  updateProductMenu(menu: Menu,item){
+    this.MenuDoc = this.db.doc(`menu/${item.id}`);
     this.MenuDoc.update(menu);
   }
 
-  deleteProductMenu(menu: Menu){
-    this.MenuDoc = this.db.doc(`menu/${menu.id}`);
+  deleteProductMenu(item){
+    this.MenuDoc = this.db.doc(`menu/${item.id}`);
     this.MenuDoc.delete();
   }
   

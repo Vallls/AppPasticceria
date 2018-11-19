@@ -22,25 +22,25 @@ export class MmenuComponent implements OnInit {
 
   closeResult: string;
   menu = [];
+  idMenu = [];
   ItemtoEdit: Menu;
   variable;
+  var;
 
   Menu = {} as Menu;
 
   constructor(private modalService: NgbModal, private firestoreService: FirestoreService,private afStorage: AngularFireStorage,) {
     this.menu = firestoreService.Amenu;
-    
+    this.idMenu = firestoreService.idMenu;
+  }
 
+  encontrar(item){
+    this.var = this.menu.indexOf(item);
+    this.variable = this.idMenu[this.var];
   }
 
   EditarProducto(event,item){
     this.ItemtoEdit = item;
-    console.log(this.ItemtoEdit);
-  }
-
-  guardar(item){
-    this.variable = item;
-    console.log(this.variable)
   }
 
   Disponibilidad(variable){
@@ -48,12 +48,12 @@ export class MmenuComponent implements OnInit {
   }
 
   UpdateProductMenu(){
-    this.firestoreService.updateProductMenu(this.ItemtoEdit)
+    this.firestoreService.updateProductMenu(this.ItemtoEdit,this.variable)
   }
 
  
-  DeleteProductMenu(event,menu){
-    this.firestoreService.deleteProductMenu(menu)
+  DeleteProductMenu(){
+    this.firestoreService.deleteProductMenu(this.variable)
   }
 
   
