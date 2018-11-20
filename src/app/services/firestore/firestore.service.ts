@@ -33,6 +33,9 @@ export class FirestoreService {
 
   carritoCollection: AngularFirestoreCollection;
   Acarrito = [];
+  idCarrito = [];
+  ProductosCollection: AngularFirestoreCollection;
+  productos: Observable<Carrito[]>;
 
 
   constructor(public db: AngularFirestore,) {
@@ -65,7 +68,14 @@ export class FirestoreService {
      this.Acarrito.push(element.payload.doc.data())
      });; 
   });
-  
+
+  this.getAllCarritoID().subscribe(data => {
+    data.forEach(element => {
+     this.idCarrito.push(element.payload.doc.ref)
+     });; 
+  });
+
+  this.carritoCollection = this.db.collection("carrito");
 }
 
   getUsers(){
@@ -100,12 +110,24 @@ export class FirestoreService {
     return this.db.collection('carrito').snapshotChanges();
   }
 
-  addCarrito(carrito: Array<Carrito>){
+  CrearCarrito(carrito){
     return this.db.collection('/carrito').add(carrito);
+  }
+
+  addCarrito(menu,id){
+    this.carritoCollection.doc(id).collection("Productos").add(menu);
+  }
+
+  deleteCarrito(item,id){
+    this.carritoCollection.doc(item).collection("Productos").doc(id).delete()
   }
 
   getAllMenuID(){
     return this.db.collection('menu').snapshotChanges();
+  }
+
+  getAllCarritoID(){
+    return this.db.collection('carrito').snapshotChanges();
   }
     
   getExtra(){
@@ -132,10 +154,18 @@ export class FirestoreService {
     this.MenuDoc = this.db.doc(`menu/${item.id}`);
     this.MenuDoc.delete();
   }
-  
-  addcarrito(usuario,producto){
-    this.usuariosDoc = this.db.doc(`usuarios/${usuario.id}`)
 
+  getProductos(id){
+    this.ProductosCollection = this.carritoCollection.doc(id).collection("Productos")
+    this.productos = this.ProductosCollection.snapshotChanges().pipe(map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as Carrito;
+        data.id = a.payload.doc.id;
+        return data
+      })
+    }))
+
+    return this.productos
   }
 
   getQueso(){

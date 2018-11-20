@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Usuario, Menu } from 'src/app/models/usuarios';
+import { Usuario, Carrito } from 'src/app/models/usuarios';
 import { AuthService } from 'src/app/services/auth/auth.service'
 
 
@@ -14,8 +14,7 @@ export class FormSignupComponent implements OnInit {
 
  usuarios = [];
  users = {} as Usuario;
- 
- 
+ carrito = {} as Carrito;
 
 
   constructor(private firestoreService: FirestoreService, public fireAuth: AuthService) { 
@@ -60,7 +59,7 @@ addUser(){
         admin: false,
         id: userID,
       } as Usuario
-
+      this.crearCarrito(userID);
       this.firestoreService.addUsers(user, userID).then( ()=> {
         this.users = {} as Usuario;
 
@@ -69,6 +68,17 @@ addUser(){
    
   }
   
+}
+
+crearCarrito(userID){
+  this.carrito = {
+    id: userID,
+    price: 0
+  } as Carrito
+  this.firestoreService.CrearCarrito(this.carrito).then( ()=> {
+    this.carrito = {} as Carrito;
+
+  })
 }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Menu, Carrito } from 'src/app/models/usuarios';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
+import { AuthService } from 'src/app/services/auth/auth.service'
 
 @Component({
   selector: 'app-menu',
@@ -23,11 +24,23 @@ export class MenuComponent implements OnInit {
   verSeleccion2: string        = '';
   verSeleccion3: string        = '';
 
+  UID;
+  usuarios = [];
+  IdUsuario;
+  carritos = [];
+  IdCarrito;
+  posicion;
+  arrayCarritos = [];
 
-  constructor(private modalService: NgbModal, private firestoreService: FirestoreService,) {
+  constructor(private modalService: NgbModal, private firestoreService: FirestoreService,public fireAuth: AuthService,) {
     this.menu = firestoreService.Amenu;
     this.idmenu = firestoreService.idMenu;
-   
+    this.UID = this.fireAuth.getUser();
+    this.usuarios = firestoreService.Ausuario;
+    this.IdUsuario = this.getIDUsuario();
+    this.carritos = firestoreService.Acarrito;
+    this.posicion = this.getIDCarrito();
+    this.arrayCarritos = firestoreService.idCarrito;
   }
 
   encontrar(item){
@@ -38,7 +51,28 @@ export class MenuComponent implements OnInit {
     console.log(this.getSmenu().extra2);
   }
 
-  
+  getIDUsuario(){
+    for(var i=0; i<this.usuarios.length; i++){
+      if(this.usuarios[i].id == this.UID)
+      {
+        return this.usuarios[i].id;
+      }
+    }
+  }
+
+  getIDCarrito(){
+    for(var i=0; i<this.carritos.length; i++){
+      if(this.carritos[i].id == this.IdUsuario)
+      {
+        return i;
+      }
+    }
+  }
+
+  addCarrito(menu){
+    var id = this.arrayCarritos[this.posicion].id
+    this.firestoreService.addCarrito(menu,id)
+  }
 
   guardar(item){
     this.product = item;
