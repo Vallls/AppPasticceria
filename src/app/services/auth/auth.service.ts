@@ -1,33 +1,32 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  navbar;
+  navbar = new Subject;  
   users: Observable<firebase.User>;
 
   constructor(public fireAuth: AngularFireAuth, public router: Router) {
     this.users = fireAuth.authState;
-    this.navbar = "inicio";
-    
+    this.navbar.next('inicio')
    }
 
   Login(email:string, password: string, admin: boolean){
     if(admin == true){
     return this.fireAuth.auth.signInWithEmailAndPassword(email, password).then(() => {
-      this.navbar = "admin";
+      this.navbar.next('admin');
       this.router.navigate(['/admin']);
       
     });
     }else if(admin == false){
       
       return this.fireAuth.auth.signInWithEmailAndPassword(email, password).then(() =>{
-        this.navbar = "user";
+        this.navbar.next('user');
         this.router.navigate(['/user']);
         
       });
@@ -37,14 +36,18 @@ export class AuthService {
    }
 
   SignUp(email: string, password: string){
-       return this.fireAuth.auth.createUserWithEmailAndPassword(email, password);
+       return this.fireAuth.auth.createUserWithEmailAndPassword(email, password).then(() =>{
+        this.navbar.next('user')
+        this.router.navigate(['/user']);
+        
+      });
      
    }
 
    LogOut(){
      
     this.fireAuth.auth.signOut().then( () => {
-      this.navbar = "inicio";
+      this.navbar.next('inicio');
       this.router.navigate(['/home']);
       
     })

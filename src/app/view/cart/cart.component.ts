@@ -37,17 +37,14 @@ export class CartComponent implements OnInit {
       transactions: [{
         amount: {
           currency: 'USD',
-          total: this.Total
+          total:  this.Total,
         }
       }]
     });
   }
 
   UID;
-  usuarios = [];
-  IdUsuario;
   carritos = [];
-  IdCarrito;
   posicion;
   arrayCarritos = [];
   id;
@@ -57,26 +54,15 @@ export class CartComponent implements OnInit {
   usuario;
   constructor(private firestoreService: FirestoreService, private route:ActivatedRoute,public fireAuth: AuthService,) { 
     this.UID = this.fireAuth.getUser();
-    this.usuarios = firestoreService.Ausuario;
-    this.IdUsuario = this.getIDUsuario();
     this.carritos = firestoreService.Acarrito;
     this.posicion = this.getIDCarrito();
     this.arrayCarritos = firestoreService.idCarrito;
     this.id = this.arrayCarritos[this.posicion].id
   }
 
-  getIDUsuario(){
-    for(var i=0; i<this.usuarios.length; i++){
-      if(this.usuarios[i].id == this.UID)
-      {
-        return this.usuarios[i].id;
-      }
-    }
-  }
-
   getIDCarrito(){
     for(var i=0; i<this.carritos.length; i++){
-      if(this.carritos[i].id == this.IdUsuario)
+      if(this.carritos[i].id == this.UID)
       {
         return i;
       }
@@ -90,6 +76,10 @@ export class CartComponent implements OnInit {
       numero = Number(this.productos[i].price);
       this.Total = this.Total + numero;
     }
+  }
+
+  getTotal(){
+    return this.Total;
   }
 
   eliminar(item){

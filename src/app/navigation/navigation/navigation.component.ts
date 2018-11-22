@@ -7,13 +7,17 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
+  state = 'inicio';
 
   constructor(public fireAuth: AuthService) {
-    console.log(this.OpNavbar());
+    this.fireAuth.navbar.subscribe(data => {
+      console.log(data,'estado')
+      this.OpNavbar(data)
+    })
   }
 
-OpNavbar(){
-  return this.fireAuth.getNavbar();
+OpNavbar(value){
+  this.state = value;
   
 }
   ngOnInit() {

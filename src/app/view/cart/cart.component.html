@@ -3,26 +3,27 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-10 container-bg">
+        <div class="col-12 container-bg">
                 <div class="row">
                   <h2 style="margin-bottom:20px">Los siguientes productos se encuentran en tu carrito:<img src="assets/cart.jpg" width="100px" height="100px" style="margin-left:30px"></h2>
                 </div>
-                <div class="row row-bg" *ngFor="let producto of productos">
-                  <div class="col-6">
+                <div class="row" >
+                  <div class="col-3  row-bg" *ngFor="let producto of productos">
                     <div class="caja">
-                      <img src="{{producto.img}}" alt="" width="300px" height="250px">
+                      <img src="{{producto.img}}" alt="" width="100px" height="100px">
                     </div>
+                    <div >
+                      <div><h2 style="margin-top:35px; text-align: center; font-size: 28px"><b>{{producto.name}}</b><a><img src="assets/x.png" width="30px" height="30px" alt="home" style="margin-left:10px; text-align: center; cursor: pointer" (click)="eliminar(producto.id)" (click)="total()"></a></h2></div>
+                      <div><h3 style="text-align: center; font-size: 24px">"{{producto.description}}"</h3></div>
+                      <div><h2 style="text-align: right; font-size: 20px">Precio: {{producto.price}} $</h2> </div> 
                   </div>
-                  <div class="col-6">
-                      <h2 style="margin-top:35px; margin-left:90px">{{producto.name}}<a><img src="assets/x.png" width="30px" height="30px" alt="home" style="margin-left:50px" (click)="eliminar(producto.id)" (click)="total()"></a></h2>
-                      <h3>{{producto.description}}</h3>
-                      <input type="number" name="cantidad" placeholder="1" min="1" style=" margin-top:40px"><h2 style="margin-left:250px;">{{producto.price}}</h2>  
                   </div>
                 </div>
               <div class="row">
-                <h2 style="margin-top:40px; margin-left:650px">El total es: {{Total}} $</h2>
+                <div><h2 style="margin-top:40px; text-align: right">El total es: {{Total}} $</h2></div>
+                <div><ngx-paypal  [config]="payPalConfig"></ngx-paypal></div>
                 <button type="submit" class="btn btn-bg btn-lg">Comprar</button>
-                <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+                
               </div>
         </div>
       </div>

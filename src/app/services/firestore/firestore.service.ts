@@ -91,7 +91,9 @@ export class FirestoreService {
 
   updateUsers(usuario: Usuario){
     this.usuariosDoc = this.db.doc(`usuarios/${usuario.id}`);
-    this.usuariosDoc.update(usuario);
+    this.usuariosDoc.set(
+      {...usuario},
+      {merge:true});
   }
 
   addMenu(menu: Menu){
@@ -147,7 +149,9 @@ export class FirestoreService {
 
   updateProductMenu(menu: Menu,item){
     this.MenuDoc = this.db.doc(`menu/${item.id}`);
-    this.MenuDoc.update(menu);
+    this.MenuDoc.set(
+      {...menu},
+      {merge:true});  
   }
 
   deleteProductMenu(item){
