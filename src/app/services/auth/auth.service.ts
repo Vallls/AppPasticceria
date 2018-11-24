@@ -36,11 +36,7 @@ export class AuthService {
    }
 
   SignUp(email: string, password: string){
-       return this.fireAuth.auth.createUserWithEmailAndPassword(email, password).then(() =>{
-        this.navbar.next('user')
-        this.router.navigate(['/user']);
-        
-      });
+       return this.fireAuth.auth.createUserWithEmailAndPassword(email, password)
      
    }
 
