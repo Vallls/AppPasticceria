@@ -30,7 +30,6 @@ export class MmenuComponent implements OnInit {
   Menu = {} as Menu;
 
   constructor(private modalService: NgbModal, private firestoreService: FirestoreService,private afStorage: AngularFireStorage,) {
-    this.menu = firestoreService.Amenu;
     this.idMenu = firestoreService.idMenu;
   }
 
@@ -98,6 +97,9 @@ export class MmenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.firestoreService.getAllMenu().subscribe(menus =>{
+      this.menu = menus;
+    })
   }
 
 }

@@ -26,14 +26,32 @@
 .container-frm{
     background-color: rgba(90, 51, 0, 0.904);
     box-shadow: 0px 0px 20px black;
-    margin: 10px;
+    margin-top: 75px;
     border-style: groove;
     border-radius: 25px;
     padding: 35px;
-    position: absolute;
     top: 20%;
     left:7%;
 }
+
+.acordeon{
+    font-family: 'PenelopeAnne';
+    font-size: 50px;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    font-size: 25px;
+}
+
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    font-size: 30px;
+}
+
 
 .col-4{
     background-color: rgba(236, 135, 152, 0.993);
@@ -113,5 +131,13 @@ h3{
     color: black;
     font-family: 'PenelopeAnne';
   }
+
+  .btn-bg{
+    color: brown;
+    background-color: pink;
+    box-shadow: 0px 0px 20px pink;
+    border-radius: 30px;
+    font-family: 'OptimusPrinceps';
+}
 
  

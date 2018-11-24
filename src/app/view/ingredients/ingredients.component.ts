@@ -43,7 +43,6 @@ export class IngredientsComponent implements OnInit {
     this.datos = ["Panes", "Croissants", "Pastelitos", "Tortas", "Dulces"];
     this.extrass = ["Chocolate", "Azucar", "Jamon", "Queso", "Carne", "Pollo"];
     this.extratype = ["chocolate", "azucar", "jamon", "queso", "carne", "carneblanca"];
-    this.menu = firestoreService.Amenu;
     this.extras = firestoreService.Aextra;
     console.log(this.firestoreService.getQueso());
   }
@@ -189,6 +188,9 @@ export class IngredientsComponent implements OnInit {
 
  
   ngOnInit() {
+    this.firestoreService.getAllMenu().subscribe(menus =>{
+      this.menu = menus;
+    })
   }
 
   

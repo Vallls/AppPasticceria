@@ -46,7 +46,7 @@
           <h3 style="left:20px">{{product.name}}</h3>
           <h4>{{product.description}}</h4>
   </ng-template>
-
+    
 <div class="container container-frm">
     <div class="row" id="panes">
      <h1>Panes</h1>
@@ -169,3 +169,32 @@
       </div>
     </div>
   </div>
+  <div class="container container-frm acordeon">
+      <ngb-accordion #acc="ngbAccordion">
+        <ngb-panel>
+        <ng-template ngbPanelTitle>
+          <h2>Historial de Compras</h2>
+        </ng-template>
+          <ng-template ngbPanelContent>
+            <div class="table-responsive">
+              <div class="table table-hover">
+                <thead>
+                  <th>Producto</th>
+                  <th>Precio</th>
+                  <th>Pedido</th>
+                  <th>Recomprar</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let producto of productos">
+                    <td>{{producto.name}}</td>
+                    <td>{{producto.price}}</td>
+                    <td>Nro. {{producto.npedido}}</td>
+                    <td><button class="btn btn-bg btn-lg" (click)="addCarrito(producto)">Recomprar</button></td>
+                    </tr>
+                </tbody>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-panel>
+        </ngb-accordion> 
+    </div>

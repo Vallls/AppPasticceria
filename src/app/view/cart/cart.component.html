@@ -19,16 +19,22 @@
                   </div>
                   </div>
                 </div>
-              <div class="row">
-                <div><h2 style="margin-top:40px; text-align: right">El total es: {{Total}} $</h2></div>
-                <div><ngx-paypal  [config]="payPalConfig"></ngx-paypal></div>
-                <button type="submit" class="btn btn-bg btn-lg">Comprar</button>
-                
+              <div>
+                <div><h2 style="margin-top:40px">El total es: {{Total}} $</h2></div>
+                <div *ngIf="variable == false;else templateName">
+                    <button type="submit" class="btn btn-bg btn-lg" (click)="cambio()" (click)="addHistorial()">Comprar</button> 
+                </div>
+                </div>
               </div>
         </div>
       </div>
     </div>
-</div>
+
+<ng-template #templateName>
+  <div class="row">
+    <h3 Style="margin-right:10px">Link generado para pagar con Paypal:</h3><div><ngx-paypal  [config]="payPalConfig"></ngx-paypal></div>
+  </div>
+</ng-template>
 
   
   <div class="footer">

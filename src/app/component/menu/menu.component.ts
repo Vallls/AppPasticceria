@@ -17,6 +17,8 @@ export class MenuComponent implements OnInit {
   product: Menu;
   var;
   variable;
+  var2;
+  variable2;
   cart: Carrito;
 
   opcionSeleccionado2: string  = "Selecciona una opción";
@@ -24,23 +26,29 @@ export class MenuComponent implements OnInit {
   verSeleccion2: string        = '';
   verSeleccion3: string        = '';
 
-  UID;
+  
   usuarios = [];
   IdUsuario;
   carritos = [];
   IdCarrito;
   posicion;
   arrayCarritos = [];
+  productos = []
+  id;
+  arrayHistorial = []
+  posicion2;
+  historiales = []
 
   constructor(private modalService: NgbModal, private firestoreService: FirestoreService,public fireAuth: AuthService,) {
-    this.menu = firestoreService.Amenu;
     this.idmenu = firestoreService.idMenu;
-    this.UID = this.fireAuth.getUser();
-    this.usuarios = firestoreService.Ausuario;
-    this.IdUsuario = this.getIDUsuario();
+    this.IdUsuario = this.fireAuth.getUser();
     this.carritos = firestoreService.Acarrito;
+    this.historiales = firestoreService.Ahistorial
     this.posicion = this.getIDCarrito();
+    this.getIDHistorial();
     this.arrayCarritos = firestoreService.idCarrito;
+    this.arrayHistorial = firestoreService.idHistorial;
+    this.id = this.arrayHistorial[this.posicion2].id
   }
 
   encontrar(item){
@@ -51,20 +59,20 @@ export class MenuComponent implements OnInit {
     console.log(this.getSmenu().extra2);
   }
 
-  getIDUsuario(){
-    for(var i=0; i<this.usuarios.length; i++){
-      if(this.usuarios[i].id == this.UID)
-      {
-        return this.usuarios[i].id;
-      }
-    }
-  }
-
   getIDCarrito(){
     for(var i=0; i<this.carritos.length; i++){
       if(this.carritos[i].id == this.IdUsuario)
       {
         return i;
+      }
+    }
+  }
+
+  getIDHistorial(){
+    for(var i=0; i<this.historiales.length; i++){
+      if(this.historiales[i].id == this.IdUsuario)
+      {
+        this.posicion2 = i;
       }
     }
   }
@@ -112,6 +120,22 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.firestoreService.getAllMenu().subscribe(menus =>{
+      this.menu = menus;
+    })
+    this.firestoreService.getPHistorial(this.id).subscribe(productos =>{
+      this.productos = productos;
+      this.productos.sort(function(a,b){
+        if(a.npedido > b.npedido){
+          return 1
+        }
+        if(a.npedido < b.npedido){
+          return -1
+        }
+        return 0
+      })
+    })
   }
 
 }
+
