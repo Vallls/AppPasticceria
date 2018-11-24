@@ -16,32 +16,15 @@ export class FormComponent implements OnInit {
   usuarios = [];
   users = {} as Usuario;
   usering = {} as Usuario;
-  confirmar: boolean;
   
 
   constructor(private firestoreService: FirestoreService, private router:Router, public fireauth: AuthService ) {
-    this.confirmar = false;
     
     this.usuarios = this.firestoreService.Ausuario;
-    console.log(this.usuarios);
   }
 
-   alerts(){
-     alert("Combinacion de email y contraseña no coinciden");
-   }
-
-  autentificar(){
-    for(var i=0; i<this.usuarios.length; i++){
-      if(this.usuarios[i].email == this.users.email && this.usuarios[i].password == this.users.password){
-        this.confirmar=true;
-        this.fireauth.Login(this.users.email,this.users.password,this.usuarios[i].admin);
-          
-        }
-    
-    }
-    if(this.confirmar==false){
-      this.alerts();
-  }
+  login(){
+      this.fireauth.login(this.users.email,this.users.password);
 }
 
   ngOnInit() {

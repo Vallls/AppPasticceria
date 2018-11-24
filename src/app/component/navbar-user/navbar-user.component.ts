@@ -4,6 +4,7 @@ import {FormComponent } from 'src/app/component/form/form.component';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service'
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar-user',
@@ -20,9 +21,11 @@ export class NavbarUserComponent implements OnInit {
   
   
 
-  constructor(public fireAuth: AuthService, public firestoreService: FirestoreService) {
-    this.UID = this.fireAuth.getUser();
-    console.log(this.UID);
+  constructor(public fireAuth: AuthService, public firestoreService: FirestoreService,public router: Router) {
+    this.UID = this.fireAuth.getUser();    
+    if(this.UID == null){
+      this.router.navigate(['/login']);
+    }
     this.usuarios = firestoreService.Ausuario;
     this.name = this.getName();
     this.lastname = this.getLastname();

@@ -17,11 +17,50 @@ export class AdminComponent implements OnInit {
   UID;
   name: string;
   lastname: string;
+  pedidos = [];
+  ordenpedidos = []
   constructor(private firestoreService: FirestoreService, private route:ActivatedRoute,private modalService: NgbModal, private fireAuth: AuthService) {
     this.UID = this.fireAuth.getUser();
     this.usuarios = firestoreService.Ausuario;
     this.name = this.getName();
     this.lastname = this.getLastname();
+    this.firestoreService.getAllPedidos().subscribe(pedidos =>{
+      this.pedidos = pedidos;
+      this.pedidos.sort(function(a,b){
+        if(a.npedidoadmin > b.npedidoadmin){
+          return 1
+        }
+        if(a.npedidoadmin < b.npedidoadmin){
+          return -1
+        }
+        return 0
+      })
+      this.ordenarpedidos(this.pedidos);
+      console.log(this.ordenpedidos)
+  })
+   }
+
+   ordenarpedidos(array){
+    for(var i=0; i<array.length; i++){
+      if(i == 0){
+        var product:string = array[i].name
+        this.ordenpedidos.push({price:array[i].price,productos:product,usuario:array[i].usuario,pedido:array[i].npedidoadmin})
+        var num = 0
+      }else{
+        if(array[i].npedidoadmin == this.ordenpedidos[num].pedido){
+          this.ordenpedidos.map(function(dato){
+            if(array[i].npedidoadmin == dato.pedido){
+              product=product+","+array[i].name
+              dato.productos = product;
+            }
+          })
+        }else{
+          product = array[i].name
+          this.ordenpedidos.push({price:array[i].price,productos:product,usuario:array[i].usuario,pedido:array[i].npedidoadmin})
+          num++
+        }
+      }
+    }
    }
 
    getName(){
@@ -89,6 +128,6 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
+}
 
 }
