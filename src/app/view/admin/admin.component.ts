@@ -4,6 +4,7 @@ import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuarios';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 
 @Component({
@@ -13,12 +14,33 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class AdminComponent implements OnInit {
   usuario;
-  constructor(private firestoreService: FirestoreService, private route:ActivatedRoute,private modalService: NgbModal) {
-
-    this.firestoreService.getUsers().subscribe(usuario => {
-      this.usuarios = usuario;
-    });
+  UID;
+  name: string;
+  lastname: string;
+  constructor(private firestoreService: FirestoreService, private route:ActivatedRoute,private modalService: NgbModal, private fireAuth: AuthService) {
+    this.UID = this.fireAuth.getUser();
+    this.usuarios = firestoreService.Ausuario;
+    this.name = this.getName();
+    this.lastname = this.getLastname();
    }
+
+   getName(){
+    for(var i=0; i<this.usuarios.length; i++){
+      if(this.usuarios[i].id == this.UID)
+      {
+        return this.usuarios[i].name;
+      }
+    }
+  }
+
+  getLastname(){
+    for(var i=0; i<this.usuarios.length; i++){
+      if(this.usuarios[i].id == this.UID)
+      {
+        return this.usuarios[i].lastname;
+      }
+    }
+  }
 
   closeResult: string;
   usuarios = [];

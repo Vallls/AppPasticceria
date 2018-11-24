@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { Usuario, Menu } from 'src/app/models/usuarios';
+import { Usuario, Menu, Carrito, Extra } from 'src/app/models/usuarios';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -13,85 +13,73 @@ export class FirestoreService {
   usuariosCollection: AngularFirestoreCollection;
   usuarios: Observable<Usuario[]>;
   usuariosDoc: AngularFirestoreDocument;
+  Ausuario = [];
+  
 
-  panCollection: AngularFirestoreCollection;
-  pan: Observable<Menu[]>;
-  panDoc: AngularFirestoreDocument;
+  menuCollection: AngularFirestoreCollection;
+  Menu: Observable<Menu[]>;
+  MenuDoc: AngularFirestoreDocument;
+  Amenu = [];
+  idMenu = [];
 
-  croissantCollection: AngularFirestoreCollection;
-  croissant: Observable<Menu[]>;
-  croissantDoc: AngularFirestoreDocument;
+  extraCollection: AngularFirestoreCollection;
+  Aextra = [];
+  Cextras = [];
+  Aextras = [];
+  Qextras = [];
+  Jextras = [];
+  Caextras = [];
+  Pextras = [];
 
-  pastelitoCollection: AngularFirestoreCollection;
-  pastelito: Observable<Menu[]>;
-  pastelitoDoc: AngularFirestoreDocument;
+  carritoCollection: AngularFirestoreCollection;
+  Acarrito = [];
+  idCarrito = [];
+  ProductosCollection: AngularFirestoreCollection;
+  productos: Observable<Carrito[]>;
 
-  tortaCollection: AngularFirestoreCollection;
-  torta: Observable<Menu[]>;
-  tortaDoc: AngularFirestoreDocument;
-
-  dulceCollection: AngularFirestoreCollection;
-  dulce: Observable<Menu[]>;
-  dulceDoc: AngularFirestoreDocument;
 
   constructor(public db: AngularFirestore,) {
-    this.usuariosCollection = this.db.collection('usuarios');
-    this.usuarios = this.usuariosCollection.snapshotChanges().pipe(map(actions => {
-      return actions.map(a => { 
-      const data = a.payload.doc.data() as Usuario; 
-      data.id = a.payload.doc.id;
-      return data;
-   });
- }));
+  this.getUsers().subscribe(data => {
+    data.forEach(element => {
+      this.Ausuario.push(element.payload.doc.data())
+    });
+  });
 
- this.panCollection = this.db.collection('pan');
-    this.pan = this.panCollection.snapshotChanges().pipe(map(actions => {
-      return actions.map(a => { 
-      const data = a.payload.doc.data() as Menu; 
-      data.id = a.payload.doc.id;
-      return data;
-   });
- }));
+    this.getAllMenu().subscribe(data => {
+    data.forEach(element => {
+     this.Amenu.push(element.payload.doc.data())
+     });; 
+  });
 
- this.croissantCollection = this.db.collection('croissant');
-    this.croissant = this.croissantCollection.snapshotChanges().pipe(map(actions => {
-      return actions.map(a => { 
-      const data = a.payload.doc.data() as Menu; 
-      data.id = a.payload.doc.id;
-      return data;
-   });
- }));
+  this.getAllMenuID().subscribe(data => {
+    data.forEach(element => {
+     this.idMenu.push(element.payload.doc.ref)
+     });; 
+  });
 
- this.pastelitoCollection = this.db.collection('pastelito');
-    this.pastelito = this.pastelitoCollection.snapshotChanges().pipe(map(actions => {
-      return actions.map(a => { 
-      const data = a.payload.doc.data() as Menu; 
-      data.id = a.payload.doc.id;
-      return data;
-   });
- }));
+  this.getExtra().subscribe(data => {
+    data.forEach(element => {
+     this.Aextra.push(element.payload.doc.data())
+     });; 
+  });
 
- this.tortaCollection = this.db.collection('torta');
-    this.torta = this.tortaCollection.snapshotChanges().pipe(map(actions => {
-      return actions.map(a => { 
-      const data = a.payload.doc.data() as Menu; 
-      data.id = a.payload.doc.id;
-      return data;
-   });
- }));
+  this.getCarrito().subscribe(data => {
+    data.forEach(element => {
+     this.Acarrito.push(element.payload.doc.data())
+     });; 
+  });
 
- this.dulceCollection = this.db.collection('dulce');
-    this.dulce = this.dulceCollection.snapshotChanges().pipe(map(actions => {
-      return actions.map(a => { 
-      const data = a.payload.doc.data() as Menu; 
-      data.id = a.payload.doc.id;
-      return data;
-   });
- }));
+  this.getAllCarritoID().subscribe(data => {
+    data.forEach(element => {
+     this.idCarrito.push(element.payload.doc.ref)
+     });; 
+  });
+
+  this.carritoCollection = this.db.collection("carrito");
 }
 
   getUsers(){
-    return this.usuarios;
+    return this.db.collection('usuarios').snapshotChanges();
   }
 
   addUsers(usuario: any, id: any){
@@ -103,49 +91,52 @@ export class FirestoreService {
 
   updateUsers(usuario: Usuario){
     this.usuariosDoc = this.db.doc(`usuarios/${usuario.id}`);
-    this.usuariosDoc.update(usuario);
+    this.usuariosDoc.set(
+      {...usuario},
+      {merge:true});
   }
 
-  getPan(){
-    return this.pan;
+  addMenu(menu: Menu){
+    return this.db.collection('/menu').add(menu);
   }
 
-  addPan(pan: Menu){
-    this.panCollection.add(pan);
+  addExtra(extra: Extra){
+    return this.db.collection('/extra').add(extra);
   }
 
-  getCroissant(){
-    return this.croissant;
+  getAllMenu(){
+    return this.db.collection('menu').snapshotChanges();
   }
 
-  addCroissant(croissant: Menu){
-    this.croissantCollection.add(croissant);
+  getCarrito(){
+    return this.db.collection('carrito').snapshotChanges();
   }
 
-  getPastelito(){
-    return this.pastelito;
+  CrearCarrito(carrito){
+    return this.db.collection('/carrito').add(carrito);
   }
 
-  addPastelito(pastelito: Menu){
-    this.pastelitoCollection.add(pastelito);
+  addCarrito(menu,id){
+    this.carritoCollection.doc(id).collection("Productos").add(menu);
   }
 
-  getTorta(){
-    return this.torta;
+  deleteCarrito(item,id){
+    this.carritoCollection.doc(item).collection("Productos").doc(id).delete()
   }
 
-  addTorta(torta: Menu){
-    this.tortaCollection.add(torta);
+  getAllMenuID(){
+    return this.db.collection('menu').snapshotChanges();
   }
 
-  getDulce(){
-    return this.dulce;
+  getAllCarritoID(){
+    return this.db.collection('carrito').snapshotChanges();
+  }
+    
+  getExtra(){
+    return this.db.collection('extra').snapshotChanges();
   }
 
-  addDulce(dulce: Menu){
-    this.dulceCollection.add(dulce);
-  }
-
+  
   getbyid(id){
     let aux: any;
     for(let i=0; i<this.usuariosCollection.get.length;i++){
@@ -156,58 +147,94 @@ export class FirestoreService {
     return aux;
   }
 
-  updateProductPan(pan: Menu){
-    this.panDoc = this.db.doc(`pan/${pan.id}`);
-    this.panDoc.update(pan);
+  updateProductMenu(menu: Menu,item){
+    this.MenuDoc = this.db.doc(`menu/${item.id}`);
+    this.MenuDoc.set(
+      {...menu},
+      {merge:true});  
   }
 
-  updateProductCroissant(croissant: Menu){
-    this.croissantDoc = this.db.doc(`croissant/${croissant.id}`);
-    this.croissantDoc.update(croissant);
+  deleteProductMenu(item){
+    this.MenuDoc = this.db.doc(`menu/${item.id}`);
+    this.MenuDoc.delete();
   }
 
-  updateProductPastelito(pastelito: Menu){
-    this.pastelitoDoc = this.db.doc(`pastelito/${pastelito.id}`);
-    this.pastelitoDoc.update(pastelito);
+  getProductos(id){
+    this.ProductosCollection = this.carritoCollection.doc(id).collection("Productos")
+    this.productos = this.ProductosCollection.snapshotChanges().pipe(map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as Carrito;
+        data.id = a.payload.doc.id;
+        return data
+      })
+    }))
+
+    return this.productos
   }
 
-  updateProductTorta(torta: Menu){
-    this.tortaDoc = this.db.doc(`torta/${torta.id}`);
-    this.tortaDoc.update(torta);
+  getQueso(){
+    var c=0;
+    for(var i=0; i<this.Aextra.length; i++){
+      if(this.Aextra[i].type == "queso"){
+        this.Qextras[c] = this.Aextra[i];
+        c++;
+      }
+    }
+    return this.Qextras;
   }
 
-  updateProductDulce(dulce: Menu){
-    this.dulceDoc = this.db.doc(`dulce/${dulce.id}`);
-    this.dulceDoc.update(dulce);
+  getJamon(){
+    var d=0;
+    for(var i=0; i<this.Aextra.length; i++){
+      if(this.Aextra[i].type == "jamon"){
+        this.Jextras[d] = this.Aextra[i];
+        d++;
+      }
+    }
+    return this.Jextras;
   }
 
-  deleteProductPan(pan: Menu){
-    this.panDoc = this.db.doc(`pan/${pan.id}`);
-    this.panDoc.delete();
+  getChocolate(){
+    var a=0;
+    for(var i=0; i<this.Aextra.length; i++){
+      if(this.Aextra[i].type == "chocolate"){
+        this.Cextras[a] = this.Aextra[i];
+        a++;
+      }
+    }
+    return this.Cextras;
   }
 
-  deleteProductCroissant(croissant: Menu){
-    this.croissantDoc = this.db.doc(`croissant/${croissant.id}`);
-    this.croissantDoc.delete();
+  getAzucar(){
+    var b=0;
+    for(var i=0; i<this.Aextra.length; i++){
+      if(this.Aextra[i].type == "azucar"){
+        this.Aextras[b] = this.Aextra[i];
+        b++;
+      }
+    }
+    return this.Aextras;
   }
 
-  deleteProductPastelito(pastelito: Menu){
-    this.pastelitoDoc = this.db.doc(`pastelito/${pastelito.id}`);
-    this.pastelitoDoc.delete();
+  getCarne(){
+    var e=0;
+    for(var i=0; i<this.Aextra.length; i++){
+      if(this.Aextra[i].type == "carne"){
+        this.Caextras[e] = this.Aextra[i];
+        e++;
+      }
+    }
+    return this.Caextras;
   }
 
-  deleteProductTorta(torta: Menu){
-    this.tortaDoc = this.db.doc(`torta/${torta.id}`);
-    this.tortaDoc.delete();
-  }
-
-  deleteProductDulce(dulce: Menu){
-    this.dulceDoc = this.db.doc(`dulce/${dulce.id}`);
-    this.dulceDoc.delete();
-  }
-
-  addcarrito(usuario,producto){
-    this.usuariosDoc = this.db.doc(`usuarios/${usuario.id}`)
-
+  getPollo(){
+    var f=0;
+    for(var i=0; i<this.Aextra.length; i++){
+      if(this.Aextra[i].type == "carneblanca"){
+        this.Pextras[f] = this.Aextra[i];
+        f++;
+      }
+    }
+    return this.Pextras;
   }
 }

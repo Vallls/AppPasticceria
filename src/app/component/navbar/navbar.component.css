@@ -62,6 +62,15 @@
     color: white;
     text-align: center;
 }
+.responsive{
+    margin-left:6vw;
+}
 
+@media (max-width: 938px){
+    .responsive{
+margin-left:2vw;
+    }
+
+}
 
 

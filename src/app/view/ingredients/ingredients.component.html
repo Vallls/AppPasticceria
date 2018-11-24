@@ -2,33 +2,50 @@
   <app-navbar-admin></app-navbar-admin>
   <div class="container">
     <div class="row">
-      <div class="col-10 container-bg">
+      <div class="col-7 container-bg">
         <div class="row">
           <h1>Agregar Nuevo Producto</h1>
         </div>
         <div class="row">
           <div class="col-6">
             <div class="caja" id="preview">
-              <img src="{{Menu.img}}" width="300px" height="250px">
+              <img src="{{Menu.img}}" width="250px" height="250px">
             </div>
+            <div class="row">
+              <label for="product" style="font-size:large; margin-top: 10px; margin-right: 10px">Extra Tipo 1</label>
+              <select name="opcionSeleccionado" [(ngModel)]="opcionSeleccionado2" (change)="capturar2()" style="font-size: medium; margin-bottom: 10px; color:black;font-family: 'OptimusPrinceps'">
+              <option value="Selecciona una opción">Selecciona una opción</option>
+              <option *ngFor="let extra of extrass" value="{{extra}}">{{extra}}</option>
+              </select>
+              </div>
+                  
+              <div class="row">
+              <label for="product" style="font-size:large; margin-top: 10px; margin-right: 10px">Extra Tipo 2</label>
+              <select name="opcionSeleccionado" [(ngModel)]="opcionSeleccionado3" (change)="capturar3()" style="font-size: medium; margin-bottom: 10px; color:black;font-family: 'OptimusPrinceps'">
+              <option value="Selecciona una opción">Selecciona una opción</option>
+              <option *ngFor="let extra of extrass" value="{{extra}}">{{extra}}</option>
+              </select>
+              </div>
           </div>
           <form class="col-6" (ngSubmit)="addMenu()">
-            <input type="file" size="60" style="margin-bottom: 10px" id="file"  (change)="upload($event)" accept=".png,.jpg">
+            <input type="file" size="60" style="margin-bottom: 10px; font-size: small " id="file"  (change)="upload($event)" accept=".png,.jpg">
             <div class="progress">
               <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
             <label for="product" style="font-size:large">Nombre del Producto</label>
             <input type="text" class="form-control" name="name" style="font-size:large; margin-bottom: 10px; color:black" [(ngModel)]="Menu.name">
             <h5>Descripcion del Producto</h5>
-            <textarea type="text" class="form-control" name="description" rows="5" style="margin-bottom: 10px; color:black" [(ngModel)]="Menu.description"></textarea>
+            <textarea type="text" class="form-control" name="description" rows="5" style="margin-bottom: 10px; color:black; font-family: 'OptimusPrinceps'" [(ngModel)]="Menu.description"></textarea>
             <label for="product" style="font-size:large">Precio</label>
             <input type="text" class="form-control" name="price" style="font-size:large; margin-bottom: 10px; color:black" [(ngModel)]="Menu.price">
             
                 <label for="product" style="font-size:large; margin-top: 10px; margin-right: 10px">Tipo</label>
-                <select name="opcionSeleccionado" [(ngModel)]="opcionSeleccionado" (change)="capturar()" style="font-size: medium; margin-bottom: 10px; color:black">
+                <select name="opcionSeleccionado" [(ngModel)]="opcionSeleccionado" (change)="capturar()" style="font-size: medium; margin-bottom: 10px; color:black; font-family: 'OptimusPrinceps'">
                   <option value="Selecciona una opción">Selecciona una opción</option>
                   <option *ngFor="let dato of datos" value="{{dato}}">{{dato}}</option>
                 </select>
+            
+               
            
             
             <div class="row">
@@ -37,6 +54,25 @@
           </form>
         </div>
       </div>
+      <form class="col-4 container-bg" (ngSubmit)="addExtra()">
+        <div class="row">
+          <h1 style="text-align: center">Agregar Nuevo Extra</h1>
+        </div>
+        <label for="product" style="font-size:large; margin-top: 50px">Nombre del Producto</label>
+        <input type="text" class="form-control" name="name" style="font-size:large; margin-bottom: 10px; color:black" [(ngModel)]="Extra.name">
+        <label for="product" style="font-size:large">Precio</label>
+        <input type="text" class="form-control" name="price" style="font-size:large; margin-bottom: 10px; color:black" [(ngModel)]="Extra.price">
+        <label for="product" style="font-size:large; margin-top: 10px; margin-right: 10px">Tipo</label>
+        <select name="opcionSeleccionado4" [(ngModel)]="opcionSeleccionado4" (change)="capturar4()" style="font-size: medium; margin-bottom: 10px; color:black; font-family: 'OptimusPrinceps'">
+        <option value="Selecciona una opción">Selecciona una opción</option>
+        <option *ngFor="let item of extratype" value="{{item}}">{{item}}</option>
+        </select>
+        <div class="row">
+          <button type="submit" class="btn btn-bg btn-lg" >Agregar</button>
+          <button type="button" class="btn btn-bg btn-lg" (click)="AE()">Actualizar</button>
+      </div>
+    </form>
+
     </div>
   </div>
 </div>

@@ -17,6 +17,33 @@ export interface Menu{
     price?:number;
     description?:string;
     img?: Observable<string>;
-    avaible?: boolean;
+    available?: boolean;
+    type?: string;
+    extra1?: Array<Extra>;
+    extra2?: Array<Extra>;
+}
+
+export interface Extra{
+    name?: string;
+    price?: number;
+    type?: string;
+}
+
+export interface Carrito{
+    
+    id?:string;
+    name?:string;
+    price?:number;
+    description?:string;
+    img?: Observable<string>;
+    available?: boolean;
+    type?: string;
+    extra1?: Extra;
+    extra2?: Extra;
+    
+}
+
+export interface Pedido{
+    Pedido?: Array<Carrito>;
 }
 
