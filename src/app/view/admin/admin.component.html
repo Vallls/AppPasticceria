@@ -6,25 +6,67 @@
       </button>
     </div>
     <div class="modal-body">
-        <div class="row" *ngFor="let usuario of usuarios">
-            <ul>
-            <li>{{usuario.name}} 
-                <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic">
+            <div class="table responsive">
+                    <div class="table table-hover">
+                        <thead>
+                            <th>Usuarios</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>Habilitar/Deshabilitar Admin</th>
+                        </thead>
+                        </div>
+                    </div>
+        <tbody>
+            <tr *ngFor="let usuario of usuarios">
+            <td>{{usuario.name}}</td>
+            <td><div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" Style="margin-left:110px">
                     <label ngbButtonLabel class="btn-primary" class="green">
                         <input ngbButton type="radio" (click)="EditarUsuarioTrue(usuario)"> Establecer Admin
                       </label>
                       <label ngbButtonLabel class="btn-primary" class="red">
                         <input ngbButton type="radio" (click)="EditarUsuarioFalse(usuario)"> Eliminar Admin     
                       </label>
-                </div>
-            </li>
-            </ul>
+                </div></td>
+            </tr>
+        </tbody>
         </div>
-    </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Cerrar</button>
     </div>
   </ng-template>
+
+  <ng-template #content2 let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Pedidos Pendientes</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="false">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+                <div class="table responsive">
+                        <div class="table table-hover">
+                            <thead>
+                                <th>Productos</th>
+                                <th>Monto</th>
+                                <th>Usuario</th>
+                            </thead>
+            <tbody>
+                <tr *ngFor="let pedido of ordenpedidos">
+                <td>{{pedido.productos}}</td>
+                <td>{{pedido.price}}</td>
+                <td>{{pedido.usuario}}</td>
+                </tr>
+            </tbody>
+        </div>
+        </div>
+            </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Cerrar</button>
+        </div>
+      </ng-template>
 
 <div class="body">
   <app-navbar-admin></app-navbar-admin>
@@ -38,6 +80,8 @@
           <div class="col-3 container-bg">
             <img src="assets/pencil.png" width="200px" height="200px" (click)="open(content1)" Style="cursor: pointer">
             <h5 style=" font-family: 'OptimusPrinceps'; color: white; text-align: center">Administrar Usuarios</h5>
+            <img src="assets/!.png" width="200px" height="200px" (click)="open(content2)" Style="cursor: pointer">
+            <h5 style=" font-family: 'OptimusPrinceps'; color: white; text-align: center;margin-top: 20px">Pedidos Pendientes</h5>
 
           </div>
       </div>

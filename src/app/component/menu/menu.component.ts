@@ -14,33 +14,45 @@ export class MenuComponent implements OnInit {
   closeResult: string;
   menu = [];
   idmenu = [];
+  extra = [];
   product: Menu;
   var;
   variable;
+  var2;
+  variable2;
   cart: Carrito;
+  dulce= [];
+  salado = [];
 
   opcionSeleccionado2: string  = "Selecciona una opción";
   opcionSeleccionado3: string  = "Selecciona una opción";
   verSeleccion2: string        = '';
   verSeleccion3: string        = '';
 
-  UID;
+  
   usuarios = [];
   IdUsuario;
   carritos = [];
   IdCarrito;
   posicion;
   arrayCarritos = [];
+  productos = []
+  id;
+  arrayHistorial = []
+  posicion2;
+  historiales = []
 
   constructor(private modalService: NgbModal, private firestoreService: FirestoreService,public fireAuth: AuthService,) {
-    this.menu = firestoreService.Amenu;
     this.idmenu = firestoreService.idMenu;
-    this.UID = this.fireAuth.getUser();
-    this.usuarios = firestoreService.Ausuario;
-    this.IdUsuario = this.getIDUsuario();
+    this.IdUsuario = this.fireAuth.getUser();
     this.carritos = firestoreService.Acarrito;
+    this.historiales = firestoreService.Ahistorial
     this.posicion = this.getIDCarrito();
+    this.getIDHistorial();
     this.arrayCarritos = firestoreService.idCarrito;
+    this.arrayHistorial = firestoreService.idHistorial;
+    this.id = this.arrayHistorial[this.posicion2].id
+    this.extra = this.firestoreService.Aextra;
   }
 
   encontrar(item){
@@ -49,15 +61,6 @@ export class MenuComponent implements OnInit {
     console.log(this.variable);
     console.log(this.getSmenu());
     console.log(this.getSmenu().extra2);
-  }
-
-  getIDUsuario(){
-    for(var i=0; i<this.usuarios.length; i++){
-      if(this.usuarios[i].id == this.UID)
-      {
-        return this.usuarios[i].id;
-      }
-    }
   }
 
   getIDCarrito(){
@@ -69,8 +72,25 @@ export class MenuComponent implements OnInit {
     }
   }
 
+  getIDHistorial(){
+    for(var i=0; i<this.historiales.length; i++){
+      if(this.historiales[i].id == this.IdUsuario)
+      {
+        this.posicion2 = i;
+      }
+    }
+  }
+
   addCarrito(menu){
     var id = this.arrayCarritos[this.posicion].id
+   if(this.getExtra1()!="none"){
+    menu.extra1 = this.getExtra1().name;
+    menu.extra1pr =  this.getExtra1().price;
+   }
+    if(this.getExtra2()!="none"){
+    menu.extra2 = this.getExtra2().name;
+    menu.extra2pr =  this.getExtra2().price;
+    }
     this.firestoreService.addCarrito(menu,id)
   }
 
@@ -80,6 +100,54 @@ export class MenuComponent implements OnInit {
 
   getSmenu(){
     return this.menu[this.var];
+  }
+
+  opc(){
+    if(this.getSmenu().typeE=='dulce'){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  getDulce(){
+    var k=0;
+    for(var i=0; i<this.extra.length; i++){
+      if(this.extra[i].type == 'dulce'){
+        this.dulce[k] = this.extra[i];
+        k++;
+      }
+    }
+    return this.dulce;
+  }
+
+  getSalado(){
+    var k=0;
+    for(var i=0; i<this.extra.length; i++){
+      if(this.extra[i].type == 'salado'){
+        this.salado[k] = this.extra[i];
+        k++;
+      }
+    }
+    return this.salado;
+  }
+
+  getExtra1(){
+    for(var i=0; i<this.extra.length; i++){
+      if(this.verSeleccion2 == this.extra[i].name){
+        return this.extra[i];
+      }
+    }
+    return "none";
+  }
+
+  getExtra2(){
+    for(var i=0; i<this.extra.length; i++){
+      if(this.verSeleccion3 == this.extra[i].name){
+        return this.extra[i];
+      }
+    }
+    return "none";
   }
 
 
@@ -112,6 +180,24 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.firestoreService.getAllMenu().subscribe(menus =>{
+      this.menu = menus;
+    })
+    this.firestoreService.getPHistorial(this.id).subscribe(productos =>{
+      this.productos = productos;
+      this.productos.sort(function(a,b){
+        if(a.npedido > b.npedido){
+          return 1
+        }
+        if(a.npedido < b.npedido){
+          return -1
+        }
+        return 0
+      })
+    })
+
+    
   }
 
 }
+

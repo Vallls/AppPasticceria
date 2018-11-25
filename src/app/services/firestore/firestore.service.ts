@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { Usuario, Menu, Carrito, Extra } from 'src/app/models/usuarios';
+import { Usuario, Menu, Carrito, Extra,Historial, Pedidos } from 'src/app/models/usuarios';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -14,13 +14,13 @@ export class FirestoreService {
   usuarios: Observable<Usuario[]>;
   usuariosDoc: AngularFirestoreDocument;
   Ausuario = [];
-  
+  usuario: Observable<Menu>
 
   menuCollection: AngularFirestoreCollection;
   Menu: Observable<Menu[]>;
   MenuDoc: AngularFirestoreDocument;
-  Amenu = [];
   idMenu = [];
+  
 
   extraCollection: AngularFirestoreCollection;
   Aextra = [];
@@ -37,18 +37,24 @@ export class FirestoreService {
   ProductosCollection: AngularFirestoreCollection;
   productos: Observable<Carrito[]>;
 
+  historialCollection: AngularFirestoreCollection
+  historialDoc: AngularFirestoreDocument
+  Ahistorial = []
+  idHistorial = []
+  PHistorialCollection: AngularFirestoreCollection;
+  phistorial: Observable<Carrito[]>;
+
+  pedidosCollection: AngularFirestoreCollection;
+  pedidosDoc: AngularFirestoreDocument
+  Apedidos = [];
+  Pedidos:Observable<Pedidos[]>;
+
 
   constructor(public db: AngularFirestore,) {
   this.getUsers().subscribe(data => {
     data.forEach(element => {
       this.Ausuario.push(element.payload.doc.data())
     });
-  });
-
-    this.getAllMenu().subscribe(data => {
-    data.forEach(element => {
-     this.Amenu.push(element.payload.doc.data())
-     });; 
   });
 
   this.getAllMenuID().subscribe(data => {
@@ -69,13 +75,39 @@ export class FirestoreService {
      });; 
   });
 
+  this.getHistorial().subscribe(data => {
+    data.forEach(element => {
+     this.Ahistorial.push(element.payload.doc.data())
+     });; 
+  });
+
+  this.getPedidos().subscribe(data => {
+    data.forEach(element => {
+     this.Apedidos.push(element.payload.doc.data())
+     });; 
+  });
+
   this.getAllCarritoID().subscribe(data => {
     data.forEach(element => {
      this.idCarrito.push(element.payload.doc.ref)
      });; 
   });
 
+  this.getAllHistorialID().subscribe(data => {
+    data.forEach(element => {
+     this.idHistorial.push(element.payload.doc.ref)
+     });; 
+  });
+
   this.carritoCollection = this.db.collection("carrito");
+  this.historialCollection = this.db.collection("historial");
+  this.pedidosCollection = this.db.collection("pedidos");
+}
+
+getAllPedidos(){
+  this.pedidosCollection= this.db.collection('pedidos')
+  this.Pedidos = this.pedidosCollection.valueChanges();
+  return this.Pedidos
 }
 
   getUsers(){
@@ -105,16 +137,70 @@ export class FirestoreService {
   }
 
   getAllMenu(){
-    return this.db.collection('menu').snapshotChanges();
+    this.menuCollection= this.db.collection('menu')
+    this.Menu = this.menuCollection.valueChanges();
+    return this.Menu
   }
 
   getCarrito(){
     return this.db.collection('carrito').snapshotChanges();
   }
 
+  getHistorial(){
+    return this.db.collection('historial').snapshotChanges();
+  }
+
+  getPedidos(){
+    return this.db.collection('pedidos').snapshotChanges();
+  }
+
   CrearCarrito(carrito){
     return this.db.collection('/carrito').add(carrito);
   }
+
+  CrearHistorial(historial){
+    return this.db.collection('/historial').add(historial);
+  }
+
+  addHistorial(id,array,npedido,item,item2){
+    for(var i=0; i<array.length; i++){
+      array[i].npedido = npedido;
+      this.historialCollection.doc(id).collection("Historial").add(array[i])
+    }
+    this.historialDoc = this.db.doc(`historial/${item.id}`);
+    item2.npedido = item2.npedido+1
+    this.historialDoc.update(item2);
+  }
+
+  addPedidos(array,usuario,total){
+    if(this.Apedidos.length == 0){
+      for(var i=0; i<array.length; i++){
+        array[i].npedidoadmin = 1;
+        array[i].usuario = usuario
+        array[i].price = total
+        this.pedidosCollection.add(array[i])
+      }
+      }else{
+        this.Apedidos.sort(function(a,b){
+          if(a.npedidoadmin > b.npedidoadmin){
+            return 1
+          }
+          if(a.npedidoadmin < b.npedidoadmin){
+            return -1
+          }
+          return 0
+        })
+        for(var i=0; i<this.Apedidos.length;i++){
+          var ultimopedido = this.Apedidos[i].npedidoadmin
+        }
+        for(var i=0; i<array.length; i++){
+          array[i].npedidoadmin = ultimopedido+1;
+          array[i].usuario = usuario
+          array[i].price = total
+          this.pedidosCollection.add(array[i])
+        }
+      }
+    }
 
   addCarrito(menu,id){
     this.carritoCollection.doc(id).collection("Productos").add(menu);
@@ -130,6 +216,10 @@ export class FirestoreService {
 
   getAllCarritoID(){
     return this.db.collection('carrito').snapshotChanges();
+  }
+
+  getAllHistorialID(){
+    return this.db.collection('historial').snapshotChanges();
   }
     
   getExtra(){
@@ -149,9 +239,7 @@ export class FirestoreService {
 
   updateProductMenu(menu: Menu,item){
     this.MenuDoc = this.db.doc(`menu/${item.id}`);
-    this.MenuDoc.set(
-      {...menu},
-      {merge:true});  
+    this.MenuDoc.update(menu); 
   }
 
   deleteProductMenu(item){
@@ -172,69 +260,18 @@ export class FirestoreService {
     return this.productos
   }
 
-  getQueso(){
-    var c=0;
-    for(var i=0; i<this.Aextra.length; i++){
-      if(this.Aextra[i].type == "queso"){
-        this.Qextras[c] = this.Aextra[i];
-        c++;
-      }
-    }
-    return this.Qextras;
+  getPHistorial(id){
+    this.PHistorialCollection = this.historialCollection.doc(id).collection("Historial")
+    this.phistorial = this.PHistorialCollection.snapshotChanges().pipe(map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as Historial;
+        data.id = a.payload.doc.id;
+        return data
+      })
+    }))
+
+    return this.phistorial
   }
 
-  getJamon(){
-    var d=0;
-    for(var i=0; i<this.Aextra.length; i++){
-      if(this.Aextra[i].type == "jamon"){
-        this.Jextras[d] = this.Aextra[i];
-        d++;
-      }
-    }
-    return this.Jextras;
-  }
-
-  getChocolate(){
-    var a=0;
-    for(var i=0; i<this.Aextra.length; i++){
-      if(this.Aextra[i].type == "chocolate"){
-        this.Cextras[a] = this.Aextra[i];
-        a++;
-      }
-    }
-    return this.Cextras;
-  }
-
-  getAzucar(){
-    var b=0;
-    for(var i=0; i<this.Aextra.length; i++){
-      if(this.Aextra[i].type == "azucar"){
-        this.Aextras[b] = this.Aextra[i];
-        b++;
-      }
-    }
-    return this.Aextras;
-  }
-
-  getCarne(){
-    var e=0;
-    for(var i=0; i<this.Aextra.length; i++){
-      if(this.Aextra[i].type == "carne"){
-        this.Caextras[e] = this.Aextra[i];
-        e++;
-      }
-    }
-    return this.Caextras;
-  }
-
-  getPollo(){
-    var f=0;
-    for(var i=0; i<this.Aextra.length; i++){
-      if(this.Aextra[i].type == "carneblanca"){
-        this.Pextras[f] = this.Aextra[i];
-        f++;
-      }
-    }
-    return this.Pextras;
-  }
+  
 }

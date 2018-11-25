@@ -19,8 +19,7 @@ export interface Menu{
     img?: Observable<string>;
     available?: boolean;
     type?: string;
-    extra1?: Array<Extra>;
-    extra2?: Array<Extra>;
+    typeE?: string;
 }
 
 export interface Extra{
@@ -45,5 +44,32 @@ export interface Carrito{
 
 export interface Pedido{
     Pedido?: Array<Carrito>;
+}
+
+export interface Historial{
+    id?:string;
+    name?:string;
+    price?:number;
+    description?:string;
+    img?: Observable<string>;
+    available?: boolean;
+    type?: string;
+    extra1?: Extra;
+    extra2?: Extra;
+    npedido?:number;
+}
+
+export interface Pedidos{
+    id?:string;
+    name?:string;
+    price?:number;
+    description?:string;
+    img?: Observable<string>;
+    available?: boolean;
+    type?: string;
+    extra1?: Extra;
+    extra2?: Extra;
+    npedido?:number;
+    npedidoadmin?:number;
 }
 

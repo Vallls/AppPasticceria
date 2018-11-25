@@ -16,7 +16,6 @@ export class UserComponent implements OnInit {
   constructor(private firestoreService: FirestoreService, private route:ActivatedRoute,private router:Router) { }
 
   ngOnInit() {
-    this.usuario=this.firestoreService.getbyid(this.route.snapshot.paramMap.get('id'))
   }
 }
 

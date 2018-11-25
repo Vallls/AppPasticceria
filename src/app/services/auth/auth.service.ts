@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import * as firebase from 'firebase';
+import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,37 +11,53 @@ import * as firebase from 'firebase';
 export class AuthService {
   navbar = new Subject;  
   users: Observable<firebase.User>;
+  usuarios = [];
+  confirmar: boolean = false;
 
-  constructor(public fireAuth: AngularFireAuth, public router: Router) {
+  constructor(public fireAuth: AngularFireAuth, public router: Router,private firestoreService: FirestoreService,) {
     this.users = fireAuth.authState;
     this.navbar.next('inicio')
+    this.usuarios = this.firestoreService.Ausuario;
    }
 
-  Login(email:string, password: string, admin: boolean){
-    if(admin == true){
-    return this.fireAuth.auth.signInWithEmailAndPassword(email, password).then(() => {
-      this.navbar.next('admin');
-      this.router.navigate(['/admin']);
+   alerts(){
+    alert("Combinacion de email y contraseña no coinciden");
+  }
+
+  login(email:string, password: string){
+    for(var i=0; i<this.usuarios.length; i++){
+      if(this.usuarios[i].email == email && this.usuarios[i].password == password){
+        this.confirmar=true;
+        if(this.usuarios[i].admin == true){
+          return this.fireAuth.auth.signInWithEmailAndPassword(email, password).then(() => {
       
-    });
-    }else if(admin == false){
-      
-      return this.fireAuth.auth.signInWithEmailAndPassword(email, password).then(() =>{
-        this.navbar.next('user');
-        this.router.navigate(['/user']);
-        
-      });
-    }
+            this.navbar.next('admin');
+            this.router.navigate(['/admin']);
+          });
+        }else{
+          return this.fireAuth.auth.signInWithEmailAndPassword(email, password).then(() =>{
+            this.navbar.next('user');
+            this.router.navigate(['/user']);
+            
+          });
+      } 
+    } 
+  }
+    if(this.confirmar==false){
+      this.alerts();
+  }
+
+
 
   
    }
 
-  SignUp(email: string, password: string){
+  signUp(email: string, password: string){
        return this.fireAuth.auth.createUserWithEmailAndPassword(email, password)
      
    }
 
-   LogOut(){
+   logOut(){
      
     this.fireAuth.auth.signOut().then( () => {
       this.navbar.next('inicio');
@@ -50,11 +67,16 @@ export class AuthService {
    }
 
    getUser(){
+     if (this.fireAuth.auth.currentUser == null){
+      this.router.navigate(['/login']);
+     }
     return this.fireAuth.auth.currentUser.uid;
   }
 
    RecuperarContrasena(email: any){
-     this.fireAuth.auth.sendPasswordResetEmail(email);
+     this.fireAuth.auth.sendPasswordResetEmail(email).then(() =>{
+       alert("Se ha enviado un mensaje a tu correo");
+     });
    }
 
 
