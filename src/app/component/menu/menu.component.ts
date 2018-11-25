@@ -82,6 +82,19 @@ export class MenuComponent implements OnInit {
     this.firestoreService.addCarrito(menu,id)
   }
 
+  verificard(producto){
+    for(var i=0; i<this.menu.length; i++){
+      if(this.menu[i].name == producto.name){
+        if(this.menu[i].available == true){
+          return this.addCarrito(producto)
+        }else{
+          return console.log('El menu no se encuentra disponible actualmente')
+        }
+      }
+    }
+    return console.log('El menu no se encuentra en existencia')
+  }
+
   guardar(item){
     this.product = item;
   }

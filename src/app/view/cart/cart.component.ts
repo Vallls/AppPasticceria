@@ -136,6 +136,7 @@ export class CartComponent implements OnInit {
     var id = this.arrayHistoriales[this.posicion2].id
     this.firestoreService.addHistorial(id,this.productos,this.npedido,this.arrayHistoriales[this.posicion2],this.historialcorrecto)
     this.firestoreService.addPedidos(this.productos,this.nombrecompleto,this.Total)
+    this.firestoreService.deleteAllCarrito(this.id,this.productos)
   }
 
   cambio(){

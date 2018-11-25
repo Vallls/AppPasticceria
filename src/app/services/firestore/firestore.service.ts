@@ -202,6 +202,12 @@ getAllPedidos(){
       }
     }
 
+  deleteAllCarrito(id,array){
+    for(var i=0; i<array.length; i++){
+      this.carritoCollection.doc(id).collection("Productos").doc(array[i].id).delete()
+    }
+  }
+
   addCarrito(menu,id){
     this.carritoCollection.doc(id).collection("Productos").add(menu);
   }
