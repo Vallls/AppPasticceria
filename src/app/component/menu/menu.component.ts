@@ -83,13 +83,30 @@ export class MenuComponent implements OnInit {
 
   addCarrito(menu){
     var id = this.arrayCarritos[this.posicion].id
-   if(this.getExtra1()!="none"){
-    menu.extra1 = this.getExtra1().name;
-    menu.extra1pr =  this.getExtra1().price;
-   }
-    if(this.getExtra2()!="none"){
-    menu.extra2 = this.getExtra2().name;
-    menu.extra2pr =  this.getExtra2().price;
+    if(this.getExtra1()!="none" && this.getExtra2() != "none"){
+      menu.extra1 = this.getExtra1().name;
+      menu.extra1pr =  this.getExtra1().price;
+      menu.extra2 = this.getExtra2().name;
+      menu.extra2pr =  this.getExtra2().price;
+    }else{
+      if(this.getExtra1()!="none"){
+        menu.extra1 = this.getExtra1().name;
+        menu.extra1pr =  this.getExtra1().price;
+        menu.extra2 = ""
+        menu.extra2pr = 0
+       }
+       if(this.getExtra2()!="none"){
+        menu.extra2 = this.getExtra2().name;
+        menu.extra2pr =  this.getExtra2().price;
+        menu.extra1 = ""
+        menu.extra1pr = 0
+        }
+        if(this.getExtra1()=="none" && this.getExtra2()=="none"){
+          menu.extra2 = ""
+          menu.extra2pr = 0
+          menu.extra1 = ""
+          menu.extra1pr = 0
+        }
     }
     this.firestoreService.addCarrito(menu,id)
   }

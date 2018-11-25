@@ -119,10 +119,47 @@ export class CartComponent implements OnInit {
     var numero;
     this.Total = 0;
     for(var i=0; i<this.productos.length; i++){
-      numero = Number(this.productos[i].price);
+      numero = Number(this.productos[i].price) + Number(this.productos[i].extra1pr) + Number(this.productos[i].extra2pr);
       this.Total = this.Total + numero;
     }
   }
+
+  sumaextras(){
+    var numero
+    for(var i=0; i<this.productos.length; i++){
+      numero = Number(this.productos[i].price) + Number(this.productos[i].extra1pr) + Number(this.productos[i].extra2pr);
+      this.productos[i].priceb = numero
+      numero = 0
+    }
+  }
+
+  extras(){
+    var extra:string = ""
+    for(var i=0; i<this.productos.length; i++){
+      if(this.productos[i].extra1 != "" && this.productos[i].extra2 != ""){
+        extra = this.productos[i].extra1+", "+this.productos[i].extra2
+        this.productos[i].extras = extra
+        extra=""
+      }else{
+        if(this.productos[i].extra1 != ""){
+          extra = this.productos[i].extra1
+          this.productos[i].extras = extra
+          extra=""
+        }else{
+          if(this.productos[i].extra2 != ""){
+            extra = this.productos[i].extra2
+            this.productos[i].extras = extra
+            extra=""
+          }else{
+            this.productos[i].extras = "(Sin extras)"
+            extra=""
+          }
+        }
+      }
+
+    }
+  }
+
 
   getTotal(){
     return this.Total;
@@ -146,9 +183,12 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.firestoreService.getProductos(this.id).subscribe(productos =>{
       this.productos = productos;
+      this.extras()
+      this.sumaextras()
       this.total()
       const total = this.getTotal();
       this.initConfig( total );
+      console.log(this.productos)
     });
   }
 

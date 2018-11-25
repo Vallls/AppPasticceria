@@ -202,6 +202,7 @@
               <div class="table table-hover">
                 <thead>
                   <th>Producto</th>
+                  <th>Extras</th>
                   <th>Precio</th>
                   <th>Pedido</th>
                   <th>Recomprar</th>
@@ -209,7 +210,8 @@
                 <tbody>
                     <tr *ngFor="let producto of productos">
                     <td>{{producto.name}}</td>
-                    <td>{{producto.price}}</td>
+                    <td>{{producto.extras}}</td>
+                    <td>{{producto.priceb}}</td>
                     <td>Nro. {{producto.npedido}}</td>
                     <td><button class="btn btn-bg btn-lg" (click)="verificard(producto)">Recomprar</button></td>
                     </tr>

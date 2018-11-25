@@ -37,6 +37,7 @@ export class AdminComponent implements OnInit {
       })
       this.ordenarpedidos(this.pedidos);
       console.log(this.ordenpedidos)
+      console.log(this.pedidos)
   })
    }
 
