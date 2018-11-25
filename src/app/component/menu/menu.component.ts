@@ -14,12 +14,15 @@ export class MenuComponent implements OnInit {
   closeResult: string;
   menu = [];
   idmenu = [];
+  extra = [];
   product: Menu;
   var;
   variable;
   var2;
   variable2;
   cart: Carrito;
+  dulce= [];
+  salado = [];
 
   opcionSeleccionado2: string  = "Selecciona una opción";
   opcionSeleccionado3: string  = "Selecciona una opción";
@@ -49,6 +52,7 @@ export class MenuComponent implements OnInit {
     this.arrayCarritos = firestoreService.idCarrito;
     this.arrayHistorial = firestoreService.idHistorial;
     this.id = this.arrayHistorial[this.posicion2].id
+    this.extra = this.firestoreService.Aextra;
   }
 
   encontrar(item){
@@ -79,6 +83,14 @@ export class MenuComponent implements OnInit {
 
   addCarrito(menu){
     var id = this.arrayCarritos[this.posicion].id
+   if(this.getExtra1()!="none"){
+    menu.extra1 = this.getExtra1().name;
+    menu.extra1pr =  this.getExtra1().price;
+   }
+    if(this.getExtra2()!="none"){
+    menu.extra2 = this.getExtra2().name;
+    menu.extra2pr =  this.getExtra2().price;
+    }
     this.firestoreService.addCarrito(menu,id)
   }
 
@@ -101,6 +113,54 @@ export class MenuComponent implements OnInit {
 
   getSmenu(){
     return this.menu[this.var];
+  }
+
+  opc(){
+    if(this.getSmenu().typeE=='dulce'){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  getDulce(){
+    var k=0;
+    for(var i=0; i<this.extra.length; i++){
+      if(this.extra[i].type == 'dulce'){
+        this.dulce[k] = this.extra[i];
+        k++;
+      }
+    }
+    return this.dulce;
+  }
+
+  getSalado(){
+    var k=0;
+    for(var i=0; i<this.extra.length; i++){
+      if(this.extra[i].type == 'salado'){
+        this.salado[k] = this.extra[i];
+        k++;
+      }
+    }
+    return this.salado;
+  }
+
+  getExtra1(){
+    for(var i=0; i<this.extra.length; i++){
+      if(this.verSeleccion2 == this.extra[i].name){
+        return this.extra[i];
+      }
+    }
+    return "none";
+  }
+
+  getExtra2(){
+    for(var i=0; i<this.extra.length; i++){
+      if(this.verSeleccion3 == this.extra[i].name){
+        return this.extra[i];
+      }
+    }
+    return "none";
   }
 
 
@@ -148,6 +208,8 @@ export class MenuComponent implements OnInit {
         return 0
       })
     })
+
+    
   }
 
 }

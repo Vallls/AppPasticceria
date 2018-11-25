@@ -19,8 +19,7 @@ export interface Menu{
     img?: Observable<string>;
     available?: boolean;
     type?: string;
-    extra1?: Array<Extra>;
-    extra2?: Array<Extra>;
+    typeE?: string;
 }
 
 export interface Extra{

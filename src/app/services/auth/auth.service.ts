@@ -74,7 +74,9 @@ export class AuthService {
   }
 
    RecuperarContrasena(email: any){
-     this.fireAuth.auth.sendPasswordResetEmail(email);
+     this.fireAuth.auth.sendPasswordResetEmail(email).then(() =>{
+       alert("Se ha enviado un mensaje a tu correo");
+     });
    }
 
 
