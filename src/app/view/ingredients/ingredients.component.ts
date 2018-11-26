@@ -42,7 +42,6 @@ export class IngredientsComponent implements OnInit {
 
     this.datos = ["Panes", "Croissants", "Pastelitos", "Tortas", "Dulces"];
     this.extratype = ["dulce", "salado"];
-    this.extras = firestoreService.Aextra;
   }
 
   upload(event) {
@@ -124,7 +123,15 @@ export class IngredientsComponent implements OnInit {
     this.firestoreService.getAllMenu().subscribe(menus =>{
       this.menu = menus;
     })
+
+    this.firestoreService.getAllMenu().subscribe(extra =>{
+      this.extras = extra;
+    })
   }
+  };
+
+  
+
 
   
 

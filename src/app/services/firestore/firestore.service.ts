@@ -223,16 +223,23 @@ getAllUsuarios(){
   }
 
   addCarrito(menu,id){
-    this.carritoCollection.doc(id).collection("Productos").add(menu);
+    this.carritoCollection.doc(id).collection("Productos").add(menu).then(() =>{
+      alert("El menu se ha agregado satisfactoriamente al carrito");
+    });
   }
 
   deleteCarrito(item,id){
-    this.carritoCollection.doc(item).collection("Productos").doc(id).delete()
+    if(confirm("Estas seguro de eliminar el menu?")==true){
+      this.carritoCollection.doc(item).collection("Productos").doc(id).delete()
+    }
+    
   }
 
   deletePedido(item){
     this.pedidosDoc = this.db.doc(`pedidos/${item.id}`);
-    this.pedidosDoc.delete();
+    if(confirm("Estas seguro de eliminar el pedido?")==true){
+      this.pedidosDoc.delete();
+    }
   }
 
   getAllMenuID(){
@@ -264,12 +271,19 @@ getAllUsuarios(){
 
   updateProductMenu(menu: Menu,item){
     this.MenuDoc = this.db.doc(`menu/${item.id}`);
-    this.MenuDoc.update(menu); 
+    this.MenuDoc.update(menu).then(() =>{
+      alert("Se ha actualizado el menu satisfactoriamente")
+    }).catch(()=>{
+      alert("No se pudo actualizar el menu")
+    }) 
   }
 
   deleteProductMenu(item){
     this.MenuDoc = this.db.doc(`menu/${item.id}`);
-    this.MenuDoc.delete();
+    if(confirm("Estas seguro de eliminar el menu?")==true){
+      this.MenuDoc.delete();
+    }
+   
   }
 
   getProductos(id){

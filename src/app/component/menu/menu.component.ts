@@ -117,11 +117,11 @@ export class MenuComponent implements OnInit {
         if(this.menu[i].available == true){
           return this.addCarrito(producto)
         }else{
-          return console.log('El menu no se encuentra disponible actualmente')
+          return alert('El menu no se encuentra disponible actualmente');
         }
       }
     }
-    return console.log('El menu no se encuentra en existencia')
+    return alert('El menu no se encuentra en existencia');
   }
 
   guardar(item){
@@ -130,14 +130,6 @@ export class MenuComponent implements OnInit {
 
   getSmenu(){
     return this.menu[this.var];
-  }
-
-  opc(){
-    if(this.getSmenu().typeE=='dulce'){
-      return true;
-    }else{
-      return false;
-    }
   }
 
   getDulce(){

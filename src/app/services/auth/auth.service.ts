@@ -26,31 +26,31 @@ export class AuthService {
 
   login(email:string, password: string){
     for(var i=0; i<this.usuarios.length; i++){
-      if(this.usuarios[i].email == email && this.usuarios[i].password == password){
-        this.confirmar=true;
-        if(this.usuarios[i].admin == true){
-          return this.fireAuth.auth.signInWithEmailAndPassword(email, password).then(() => {
-      
-            this.navbar.next('admin');
-            this.router.navigate(['/admin']);
-          });
-        }else{
-          return this.fireAuth.auth.signInWithEmailAndPassword(email, password).then(() =>{
-            this.navbar.next('user');
-            this.router.navigate(['/user']);
-            
-          });
-      } 
-    } 
+      if(this.usuarios[i].email == email && this.usuarios[i].password == password ){
+          this.confirmar == true;
+          if(this.usuarios[i].admin == true) {
+              return firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+                  this.navbar.next('admin');
+                  this.router.navigate(['/admin']);
+                })
+          }else{
+              return firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+                  this.navbar.next('user');
+                  this.router.navigate(['/user']);
+                })
+          }
+      }
   }
-    if(this.confirmar==false){
+  if(this.confirmar==false){
       this.alerts();
-  }
+  }     
+}
+ 
+
+       
+   
 
 
-
-  
-   }
 
   signUp(email: string, password: string){
        return this.fireAuth.auth.createUserWithEmailAndPassword(email, password)

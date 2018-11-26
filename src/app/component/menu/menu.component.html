@@ -8,7 +8,7 @@
       <div class="modal-body">
           <p>Personaliza tu Compra</p>
           <div >
-              <div *ngIf="opc()==true">
+              <div *ngIf="getSmenu().typeE=='dulce'">
                 <div class="row">
                   <label for="product" style="font-size:large; margin-top: 10px; margin-right: 10px">Extra 1</label>
                   <select name="opcionSeleccionado" [(ngModel)]="opcionSeleccionado2" (change)="capturar2()" style="font-size: medium; margin-bottom: 10px; color:black">
@@ -25,7 +25,7 @@
                   </select>
                   </div>
               </div>
-              <div *ngIf="opc()==false">
+              <div *ngIf="getSmenu().typeE=='salado'">
                 <div class="row">
                   <label for="product" style="font-size:large; margin-top: 10px; margin-right: 10px">Extra 1</label>
                   <select name="opcionSeleccionado" [(ngModel)]="opcionSeleccionado2" (change)="capturar2()" style="font-size: medium; margin-bottom: 10px; color:black">
@@ -70,6 +70,12 @@
   </ng-template>
     
 <div class="container container-frm">
+  <div class="row justify-contend-center">
+      <div class="col-3">
+          <h3>Buscar</h3>
+          <input style="border-radius: 25px" type="email" class="form-control">
+      </div>
+  </div>
     <div class="row" id="panes">
      <h1>Panes</h1>
     </div>
