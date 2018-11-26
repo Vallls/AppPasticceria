@@ -47,6 +47,7 @@ export class FirestoreService {
   pedidosCollection: AngularFirestoreCollection;
   pedidosDoc: AngularFirestoreDocument
   Apedidos = [];
+  idpedidos = []
   Pedidos:Observable<Pedidos[]>;
 
 
@@ -87,6 +88,12 @@ export class FirestoreService {
      });; 
   });
 
+  this.getPedidos().subscribe(data => {
+    data.forEach(element => {
+     this.idpedidos.push(element.payload.doc.ref)
+     });; 
+  });
+
   this.getAllCarritoID().subscribe(data => {
     data.forEach(element => {
      this.idCarrito.push(element.payload.doc.ref)
@@ -108,6 +115,12 @@ getAllPedidos(){
   this.pedidosCollection= this.db.collection('pedidos')
   this.Pedidos = this.pedidosCollection.valueChanges();
   return this.Pedidos
+}
+
+getAllUsuarios(){
+  this.usuariosCollection= this.db.collection('usuarios')
+  this.usuarios = this.usuariosCollection.valueChanges();
+  return this.usuarios
 }
 
   getUsers(){
@@ -173,6 +186,7 @@ getAllPedidos(){
   }
 
   addPedidos(array,usuario,total){
+    console.log(this.Apedidos.length)
     if(this.Apedidos.length == 0){
       for(var i=0; i<array.length; i++){
         array[i].npedidoadmin = 1;
@@ -214,6 +228,11 @@ getAllPedidos(){
 
   deleteCarrito(item,id){
     this.carritoCollection.doc(item).collection("Productos").doc(id).delete()
+  }
+
+  deletePedido(item){
+    this.pedidosDoc = this.db.doc(`pedidos/${item.id}`);
+    this.pedidosDoc.delete();
   }
 
   getAllMenuID(){

@@ -7,7 +7,7 @@ export interface Usuario {
     email?: string;
     password?: string;
     passwordc?: string;
-    admin: boolean;
+    admin?: boolean;
     carrito?: Array<Menu>;
 }
 
