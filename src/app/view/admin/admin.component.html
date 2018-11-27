@@ -44,14 +44,13 @@
                                 <th>Productos</th>
                                 <th>Monto</th>
                                 <th>Usuario</th>
-                                <th>Eliminar</th>
                             </thead>
             <tbody>
                 <tr *ngFor="let pedido of ordenpedidos">
                 <td>{{pedido.productos}}</td>
                 <td>{{pedido.price}} $</td>
                 <td>{{pedido.usuario}}</td>
-                <td><img src="assets/trash.png" width="50px" height="50px" Style="cursor: pointer"></td>
+                
                 </tr>
             </tbody>
         </div>

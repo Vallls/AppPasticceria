@@ -59,7 +59,7 @@
             <div class="Num1">
               <div class="overlay">
                 <div class="text">PRODUCTO NO DISPONIBLE
-                  <img src="/src/assets/equis.png" width="55px" height="55px">
+                  <img src="../../../assets/equis.png" width="55px" height="55px">
                 </div>
               </div>
             </div>
@@ -73,18 +73,20 @@
     <div>
       <div class = "row">
       <div class="col-4" *ngFor="let busca of arraybusqueda">
+        <div *ngIf="busca.available ==true; else TemplateName">
           <div class="caja centrarCaja" Style="height: auto; width: auto">
               <img src="{{busca.img}}" width="200px" height="200px">
               <div class="Num1">
                 <div class="overlay">
                   <div class="text">Precio: {{busca.price}} $
-                    <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(busca)">
+                    <img src="../../../assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(busca)">
                   </div>
                 </div>
               </div>
             </div>
               <h3 style="margin-top:75%">{{busca.name}}</h3>
               <h4>{{busca.description}}</h4>
+            </div>
   </div>
   </div>
 </div>
@@ -117,7 +119,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
-                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)">
+                <img url="../../../assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)">
               </div>
             </div>
           </div>
@@ -141,7 +143,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
-                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)">
+                <img url="../../../assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)">
               </div>
             </div>
           </div>
@@ -165,7 +167,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
-                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)">
+                <img url="../../../assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)">
               </div>
             </div>
           </div>
@@ -189,7 +191,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text"> Precio: {{men.price}} $
-                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)">
+                <img url="../../../assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)">
               </div>
             </div>
           </div>
@@ -213,7 +215,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
-                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)">
+                <img url="../../../assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)">
               </div>
             </div>
           </div>
