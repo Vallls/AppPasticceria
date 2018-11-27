@@ -2,22 +2,22 @@
   <app-navbar-admin></app-navbar-admin>
   <div class="container">
     <div class="row">
-      <div class="col-7 container-bg">
+      <div class="col-xs-7 container-bg">
         <div class="row">
           <h1>Agregar Nuevo Producto</h1>
         </div>
         <div class="row">
-          <div class="col-6">
+          <div class="col-xs-6" >
             <div class="caja" id="preview">
               <img src="{{Menu.img}}" width="250px" height="250px">
             </div>
-            <label for="product" style="font-size:large; margin-top: 10px; margin-right: 10px">Tipo de Extra</label>
+            <label for="product" style="font-size:large; margin-top: 10px; margin-right: 20px">Tipo de Extra</label>
                 <select name="opcionSeleccionado" [(ngModel)]="opcionSeleccionado3" (change)="capturar3()" style="font-size: medium; margin-bottom: 10px; color:black; font-family: 'OptimusPrinceps'">
                   <option value="Selecciona una opción">Selecciona una opción</option>
                   <option *ngFor="let item of extratype" value="{{item}}">{{item}}</option>
                 </select>
           </div>
-          <form class="col-6" (ngSubmit)="addMenu()">
+          <form class="col-xs-6" (ngSubmit)="addMenu()">
             <input type="file" size="60" style="margin-bottom: 10px; font-size: small " id="file"  (change)="upload($event)" accept=".png,.jpg">
             <div class="progress">
               <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
@@ -44,7 +44,7 @@
           </form>
         </div>
       </div>
-      <form class="col-4 container-bg" (ngSubmit)="addExtra()">
+      <form class="col-xs-4 container-bg" (ngSubmit)="addExtra()">
         <div class="row">
           <h1 style="text-align: center">Agregar Nuevo Extra</h1>
         </div>
@@ -68,7 +68,7 @@
 <div class="footer">
     <div class="container">
         <div class="row">
-            <div class="col-12 text-center" style="margin-top:30px; color:white; font-family:PenelopeAnne; font-size: medium">
+            <div class="col-xs-12 text-center" style="margin-top:30px; color:white; font-family:PenelopeAnne; font-size: medium">
              <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nd/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Pasticceria Della Nonna</span> está distribuido bajo una <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/">Licencia Creative Commons Atribución-SinDerivadas 4.0 Internacional</a>.
             </div>
         </div>

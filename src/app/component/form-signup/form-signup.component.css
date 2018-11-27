@@ -31,8 +31,7 @@
     border-radius: 25px;
     padding: 35px;
     position: absolute;
-    top: 10%;
-    left:32%;
+    box-sizing: border-box;
 }
 .btn-bg{
     color: brown;
@@ -41,6 +40,7 @@
     margin-bottom: 2px;
     border-radius: 30px;
     font-family: 'OptimusPrinceps';
+    box-sizing: border-box;
 }
 
 .cf{
@@ -53,4 +53,37 @@
 
 .centrar2{
     left: 20px;
+}
+
+@media screen and (min-height: 500px){
+    .container-frm{
+        max-height: 98%;
+        top: 1%;
+        bottom: 1%;
+        left: 7%;
+        right: 10%;
+        max-width: 83%;
+    }
+}
+
+@media screen and (min-height: 800px){
+    .container-frm{
+        max-height: 90%;
+        top: 5%;
+        bottom: 5%;
+        left: 7%;
+        right: 10%;
+        max-width: 83%;
+    }
+}
+
+@media screen and (min-height: 1200px){
+    .container-frm{
+        max-height: 80%;
+        top: 10%;
+        bottom: 10%;
+        left: 7%;
+        right: 10%;
+        max-width: 83%;
+    }
 }
