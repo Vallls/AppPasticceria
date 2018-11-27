@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-export interface Usuario {
+export interface Usuario { //interfaces utilizadas en todo el codigo
     id?: string;
     name?: string;
     lastname?: string;

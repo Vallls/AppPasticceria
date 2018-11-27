@@ -23,7 +23,7 @@ export class FormComponent implements OnInit {
     this.usuarios = this.firestoreService.Ausuario;
   }
 
-  login(){
+  login(){ //llama a la funcion del fireauth para iniciar sesion
       this.fireauth.login(this.users.email,this.users.password);
 }
 

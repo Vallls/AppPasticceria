@@ -55,15 +55,12 @@ export class MenuComponent implements OnInit {
     this.extra = this.firestoreService.Aextra;
   }
 
-  encontrar(item){
+  encontrar(item){ //Guarda el id del menu seleccionado
     this.var = this.menu.indexOf(item);
     this.variable = this.idmenu[this.var];
-    console.log(this.variable);
-    console.log(this.getSmenu());
-    console.log(this.getSmenu().extra2);
   }
 
-  getIDCarrito(){
+  getIDCarrito(){ //Guarda el id del carrito seleccionado
     for(var i=0; i<this.carritos.length; i++){
       if(this.carritos[i].id == this.IdUsuario)
       {
@@ -72,7 +69,7 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  getIDHistorial(){
+  getIDHistorial(){ //Guarda el id del historial seleccionado
     for(var i=0; i<this.historiales.length; i++){
       if(this.historiales[i].id == this.IdUsuario)
       {
@@ -81,7 +78,7 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  addCarrito(menu){
+  addCarrito(menu){ //anade el menu seleccionado al carrito
     var id = this.arrayCarritos[this.posicion].id
     if(this.getExtra1()!="none" && this.getExtra2() != "none"){
       menu.extra1 = this.getExtra1().name;
@@ -111,7 +108,7 @@ export class MenuComponent implements OnInit {
     this.firestoreService.addCarrito(menu,id)
   }
 
-  verificard(producto){
+  verificard(producto){ //verifica si al realizar la recompra, los productos estan disponibles
     for(var i=0; i<this.menu.length; i++){
       if(this.menu[i].name == producto.name){
         if(this.menu[i].available == true){
@@ -124,15 +121,15 @@ export class MenuComponent implements OnInit {
     return alert('El menu no se encuentra en existencia');
   }
 
-  guardar(item){
+  guardar(item){  
     this.product = item;
   }
 
-  getSmenu(){
+  getSmenu(){ //obtiene el valor del id seleccionado
     return this.menu[this.var];
   }
 
-  getDulce(){
+  getDulce(){ //obtiene todos los extra de tipo dulce
     var k=0;
     for(var i=0; i<this.extra.length; i++){
       if(this.extra[i].type == 'dulce'){
@@ -143,7 +140,7 @@ export class MenuComponent implements OnInit {
     return this.dulce;
   }
 
-  getSalado(){
+  getSalado(){ //obtiene todos los extra de tipo salado
     var k=0;
     for(var i=0; i<this.extra.length; i++){
       if(this.extra[i].type == 'salado'){
@@ -154,7 +151,7 @@ export class MenuComponent implements OnInit {
     return this.salado;
   }
 
-  getExtra1(){
+  getExtra1(){ //obtiene todos los datos del extra 1 seleccionado
     for(var i=0; i<this.extra.length; i++){
       if(this.verSeleccion2 == this.extra[i].name){
         return this.extra[i];
@@ -163,7 +160,7 @@ export class MenuComponent implements OnInit {
     return "none";
   }
 
-  getExtra2(){
+  getExtra2(){ //obtiene todos los datos del extra2 seleccionado
     for(var i=0; i<this.extra.length; i++){
       if(this.verSeleccion3 == this.extra[i].name){
         return this.extra[i];
@@ -173,7 +170,7 @@ export class MenuComponent implements OnInit {
   }
 
 
-  open(content) {
+  open(content) { //funcion para abrir el modal
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -191,7 +188,7 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  capturar2() {
+  capturar2() { //captura la opcion seleccionada en el select
 
     this.verSeleccion2 = this.opcionSeleccionado2;
   }

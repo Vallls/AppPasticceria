@@ -24,7 +24,7 @@ export class AuthService {
     alert("Combinacion de email y contraseña no coinciden");
   }
 
-  login(email:string, password: string){
+  login(email:string, password: string){ //funcion login para acceder a la pagina
     for(var i=0; i<this.usuarios.length; i++){
       if(this.usuarios[i].email == email && this.usuarios[i].password == password ){
           this.confirmar == true;
@@ -52,12 +52,12 @@ export class AuthService {
 
 
 
-  signUp(email: string, password: string){
+  signUp(email: string, password: string){ //funcion registrar para crear un usuario
        return this.fireAuth.auth.createUserWithEmailAndPassword(email, password)
      
    }
 
-   logOut(){
+   logOut(){ //funcion cerrar sesion para salir del sistema
      
     this.fireAuth.auth.signOut().then( () => {
       this.navbar.next('inicio');
@@ -66,16 +66,18 @@ export class AuthService {
     })
    }
 
-   getUser(){
+   getUser(){ //obtiene al usuario activo 
      if (this.fireAuth.auth.currentUser == null){
       this.router.navigate(['/login']);
      }
     return this.fireAuth.auth.currentUser.uid;
   }
 
-   RecuperarContrasena(email: any){
+   RecuperarContrasena(email: any){ //funcion para cambiar la clave del usuario
      this.fireAuth.auth.sendPasswordResetEmail(email).then(() =>{
        alert("Se ha enviado un mensaje a tu correo");
+     }).catch( () => {
+      alert("Ingresa tu correo en el campo email");
      });
    }
 

@@ -18,7 +18,7 @@ export class DataComponent implements OnInit {
     this.usuarios = this.firestoreService.Ausuario;
    }
 
-   cambio(){
+   cambio(){  //llama a la funcion de fireauth para cambiar la clave.
     this.fireauth.RecuperarContrasena(this.users.email);
     }
    
