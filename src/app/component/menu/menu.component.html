@@ -73,6 +73,7 @@
     <div *ngFor="let busca of arraybusqueda">
       <div class = "row">
       <div class="col-4">
+        <div *ngIf = "busca.available == true; else templateName">
           <div class="caja centrarCaja" Style="height: auto; width: auto">
               <img src="{{busca.img}}" width="200px" height="200px">
               <div class="Num1">
@@ -85,6 +86,7 @@
             </div>
               <h3 style="margin-top:75%">{{busca.name}}</h3>
               <h4>{{busca.description}}</h4>
+            </div>
   </div>
   </div>
 </div>

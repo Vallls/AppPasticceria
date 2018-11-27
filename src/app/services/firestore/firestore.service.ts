@@ -28,7 +28,7 @@ export class FirestoreService {
   Aextras = [];
   Qextras = [];
   Jextras = [];
-  Caextras = [];
+  Caextras: Observable<Extra[]>;
   Pextras = [];
 
   carritoCollection: AngularFirestoreCollection;
@@ -64,11 +64,11 @@ export class FirestoreService {
      });; 
   });
 
-  this.getExtra().subscribe(data => {
-    data.forEach(element => {
-     this.Aextra.push(element.payload.doc.data())
-     });; 
-  });
+  // this.getExtra().subscribe(data => {
+  //   data.forEach(element => {
+  //    this.Aextra.push(element.payload.doc.data())
+  //    });; 
+  // });
 
   this.getCarrito().subscribe(data => {
     data.forEach(element => {
@@ -121,6 +121,12 @@ getAllUsuarios(){
   this.usuariosCollection= this.db.collection('usuarios')
   this.usuarios = this.usuariosCollection.valueChanges();
   return this.usuarios
+}
+
+getAllExtra(){
+  this.extraCollection = this.db.collection('extra')
+  this.Caextras = this.extraCollection.valueChanges();
+  return this.Caextras
 }
 
   getUsers(){
@@ -254,9 +260,9 @@ getAllUsuarios(){
     return this.db.collection('historial').snapshotChanges();
   }
     
-  getExtra(){
-    return this.db.collection('extra').snapshotChanges();
-  }
+  // getExtra(){
+  //   return this.db.collection('extra').snapshotChanges();
+  // }
 
   
   getbyid(id){
