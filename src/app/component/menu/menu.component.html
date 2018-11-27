@@ -68,14 +68,39 @@
           <h3 style="left:20px">{{product.name}}</h3>
           <h4>{{product.description}}</h4>
   </ng-template>
+
+  <ng-template #templateName2>
+    <div *ngFor="let busca of arraybusqueda">
+      <div class = "row">
+      <div class="col-4">
+          <div class="caja centrarCaja" Style="height: auto; width: auto">
+              <img src="{{busca.img}}" width="200px" height="200px">
+              <div class="Num1">
+                <div class="overlay">
+                  <div class="text">Precio: {{busca.price}} $
+                    <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(busca)">
+                  </div>
+                </div>
+              </div>
+            </div>
+              <h3 style="margin-top:75%">{{busca.name}}</h3>
+              <h4>{{busca.description}}</h4>
+  </div>
+  </div>
+</div>
+</ng-template>
     
 <div class="container container-frm">
   <div class="row justify-contend-center">
       <div class="col-3">
           <h3>Buscar</h3>
-          <input style="border-radius: 25px" type="email" class="form-control">
+        <form name="form" (ngSubmit)="definir()">
+          <input style="border-radius: 25px" type="text" placeholder="Busca productos por nombre" name="busqueda" id="busqueda" class="form-control" [(ngModel)]="busqueda">
+          <button type="submit" class="btn btn-bg btn-lg">Buscar</button>  
+        </form>
       </div>
   </div>
+  <div *ngIf="buscando === false ;else templateName2">
     <div class="row" id="panes">
      <h1>Panes</h1>
     </div>
@@ -195,6 +220,7 @@
          </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
   <div class="container container-frm acordeon">

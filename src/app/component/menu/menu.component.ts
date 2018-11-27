@@ -3,6 +3,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Menu, Carrito } from 'src/app/models/usuarios';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 import { AuthService } from 'src/app/services/auth/auth.service'
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -42,7 +43,11 @@ export class MenuComponent implements OnInit {
   posicion2;
   historiales = []
 
-  constructor(private modalService: NgbModal, private firestoreService: FirestoreService,public fireAuth: AuthService,) {
+  busqueda: string
+  arraybusqueda = [{name: "hola"}];
+  buscando: boolean = false
+
+  constructor(private modalService: NgbModal, private firestoreService: FirestoreService,public fireAuth: AuthService,private cdRef:ChangeDetectorRef) {
     this.idmenu = firestoreService.idMenu;
     this.IdUsuario = this.fireAuth.getUser();
     this.carritos = firestoreService.Acarrito;
@@ -53,6 +58,7 @@ export class MenuComponent implements OnInit {
     this.arrayHistorial = firestoreService.idHistorial;
     this.id = this.arrayHistorial[this.posicion2].id
     this.extra = this.firestoreService.Aextra;
+    console.log(this.arraybusqueda)
   }
 
   encontrar(item){
@@ -172,6 +178,29 @@ export class MenuComponent implements OnInit {
     return "none";
   }
 
+  buscar(){
+    var query = this.busqueda
+    console.log(query)
+    if(query != undefined){
+      return this.menu.filter(function(el) {
+        return el.name.toLowerCase().indexOf(query.toLowerCase()) > -1;
+    })
+    }
+  }
+
+  definir(){
+    if(this.busqueda != ''){
+      this.buscando = true
+    }else{
+      this.buscando = false
+    }
+    console.log(this.busqueda)
+    this.arraybusqueda = this.buscar()
+    console.log(this.arraybusqueda)
+    // Array.observe(this.arraybusqueda, function(changes) {
+    //   console.log(changes);
+    // });
+  }
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -217,7 +246,7 @@ export class MenuComponent implements OnInit {
         return 0
       })
     })
-
+    
     
   }
 
