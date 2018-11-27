@@ -47,6 +47,7 @@ export class FirestoreService {
   pedidosCollection: AngularFirestoreCollection;
   pedidosDoc: AngularFirestoreDocument
   Apedidos = [];
+  idpedidos = []
   Pedidos:Observable<Pedidos[]>;
 
 
@@ -87,6 +88,12 @@ export class FirestoreService {
      });; 
   });
 
+  this.getPedidos().subscribe(data => {
+    data.forEach(element => {
+     this.idpedidos.push(element.payload.doc.ref)
+     });; 
+  });
+
   this.getAllCarritoID().subscribe(data => {
     data.forEach(element => {
      this.idCarrito.push(element.payload.doc.ref)
@@ -108,6 +115,12 @@ getAllPedidos(){
   this.pedidosCollection= this.db.collection('pedidos')
   this.Pedidos = this.pedidosCollection.valueChanges();
   return this.Pedidos
+}
+
+getAllUsuarios(){
+  this.usuariosCollection= this.db.collection('usuarios')
+  this.usuarios = this.usuariosCollection.valueChanges();
+  return this.usuarios
 }
 
   getUsers(){
@@ -173,6 +186,7 @@ getAllPedidos(){
   }
 
   addPedidos(array,usuario,total){
+    console.log(this.Apedidos.length)
     if(this.Apedidos.length == 0){
       for(var i=0; i<array.length; i++){
         array[i].npedidoadmin = 1;
@@ -202,12 +216,30 @@ getAllPedidos(){
       }
     }
 
+  deleteAllCarrito(id,array){
+    for(var i=0; i<array.length; i++){
+      this.carritoCollection.doc(id).collection("Productos").doc(array[i].id).delete()
+    }
+  }
+
   addCarrito(menu,id){
-    this.carritoCollection.doc(id).collection("Productos").add(menu);
+    this.carritoCollection.doc(id).collection("Productos").add(menu).then(() =>{
+      alert("El menu se ha agregado satisfactoriamente al carrito");
+    });
   }
 
   deleteCarrito(item,id){
-    this.carritoCollection.doc(item).collection("Productos").doc(id).delete()
+    if(confirm("Estas seguro de eliminar el menu?")==true){
+      this.carritoCollection.doc(item).collection("Productos").doc(id).delete()
+    }
+    
+  }
+
+  deletePedido(item){
+    this.pedidosDoc = this.db.doc(`pedidos/${item.id}`);
+    if(confirm("Estas seguro de eliminar el pedido?")==true){
+      this.pedidosDoc.delete();
+    }
   }
 
   getAllMenuID(){
@@ -239,12 +271,19 @@ getAllPedidos(){
 
   updateProductMenu(menu: Menu,item){
     this.MenuDoc = this.db.doc(`menu/${item.id}`);
-    this.MenuDoc.update(menu); 
+    this.MenuDoc.update(menu).then(() =>{
+      alert("Se ha actualizado el menu satisfactoriamente")
+    }).catch(()=>{
+      alert("No se pudo actualizar el menu")
+    }) 
   }
 
   deleteProductMenu(item){
     this.MenuDoc = this.db.doc(`menu/${item.id}`);
-    this.MenuDoc.delete();
+    if(confirm("Estas seguro de eliminar el menu?")==true){
+      this.MenuDoc.delete();
+    }
+   
   }
 
   getProductos(id){
@@ -273,69 +312,5 @@ getAllPedidos(){
     return this.phistorial
   }
 
-  getQueso(){
-    var c=0;
-    for(var i=0; i<this.Aextra.length; i++){
-      if(this.Aextra[i].type == "queso"){
-        this.Qextras[c] = this.Aextra[i];
-        c++;
-      }
-    }
-    return this.Qextras;
-  }
-
-  getJamon(){
-    var d=0;
-    for(var i=0; i<this.Aextra.length; i++){
-      if(this.Aextra[i].type == "jamon"){
-        this.Jextras[d] = this.Aextra[i];
-        d++;
-      }
-    }
-    return this.Jextras;
-  }
-
-  getChocolate(){
-    var a=0;
-    for(var i=0; i<this.Aextra.length; i++){
-      if(this.Aextra[i].type == "chocolate"){
-        this.Cextras[a] = this.Aextra[i];
-        a++;
-      }
-    }
-    return this.Cextras;
-  }
-
-  getAzucar(){
-    var b=0;
-    for(var i=0; i<this.Aextra.length; i++){
-      if(this.Aextra[i].type == "azucar"){
-        this.Aextras[b] = this.Aextra[i];
-        b++;
-      }
-    }
-    return this.Aextras;
-  }
-
-  getCarne(){
-    var e=0;
-    for(var i=0; i<this.Aextra.length; i++){
-      if(this.Aextra[i].type == "carne"){
-        this.Caextras[e] = this.Aextra[i];
-        e++;
-      }
-    }
-    return this.Caextras;
-  }
-
-  getPollo(){
-    var f=0;
-    for(var i=0; i<this.Aextra.length; i++){
-      if(this.Aextra[i].type == "carneblanca"){
-        this.Pextras[f] = this.Aextra[i];
-        f++;
-      }
-    }
-    return this.Pextras;
-  }
+  
 }

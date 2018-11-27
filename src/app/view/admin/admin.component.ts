@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuarios';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { isNgTemplate } from '@angular/compiler';
 
 
 @Component({
@@ -19,9 +20,13 @@ export class AdminComponent implements OnInit {
   lastname: string;
   pedidos = [];
   ordenpedidos = []
+  idpedidos = []
   constructor(private firestoreService: FirestoreService, private route:ActivatedRoute,private modalService: NgbModal, private fireAuth: AuthService) {
     this.UID = this.fireAuth.getUser();
-    this.usuarios = firestoreService.Ausuario;
+    this.firestoreService.getAllUsuarios().subscribe(usuarios =>{
+      this.usuarios = usuarios
+    })
+    this.idpedidos = firestoreService.idpedidos
     this.name = this.getName();
     this.lastname = this.getLastname();
     this.firestoreService.getAllPedidos().subscribe(pedidos =>{
@@ -36,8 +41,9 @@ export class AdminComponent implements OnInit {
         return 0
       })
       this.ordenarpedidos(this.pedidos);
-      console.log(this.ordenpedidos)
   })
+  console.log(this.ordenpedidos)
+  console.log(this.pedidos)
    }
 
    ordenarpedidos(array){
@@ -83,31 +89,28 @@ export class AdminComponent implements OnInit {
 
   closeResult: string;
   usuarios = [];
-  UsertoEdit: Usuario;
+  UsertoEdit;
 
-  EditarUsuarioTrue(item){
-    this.UsertoEdit = item;
-    this.DisponibilidadTrue();
-    this.UpdateUser();
-  }
-
-  EditarUsuarioFalse(item){
-    this.UsertoEdit = item;
-    this.DisponibilidadFalse();
-    this.UpdateUser();
-  }
-
-  UpdateUser(){
+  CambiarAdmin(item){
+    this.UsertoEdit = item
+    console.log(this.UsertoEdit)
+    if(this.UsertoEdit.admin == true){
+      this.UsertoEdit.admin = false
+    }else{
+      this.UsertoEdit.admin = true
+    }
+    console.log(this.UsertoEdit)
     this.firestoreService.updateUsers(this.UsertoEdit)
   }
 
-  DisponibilidadTrue(){
-    this.UsertoEdit.admin = true;
-  }
+  // delete(item){
+  //   var variable = this.ordenpedidos.indexOf(item);
+  //   console.log(variable)
+  //   var variable2 = this.idpedidos[variable];
+  //   console.log(variable2)
+  //   this.firestoreService.deletePedido(variable2)
+  // }
 
-  DisponibilidadFalse(){
-    this.UsertoEdit.admin = false;
-  }
   
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {

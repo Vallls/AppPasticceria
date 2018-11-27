@@ -14,7 +14,8 @@
               </div>
               <label for="nombre">Descripcion del producto</label>
               <div class="input-group">
-                  <input type="text" name="descripcion" placeholder="descripcion" [(ngModel)]=ItemtoEdit.description>
+                  <textarea type="text" class="form-control" name="description" rows="5" style="margin-bottom: 10px; color:black; font-family: 'OptimusPrinceps'" placeholder="descripcion" [(ngModel)]=ItemtoEdit.description></textarea>
+                  
               </div>
               <label for="img">Imagen del producto</label>
               <div class="input-group">
@@ -49,6 +50,8 @@
   <div class="body">
   <app-navbar-admin></app-navbar-admin>
   <div class="container container-frm">
+      <div class="row justify-contend-center">
+      </div>
     <div class="row" id="panes">
      <h1>Panes</h1>
     </div>

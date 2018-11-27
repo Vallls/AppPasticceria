@@ -10,28 +10,20 @@
                     <div class="table table-hover">
                         <thead>
                             <th>Usuarios</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th>Habilitar/Deshabilitar Admin</th>
+                            <th>Administrador</th>
+                            <th><div Style="font-size: 11px">Habilitar/Deshabilitar Admin</div></th>
                         </thead>
-                        </div>
-                    </div>
         <tbody>
             <tr *ngFor="let usuario of usuarios">
-            <td>{{usuario.name}}</td>
-            <td><div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" Style="margin-left:110px">
-                    <label ngbButtonLabel class="btn-primary" class="green">
-                        <input ngbButton type="radio" (click)="EditarUsuarioTrue(usuario)"> Establecer Admin
-                      </label>
-                      <label ngbButtonLabel class="btn-primary" class="red">
-                        <input ngbButton type="radio" (click)="EditarUsuarioFalse(usuario)"> Eliminar Admin     
-                      </label>
-                </div></td>
+            <td>{{usuario.name}} {{usuario.lastname}}</td>
+            <div *ngIf="usuario.admin == true;else templateName">
+            <td><div Style="margin-left: 40px">Si</div></td>
+            </div>
+            <td><button type="button" class="btn btn-outline-light" Style="margin-left: 50px"(click)="CambiarAdmin(usuario)">Cambiar</button></td>
             </tr>
         </tbody>
+    </div>
+</div>
         </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Cerrar</button>
@@ -52,12 +44,14 @@
                                 <th>Productos</th>
                                 <th>Monto</th>
                                 <th>Usuario</th>
+                                <th>Eliminar</th>
                             </thead>
             <tbody>
                 <tr *ngFor="let pedido of ordenpedidos">
                 <td>{{pedido.productos}}</td>
-                <td>{{pedido.price}}</td>
+                <td>{{pedido.price}} $</td>
                 <td>{{pedido.usuario}}</td>
+                <td><img src="assets/trash.png" width="50px" height="50px" Style="cursor: pointer"></td>
                 </tr>
             </tbody>
         </div>
@@ -73,7 +67,7 @@
   <div class="container">
       <div class="row">
           <div class="col-6 container-bg">
-              <h1 style=" font-family: 'OptimusPrinceps'; color: white; text-align: center">Bienvenido otra vez, {{name}}</h1>
+              <h1 style=" font-family: 'OptimusPrinceps'; color: white; text-align: center">Bienvenido otra vez, {{getName()}}</h1>
               <img src="assets/logo.png" width="300px" height="300px" style="margin-left:110px; margin-top:50px; margin-bottom: 40px">
           </div>
           <div class="col-1"></div>
@@ -97,3 +91,7 @@
         </div>
     </div>     
 </div>
+
+<ng-template #templateName>
+    <td><div Style="margin-left: 40px">No</div></td>
+  </ng-template>

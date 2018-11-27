@@ -8,26 +8,48 @@
       <div class="modal-body">
           <p>Personaliza tu Compra</p>
           <div >
-              <div class="row">
-              <label for="product" style="font-size:large; margin-top: 10px; margin-right: 10px">Extra Tipo 1</label>
-              <select name="opcionSeleccionado" [(ngModel)]="opcionSeleccionado2" (change)="capturar2()" style="font-size: medium; margin-bottom: 10px; color:black">
-              <option style="font-size: medium; margin-bottom: 10px; color:black" value="Selecciona una opción">Selecciona una opción</option>
-              <option style="font-size: medium; margin-bottom: 10px; color:black" *ngFor="let item of getSmenu().extra2" value="{{item.name}}">{{item.name}}</option>
-              </select>
+              <div *ngIf="getSmenu().typeE=='dulce'">
+                <div class="row">
+                  <label for="product" style="font-size:large; margin-top: 10px; margin-right: 10px">Extra 1</label>
+                  <select name="opcionSeleccionado" [(ngModel)]="opcionSeleccionado2" (change)="capturar2()" style="font-size: medium; margin-bottom: 10px; color:black">
+                  <option style="font-size: medium; margin-bottom: 10px; color:black" value="Selecciona una opción">Selecciona una opción</option>
+                  <option class="option" style="font-size: medium; margin-bottom: 10px; color:black" *ngFor="let item of getDulce()" value="{{item.name}}">{{item.name}}</option>
+                  </select>
+                  </div>
+                                    
+                  <div class="row">
+                  <label for="product" style="font-size:large; margin-top: 10px; margin-right: 10px">Extra 2</label>
+                  <select name="opcionSeleccionado" [(ngModel)]="opcionSeleccionado3" (change)="capturar3()" style="font-size: medium; margin-bottom: 10px; color:black">
+                  <option style="font-size: medium; margin-bottom: 10px; color:black" value="Selecciona una opción">Selecciona una opción</option>
+                  <option class="option" style="font-size: medium; margin-bottom: 10px; color:black" *ngFor="let item of getDulce()" value="{{item.name}}">{{item.name}}</option>
+                  </select>
+                  </div>
               </div>
-                                
-              <div class="row">
-              <label for="product" style="font-size:large; margin-top: 10px; margin-right: 10px">Extra Tipo 2</label>
-              <select name="opcionSeleccionado" [(ngModel)]="opcionSeleccionado3" (change)="capturar3()" style="font-size: medium; margin-bottom: 10px; color:black">
-              <option style="font-size: medium; margin-bottom: 10px; color:black" value="Selecciona una opción">Selecciona una opción</option>
-              <option style="font-size: medium; margin-bottom: 10px; color:black" *ngFor="let item of getSmenu().extra1" value="{{item.name}}">{{item.name}}</option>
-              </select>
+              <div *ngIf="getSmenu().typeE=='salado'">
+                <div class="row">
+                  <label for="product" style="font-size:large; margin-top: 10px; margin-right: 10px">Extra 1</label>
+                  <select name="opcionSeleccionado" [(ngModel)]="opcionSeleccionado2" (change)="capturar2()" style="font-size: medium; margin-bottom: 10px; color:black">
+                  <option style="font-size: medium; margin-bottom: 10px; color:black" value="Selecciona una opción">Selecciona una opción</option>
+                  <option class="option" style="font-size: medium; margin-bottom: 10px; color:black" *ngFor="let item of getSalado()" value="{{item.name}}">{{item.name}}</option>
+                  </select>
+                  </div>
+                                    
+                  <div class="row">
+                  <label for="product" style="font-size:large; margin-top: 10px; margin-right: 10px">Extra 2</label>
+                  <select name="opcionSeleccionado" [(ngModel)]="opcionSeleccionado3" (change)="capturar3()" style="font-size: medium; margin-bottom: 10px; color:black">
+                  <option style="font-size: medium; margin-bottom: 10px; color:black" value="Selecciona una opción">Selecciona una opción</option>
+                  <option class="option" style="font-size: medium; margin-bottom: 10px; color:black" *ngFor="let item of getSalado()" value="{{item.name}}">{{item.name}}</option>
+                  </select>
+                  </div>
+              </div>
+              <div *ngIf="getSmenu().typeE=='Selecciona una opción'">
+                  <h2>Producto no modificable</h2>
               </div>
           </div>
       </div>
       
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Agregar al Carrito</button>
+        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')"  (click)="addCarrito(getSmenu())">Agregar al Carrito</button>
       </div>
     </ng-template>
 
@@ -46,8 +68,42 @@
           <h3 style="left:20px">{{product.name}}</h3>
           <h4>{{product.description}}</h4>
   </ng-template>
+
+  <ng-template #templateName2>
+    <div>
+      <div class = "row">
+      <div class="col-4" *ngFor="let busca of arraybusqueda">
+          <div class="caja centrarCaja" Style="height: auto; width: auto">
+              <img src="{{busca.img}}" width="200px" height="200px">
+              <div class="Num1">
+                <div class="overlay">
+                  <div class="text">Precio: {{busca.price}} $
+                    <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(busca)">
+                  </div>
+                </div>
+              </div>
+            </div>
+              <h3 style="margin-top:75%">{{busca.name}}</h3>
+              <h4>{{busca.description}}</h4>
+  </div>
+  </div>
+</div>
+</ng-template>
     
 <div class="container container-frm">
+  <div class="row justify-contend-center"> 
+        <form name="form" (ngSubmit)="definir()">
+            
+                    <h3 style="text-align: center">Buscar</h3>
+                    <input style="border-radius: 25px" type="text" placeholder="Busca productos por nombre" name="busqueda" id="busqueda" class="form-control" [(ngModel)]="busqueda">
+                     
+                
+                    <button type="submit" class="btn btn-bg btn-sm" style="margin-top:10px; margin-left:70px">Buscar</button> 
+                
+            
+        </form>
+  </div>
+  <div *ngIf="buscando === false ;else templateName2">
     <div class="row" id="panes">
      <h1>Panes</h1>
     </div>
@@ -61,7 +117,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
-                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)" (click)="addCarrito(men)">
+                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)">
               </div>
             </div>
           </div>
@@ -85,7 +141,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
-                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)" (click)="addCarrito(men)">
+                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)">
               </div>
             </div>
           </div>
@@ -109,7 +165,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
-                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)" (click)="addCarrito(men)">
+                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)">
               </div>
             </div>
           </div>
@@ -133,7 +189,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text"> Precio: {{men.price}} $
-                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)" (click)="addCarrito(men)">
+                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)">
               </div>
             </div>
           </div>
@@ -157,7 +213,7 @@
           <div class="Num1">
             <div class="overlay">
               <div class="text">Precio: {{men.price}} $
-                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)" (click)="addCarrito(men)">
+                <img src="/src/assets/cart.jpg" width="55px" height="55px" alt="cart" (click)="open(content)" (click)="encontrar(men)">
               </div>
             </div>
           </div>
@@ -167,6 +223,7 @@
          </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
   <div class="container container-frm acordeon">
@@ -180,6 +237,7 @@
               <div class="table table-hover">
                 <thead>
                   <th>Producto</th>
+                  <th>Extras</th>
                   <th>Precio</th>
                   <th>Pedido</th>
                   <th>Recomprar</th>
@@ -187,9 +245,10 @@
                 <tbody>
                     <tr *ngFor="let producto of productos">
                     <td>{{producto.name}}</td>
-                    <td>{{producto.price}}</td>
+                    <td>{{producto.extras}}</td>
+                    <td>{{producto.priceb}}</td>
                     <td>Nro. {{producto.npedido}}</td>
-                    <td><button class="btn btn-bg btn-lg" (click)="addCarrito(producto)">Recomprar</button></td>
+                    <td><button class="btn btn-bg btn-lg" (click)="verificard(producto)">Recomprar</button></td>
                     </tr>
                 </tbody>
               </div>

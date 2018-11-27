@@ -30,7 +30,7 @@ export class FormSignupComponent implements OnInit {
     
   }
   
-alerts(){
+alerts(){ //Funcion que indica las alertas dependiendo sea el caso del error
   
    
     if(this.users.name == null || this.users.lastname == null || this.users.email == null || this.users.password == null){
@@ -49,10 +49,10 @@ alerts(){
   
 }
 
-addUser(){
+addUser(){ //Funcion que agrega al usuario al FireAuth y a la coleccion usuario.
   this.alerts();
-  if(this.users.name != null && this.users.lastname != null && this.users.email != null && this.users.password != null && this.users.password == this.users.passwordc && this.users.password.length >= 6) {
-    this.fireAuth.signUp(this.users.email, this.users.password)
+  if(this.users.name != null && this.users.lastname != null && this.users.email != null && this.users.password != null && this.users.password == this.users.passwordc && this.users.password.length >= 6)  { //comprueba si todos los campos estan llenos y la contrasena tiene mas de 6 caracteres
+    this.fireAuth.signUp(this.users.email, this.users.password) //funcion de auth que registra un usuario
     .then( data => {
       const userID = data.user.uid;
       const user = {
@@ -65,7 +65,7 @@ addUser(){
       } as Usuario
       this.crearCarrito(userID);
       this.crearHistorial(userID);
-      this.firestoreService.addUsers(user, userID)
+      this.firestoreService.addUsers(user, userID) //funcion de firestore que agrega a la coleccion usuario
       .then( ()=> {
         this.fireAuth.navbar.next('user')
         this.router.navigate(['/user']);
@@ -83,7 +83,7 @@ addUser(){
   
 }
 
-crearCarrito(userID){
+crearCarrito(userID){ //funcion que crea un documento carrito al crear un usuario
   this.carrito = {
     id: userID,
   } as Carrito
@@ -93,7 +93,7 @@ crearCarrito(userID){
   })
 }
 
-crearHistorial(userID){
+crearHistorial(userID){ //funcion que crea un documento historial al crear un usuario
   this.historial = {
     id: userID,
     npedido: 1,

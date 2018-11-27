@@ -1,13 +1,13 @@
 import { Observable } from 'rxjs';
 
-export interface Usuario {
+export interface Usuario { //interfaces utilizadas en todo el codigo
     id?: string;
     name?: string;
     lastname?: string;
     email?: string;
     password?: string;
     passwordc?: string;
-    admin: boolean;
+    admin?: boolean;
     carrito?: Array<Menu>;
 }
 
@@ -19,8 +19,7 @@ export interface Menu{
     img?: Observable<string>;
     available?: boolean;
     type?: string;
-    extra1?: Array<Extra>;
-    extra2?: Array<Extra>;
+    typeE?: string;
 }
 
 export interface Extra{
