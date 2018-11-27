@@ -112,6 +112,10 @@ h3{
     opacity: 0.8;
   }
 
+    .row .col-4 .centrarCaja .Num1:hover  .overlay {
+    opacity: 0.8;
+  }
+
  
 
   .text {
