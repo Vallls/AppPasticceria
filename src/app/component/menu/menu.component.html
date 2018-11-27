@@ -70,9 +70,9 @@
   </ng-template>
 
   <ng-template #templateName2>
-    <div *ngFor="let busca of arraybusqueda">
+    <div>
       <div class = "row">
-      <div class="col-4">
+      <div class="col-4" *ngFor="let busca of arraybusqueda">
           <div class="caja centrarCaja" Style="height: auto; width: auto">
               <img src="{{busca.img}}" width="200px" height="200px">
               <div class="Num1">
@@ -91,14 +91,17 @@
 </ng-template>
     
 <div class="container container-frm">
-  <div class="row justify-contend-center">
-      <div class="col-3">
-          <h3>Buscar</h3>
+  <div class="row justify-contend-center"> 
         <form name="form" (ngSubmit)="definir()">
-          <input style="border-radius: 25px" type="text" placeholder="Busca productos por nombre" name="busqueda" id="busqueda" class="form-control" [(ngModel)]="busqueda">
-          <button type="submit" class="btn btn-bg btn-lg">Buscar</button>  
+            
+                    <h3 style="text-align: center">Buscar</h3>
+                    <input style="border-radius: 25px" type="text" placeholder="Busca productos por nombre" name="busqueda" id="busqueda" class="form-control" [(ngModel)]="busqueda">
+                     
+                
+                    <button type="submit" class="btn btn-bg btn-sm" style="margin-top:10px; margin-left:70px">Buscar</button> 
+                
+            
         </form>
-      </div>
   </div>
   <div *ngIf="buscando === false ;else templateName2">
     <div class="row" id="panes">

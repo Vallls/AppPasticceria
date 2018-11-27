@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuarios';
 import { PayPalConfig, PayPalEnvironment, PayPalIntegrationType } from 'ngx-paypal';
 import { AuthService } from 'src/app/services/auth/auth.service'
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-cart',
@@ -26,7 +27,7 @@ export class CartComponent implements OnInit {
         label: 'paypal',
       },
       onPaymentComplete: (data, actions) => {
-        console.log('OnPaymentComplete');
+        this.addHistorial();
       },
       onCancel: (data, actions) => {
         console.log('OnCancel');
@@ -42,7 +43,7 @@ export class CartComponent implements OnInit {
       }]
     });
   }
-
+  closeResult: string;
   UID;
   carritos = [];
   historiales = []
@@ -58,10 +59,11 @@ export class CartComponent implements OnInit {
   productos = [];
   variable: boolean = false;
   npedido;
+  totalalter;
   Total: number = 0;
   usuario;
   historialcorrecto;
-  constructor(private firestoreService: FirestoreService, private route:ActivatedRoute,public fireAuth: AuthService,) { 
+  constructor(private firestoreService: FirestoreService, private route:ActivatedRoute,public fireAuth: AuthService,private modalService: NgbModal) { 
     this.UID = this.fireAuth.getUser();
     this.usuarios = firestoreService.Ausuario;
     this.name = this.getName();
@@ -75,6 +77,7 @@ export class CartComponent implements OnInit {
     this.arrayCarritos = firestoreService.idCarrito;
     this.arrayHistoriales = firestoreService.idHistorial;
     this.id = this.arrayCarritos[this.posicion].id
+    this.totalalter =this.Total;
   }
 
   getName(){
@@ -160,6 +163,10 @@ export class CartComponent implements OnInit {
     }
   }
 
+  alerta(){
+    alert("Compra realizada con exito");
+  }
+
 
   getTotal(){
     return this.Total;
@@ -178,6 +185,24 @@ export class CartComponent implements OnInit {
 
   cambio(){
     this.variable = true;
+  }
+
+  open(content) { //funcion para abrir el modal
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
   ngOnInit() {

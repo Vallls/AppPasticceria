@@ -1,5 +1,23 @@
 <div class="body">
     <app-navbar-user></app-navbar-user>
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">¡Hola Comprador!</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="false">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            
+            <div>
+              <h3>El total a pagar es de {{Total}}</h3>
+            </div>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" (click)="alerta()"(click)="addHistorial()">Pagar</button>
+        </div>
+      </ng-template>
 
     <div class="container">
       <div class="row">
@@ -22,7 +40,7 @@
               <div>
                 <div><h2 style="margin-top:40px">El total es: {{Total}} $</h2></div>
                 <div *ngIf="variable == false;else templateName">
-                    <button type="submit" class="btn btn-bg btn-lg" (click)="cambio()" (click)="addHistorial()">Comprar</button> 
+                    <button type="submit" class="btn btn-bg btn-lg" (click)="cambio()">Comprar</button> 
                 </div>
                 </div>
               </div>
@@ -33,6 +51,7 @@
 <ng-template #templateName>
   <div class="row">
     <h3 Style="margin-right:10px">Link generado para pagar con Paypal:</h3><div><ngx-paypal  [config]="payPalConfig"></ngx-paypal></div>
+    <h3 Style="margin-right:10px">Link generado para pagar alternativo:</h3><div><button type="submit" class="btn btn-block btn-bg" (click)="open(content)">Pagar</button></div>
   </div>
 </ng-template>
 
