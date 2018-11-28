@@ -57,7 +57,10 @@ export class MenuComponent implements OnInit {
     this.arrayCarritos = firestoreService.idCarrito;
     this.arrayHistorial = firestoreService.idHistorial;
     this.id = this.arrayHistorial[this.posicion2].id
-    this.extra = this.firestoreService.Aextra;
+    //this.extra = this.firestoreService.Aextra;
+    this.firestoreService.getAllExtra().subscribe(extras =>{
+      this.extra = extras;
+    })
     console.log(this.arraybusqueda)
   }
 

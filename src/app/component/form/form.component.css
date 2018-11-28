@@ -32,6 +32,7 @@
     padding: 35px;
     position: absolute;
     box-sizing: border-box;
+    margin-left: 450px;
 }
 .btn-bg{
     color: brown;
@@ -52,35 +53,4 @@
 }
 
 
-@media screen and (min-height: 500px){
-    .container-frm{
-        max-height: 98%;
-        top: 1%;
-        bottom: 1%;
-        left: 7%;
-        right: 10%;
-        max-width: 83%;
-    }
-}
 
-@media screen and (min-height: 800px){
-    .container-frm{
-        max-height: 90%;
-        top: 5%;
-        bottom: 5%;
-        left: 7%;
-        right: 10%;
-        max-width: 83%;
-    }
-}
-
-@media screen and (min-height: 1200px){
-    .container-frm{
-        max-height: 60%;
-        top: 20%;
-        bottom: 20%;
-        left: 7%;
-        right: 10%;
-        max-width: 83%;
-    }
-}
