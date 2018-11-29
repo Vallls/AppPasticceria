@@ -32,11 +32,12 @@
 
 .navbar-nav.navbar-center {
     position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
     color:white; 
     font-family:PenelopeAnne; 
-    font-size:4vh;
-    margin-right: 3vw;
-    
+    font-size:x-large;
+    margin-right: 10px;
 
 }
 

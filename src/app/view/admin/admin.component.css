@@ -76,3 +76,17 @@
     background-repeat: repeat;
    
 }
+
+.table-responsive{
+    align-content: center; 
+   }
+ 
+   .table thead th {
+     vertical-align: bottom;
+     border-bottom: 2px solid #dee2e6;
+     background-color: rgba(90, 51, 0, 0.904);
+ }
+ 
+ .table{
+     background-color: rgba(90, 51, 0, 0.904);
+ }
